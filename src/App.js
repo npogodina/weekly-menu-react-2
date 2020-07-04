@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter, Switch, Route } from "react-router-dom"; // Route will change to PrivateRoute to use auth0
+
+import Dishes from "./components/dishes/Dishes";
+
 import "./App.css";
 import PropTypes from "prop-types";
 
@@ -23,15 +26,15 @@ const App = () => {
   return (
     <div>
       <h1>Hi!</h1>
-      {/* <BrowserRouter>
-        <header>
+      <BrowserRouter>
+        {/* <header>
           <Navbar />
-        </header>
+        </header> */}
 
         <Switch>
           <Route path="/dishes" render={() => <Dishes dishList={dishList} />} />
         </Switch>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 };
