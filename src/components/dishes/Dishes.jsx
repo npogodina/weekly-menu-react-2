@@ -10,7 +10,20 @@ const Dishes = (props) => {
 
   const makeComponents = (dishes) => {
     return dishes.map((dish) => {
-      return <Dish key={dish.dishId} id={dish.dishId} name={dish.name} />;
+      return (
+        <Dish
+          key={dish.dishId}
+          id={dish.dishId}
+          name={dish.name}
+          timestamp={dish.timestamp}
+          servings={dish.servings}
+          recipe={dish.recipe}
+          breakfast={dish.breakfast}
+          lunch={dish.lunch}
+          dinner={dish.dinner}
+          other={dish.other}
+        />
+      );
     });
   };
 
