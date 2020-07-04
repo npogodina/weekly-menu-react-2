@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter, Switch, Route } from "react-router-dom"; // Route will change to PrivateRoute to use auth0
 
+import Navbar from "./components/Navbar";
 import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
 
@@ -27,9 +28,9 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        {/* <header>
+        <header>
           <Navbar />
-        </header> */}
+        </header>
 
         <Switch>
           <Route
