@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import { Input, Menu, Segment } from "semantic-ui-react";
+import { Input, Menu, Dropdown } from "semantic-ui-react";
 
 import PropTypes from "prop-types";
 
@@ -14,19 +14,32 @@ const Navbar = () => {
 
   return (
     <div>
-      <Menu pointing>
+      <Menu>
         <Menu.Item
           name="home"
           active={activeItem === "home"}
           onClick={handleItemClick}
         />
-        <Menu.Item
-          name="dishes"
-          active={activeItem === "dishes"}
-          onClick={handleItemClick}
-        >
-          <Link to={`/dishes`}>Dishes</Link>
-        </Menu.Item>
+        <Dropdown item text="Dishes">
+          <Dropdown.Menu>
+            <Dropdown.Item
+              name="dishes"
+              active={activeItem === "dishes"}
+              onClick={handleItemClick}
+            >
+              <Link to={`/dishes`}>Dishes</Link>
+            </Dropdown.Item>
+
+            <Dropdown.Item
+              name="dishes"
+              active={activeItem === "dishes"}
+              onClick={handleItemClick}
+            >
+              <Link to={`/new`}>Add Dish</Link>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+
         <Menu.Item
           name="menu"
           active={activeItem === "menu"}
