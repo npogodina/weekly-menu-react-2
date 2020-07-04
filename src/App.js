@@ -3,6 +3,7 @@ import axios from "axios";
 import { BrowserRouter, Switch, Route } from "react-router-dom"; // Route will change to PrivateRoute to use auth0
 
 import Dishes from "./components/dishes/Dishes";
+import DishPage from "./components/dishes/DishPage";
 
 import "./App.css";
 import PropTypes from "prop-types";
@@ -32,6 +33,7 @@ const App = () => {
 
         <Switch>
           <Route path="/dishes" render={() => <Dishes dishList={dishList} />} />
+          <Route path="/dishes/:dishId" render={() => <DishPage />} />
         </Switch>
       </BrowserRouter>
     </div>
