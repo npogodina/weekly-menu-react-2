@@ -1,26 +1,39 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { BrowserRouter, Switch, Route } from "react-router-dom"; // Route will change to PrivateRoute to use auth0
 import "./App.css";
+import PropTypes from "prop-types";
 
-function App() {
+const App = () => {
+  const [dishList, setDishList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_API_DISHES_INDEX)
+      .then((response) => {
+        const apiDishList = response.data;
+        setDishList(apiDishList);
+      })
+      .catch((error) => {
+        // Still need to handle errors
+        // setErrorMessage(error.message);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hi!</h1>
+      {/* <BrowserRouter>
+        <header>
+          <Navbar />
+        </header>
+
+        <Switch>
+          <Route path="/dishes" render={() => <Dishes dishList={dishList} />} />
+        </Switch>
+      </BrowserRouter> */}
     </div>
   );
-}
+};
 
 export default App;
