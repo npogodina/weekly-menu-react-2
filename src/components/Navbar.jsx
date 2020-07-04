@@ -21,13 +21,15 @@ const Navbar = () => {
           onClick={handleItemClick}
         />
         <Menu.Item
-          name="messages"
-          active={activeItem === "messages"}
+          name="dishes"
+          active={activeItem === "dishes"}
           onClick={handleItemClick}
-        />
+        >
+          <Link to={`/dishes`}>Dishes</Link>
+        </Menu.Item>
         <Menu.Item
-          name="friends"
-          active={activeItem === "friends"}
+          name="menu"
+          active={activeItem === "menu"}
           onClick={handleItemClick}
         />
         <Menu.Menu position="right">
