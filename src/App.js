@@ -32,8 +32,16 @@ const App = () => {
         </header> */}
 
         <Switch>
-          <Route path="/dishes" render={() => <Dishes dishList={dishList} />} />
-          <Route path="/dishes/:dishId" render={() => <DishPage />} />
+          <Route
+            exact
+            path="/dishes"
+            render={() => <Dishes dishList={dishList} />}
+          />
+          <Route
+            exact
+            path="/dishes/:dishId"
+            render={() => <DishPage dishList={dishList} />}
+          />
         </Switch>
       </BrowserRouter>
     </div>

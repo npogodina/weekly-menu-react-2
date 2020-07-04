@@ -10,7 +10,7 @@ const Dish = (props) => {
 
   function handleClick(e) {
     // e.preventDefault();
-    history.push(`/dishes/${props.id}`);
+    history.push(`/dishes/${props.dishId}`);
   }
 
   let meals = [];
@@ -24,7 +24,7 @@ const Dish = (props) => {
   return (
     <Table.Row className="" onClick={handleClick}>
       <Table.Cell>
-        <Link to={`/dishes/${props.id}`}>{props.name}</Link>
+        <Link to={`/dishes/${props.dishId}`}>{props.name}</Link>
       </Table.Cell>
       <Table.Cell>{meals.join(", ")}</Table.Cell>
       <Table.Cell>{props.servings}</Table.Cell>

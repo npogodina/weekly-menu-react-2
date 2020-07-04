@@ -13,11 +13,12 @@ const Dishes = (props) => {
       return (
         <Dish
           key={dish.dishId}
-          id={dish.dishId}
+          dishId={dish.dishId}
           name={dish.name}
           timestamp={dish.timestamp}
           servings={dish.servings}
-          recipe={dish.recipe}
+          directions={dish.directions}
+          ingredients={dish.ingredients}
           breakfast={dish.breakfast}
           lunch={dish.lunch}
           dinner={dish.dinner}
