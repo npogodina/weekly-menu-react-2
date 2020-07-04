@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"; // Route will c
 import Navbar from "./components/Navbar";
 import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
+import NewDishForm from "./components/dishes/NewDishForm";
 
 import "./App.css";
 import PropTypes from "prop-types";
@@ -43,6 +44,8 @@ const App = () => {
             path="/dishes/:dishId"
             render={() => <DishPage dishList={dishList} />}
           />
+
+          <Route exact path="/dishes/new" render={() => <NewDishForm />} />
         </Switch>
       </BrowserRouter>
     </div>
