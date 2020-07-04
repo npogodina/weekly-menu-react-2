@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Dish from "./Dish";
 
+import { Container, Table } from "semantic-ui-react";
+
 import PropTypes from "prop-types";
 
 const Dishes = (props) => {
@@ -15,23 +17,25 @@ const Dishes = (props) => {
   const dishes = props.dishList;
 
   const components = makeComponents(dishes);
-  const componentsToRender = <tbody>{components}</tbody>;
+  const componentsToRender = <Table.Body>{components}</Table.Body>;
 
   return (
-    <div className="container mt-5">
-      <h1>The Dishes:</h1>
-      <table className="table">
-        <thead className="thead-dark">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Meals</th>
-            <th scope="col">Servings</th>
-            <th scope="col">Recipe?</th>
-          </tr>
-        </thead>
+    <Container className="cont">
+      <h1>Your dishes:</h1>
+
+      <Table compact>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Meals</Table.HeaderCell>
+            <Table.HeaderCell>Servings</Table.HeaderCell>
+            <Table.HeaderCell>Recipe?</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+
         {componentsToRender}
-      </table>
-    </div>
+      </Table>
+    </Container>
   );
 };
 
