@@ -34,6 +34,8 @@ const App = () => {
         </header>
 
         <Switch>
+          <Route exact path="/dishes/new" render={() => <NewDishForm />} />
+
           <Route
             exact
             path="/dishes"
@@ -44,8 +46,6 @@ const App = () => {
             path="/dishes/:dishId"
             render={() => <DishPage dishList={dishList} />}
           />
-
-          <Route exact path="/dishes/new" render={() => <NewDishForm />} />
         </Switch>
       </BrowserRouter>
     </div>

@@ -35,7 +35,7 @@ const Navbar = () => {
               active={activeItem === "dishes"}
               onClick={handleItemClick}
             >
-              <Link to={`/new`}>Add Dish</Link>
+              <Link to={`/dishes/new`}>Add Dish</Link>
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
