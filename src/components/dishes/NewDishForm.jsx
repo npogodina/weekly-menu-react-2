@@ -9,6 +9,7 @@ import {
   Checkbox,
   Select,
   Icon,
+  Placeholder,
 } from "semantic-ui-react";
 
 import PropTypes from "prop-types";
@@ -25,7 +26,7 @@ const NewDishForm = (props) => {
     ingredients: [],
   });
 
-  const [directions, setDirections] = useState([]);
+  const [directions, setDirections] = useState([""]);
 
   const options = [
     { key: "1", text: "1", value: "1" },
@@ -120,18 +121,22 @@ const NewDishForm = (props) => {
           value={formFields.servings}
         />
         <h2>Directions:</h2>
-        <Icon bordered name="users" onClick={addStep} />
+
         {/* <Button onClick={addStep}></Button> */}
 
         {directions.map((directions, idx) => {
+          let placeholder = "Step " + (idx + 1);
           return (
-            <Form.Field>
-              <label>Step 1:</label>
-              <input
-                placeholder="Step 1"
-                onChange={(e) => onDirectionsChange(idx, e)}
-              />
-            </Form.Field>
+            <Form.Group widths="equal">
+              <Icon bordered name="plus" size="large" onClick={addStep} />
+
+              <Form.Field>
+                <input
+                  placeholder={placeholder}
+                  onChange={(e) => onDirectionsChange(idx, e)}
+                />
+              </Form.Field>
+            </Form.Group>
           );
         })}
 
