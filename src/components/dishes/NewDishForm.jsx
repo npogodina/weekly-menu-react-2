@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import { Container, Form, Button, Checkbox, Select } from "semantic-ui-react";
+import {
+  Container,
+  Form,
+  Button,
+  Checkbox,
+  Select,
+  Icon,
+} from "semantic-ui-react";
 
 import PropTypes from "prop-types";
 
@@ -18,13 +25,7 @@ const NewDishForm = (props) => {
     ingredients: [],
   });
 
-  const [directions, setDirections] = useState({
-    1: "",
-    2: "",
-    3: "",
-    4: "",
-    5: "",
-  });
+  const [directions, setDirections] = useState([]);
 
   const options = [
     { key: "1", text: "1", value: "1" },
@@ -55,42 +56,16 @@ const NewDishForm = (props) => {
     setFormFields(newFormFields);
   };
 
-  let nextStep = null;
-  const onDirectionsChange = (event) => {
-    const newDirections = {
-      ...directions,
-    };
-    newDirections[event.target.name] = event.target.value;
-    setDirections(newDirections);
-    // if (newDirections[event.target.name]) {
-    //   nextStep = (
-    //     <Form.Field>
-    //       <label>Step {Number(event.target.name) + 1}:</label>
-    //       <input
-    //         placeholder="Step 1"
-    //         name={Number(event.target.name) + 1}
-    //         onChange={onDirectionsChange}
-    //         value={directions[event.target.name + 1]}
-    //       />
-    //     </Form.Field>
-    //   );
-    // }
+  const onDirectionsChange = (i, event) => {
+    const values = [...directions];
+    values[i] = event.target.value;
+    setDirections(values);
   };
 
-  const addStep = (event) => {
-    nextStep = (
-      <p>Hi!</p>
-      // <Form.Field>
-      //   <label>Step {Number(event.target.name) + 1}:</label>
-      //   <input
-      //     placeholder="Step 1"
-      //     name={Number(event.target.name) + 1}
-      //     onChange={onDirectionsChange}
-      //     value={directions[event.target.name + 1]}
-      //   />
-      // </Form.Field>
-    );
-    console.log(nextStep);
+  const addStep = () => {
+    const values = [...directions];
+    values.push("");
+    setDirections(values);
   };
 
   let history = useHistory();
@@ -101,24 +76,24 @@ const NewDishForm = (props) => {
       ...formFields,
     };
 
-    for (const num in directions) {
-      if (directions[num]) {
-        newFormFields["directions"].push(directions[num]);
+    directions.forEach((step) => {
+      if (step !== "") {
+        newFormFields["directions"].push(step);
       }
-    }
+    });
 
     console.log(newFormFields);
 
-    // axios
-    //   .post(process.env.REACT_APP_API_DISHES_INDEX, formFields)
-    //   .then((response) => {
-    //     console.log("Post request sent!");
-    //     history.push(`/dishes/`);
-    //   })
-    //   .catch((error) => {
-    //     // What should we do when we know the post request failed?
-    //     // setErrorMessage(error.message);
-    //   });
+    axios
+      .post(process.env.REACT_APP_API_DISHES_INDEX, formFields)
+      .then((response) => {
+        console.log("Post request sent!");
+        history.push(`/dishes/`);
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        // setErrorMessage(error.message);
+      });
   };
 
   return (
@@ -145,17 +120,21 @@ const NewDishForm = (props) => {
           value={formFields.servings}
         />
         <h2>Directions:</h2>
-        <Form.Field>
-          <label>Step 1:</label>
-          <input
-            placeholder="Step 1"
-            name="1"
-            onChange={onDirectionsChange}
-            value={directions["1"]}
-          />
-        </Form.Field>
-        {nextStep}
-        <Button onClick={addStep}></Button>
+        <Icon bordered name="users" onClick={addStep} />
+        {/* <Button onClick={addStep}></Button> */}
+
+        {directions.map((directions, idx) => {
+          return (
+            <Form.Field>
+              <label>Step 1:</label>
+              <input
+                placeholder="Step 1"
+                onChange={(e) => onDirectionsChange(idx, e)}
+              />
+            </Form.Field>
+          );
+        })}
+
         <Button type="submit">Submit</Button>
       </Form>
     </Container>
