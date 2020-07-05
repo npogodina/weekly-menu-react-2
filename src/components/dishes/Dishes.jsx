@@ -41,7 +41,6 @@ const Dishes = (props) => {
   props.dishList.forEach((dish) => {
     if (dish.lunch[0] === "y") {
       lunches.push(dish);
-      console.log(lunches);
     }
     if (dish.breakfast[0] === "y") {
       breakfasts.push(dish);

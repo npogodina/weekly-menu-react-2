@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
+import LoginButton from "./LoginButton";
+
 import { Input, Menu, Dropdown } from "semantic-ui-react";
 
 import PropTypes from "prop-types";
@@ -45,6 +47,9 @@ const Navbar = () => {
           active={activeItem === "menu"}
           onClick={handleItemClick}
         />
+        <Menu.Item>
+          <LoginButton />
+        </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item>
             <Input icon="search" placeholder="Search..." />
