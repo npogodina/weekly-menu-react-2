@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Dish from "./Dish";
+import Profile from "../Profile";
 
 import { Container, Table, Button } from "semantic-ui-react";
 
@@ -78,6 +79,7 @@ const Dishes = (props) => {
 
   return (
     <Container className="cont">
+      <Profile />
       <h1>Your dishes:</h1>
       <div className="">
         <Button.Group color="olive">
