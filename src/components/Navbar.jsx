@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 
 import { Input, Menu, Dropdown } from "semantic-ui-react";
 
@@ -49,6 +50,9 @@ const Navbar = () => {
         />
         <Menu.Item>
           <LoginButton />
+        </Menu.Item>
+        <Menu.Item>
+          <LogoutButton />
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item>
