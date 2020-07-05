@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import {
   Container,
@@ -15,7 +16,9 @@ import {
 import PropTypes from "prop-types";
 
 const NewDishForm = (props) => {
+  const { user, isAuthenticated } = useAuth0();
   const [formFields, setFormFields] = useState({
+    userId: user.sub,
     name: "",
     breakfast: "no",
     lunch: "no",
