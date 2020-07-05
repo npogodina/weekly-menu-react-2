@@ -18,6 +18,14 @@ const NewDishForm = (props) => {
     ingredients: [],
   });
 
+  const [directions, setDirections] = useState({
+    1: "",
+    2: "",
+    3: "",
+    4: "",
+    5: "",
+  });
+
   const options = [
     { key: "1", text: "1", value: "1" },
     { key: "2", text: "2", value: "2" },
@@ -47,21 +55,70 @@ const NewDishForm = (props) => {
     setFormFields(newFormFields);
   };
 
+  let nextStep = null;
+  const onDirectionsChange = (event) => {
+    const newDirections = {
+      ...directions,
+    };
+    newDirections[event.target.name] = event.target.value;
+    setDirections(newDirections);
+    // if (newDirections[event.target.name]) {
+    //   nextStep = (
+    //     <Form.Field>
+    //       <label>Step {Number(event.target.name) + 1}:</label>
+    //       <input
+    //         placeholder="Step 1"
+    //         name={Number(event.target.name) + 1}
+    //         onChange={onDirectionsChange}
+    //         value={directions[event.target.name + 1]}
+    //       />
+    //     </Form.Field>
+    //   );
+    // }
+  };
+
+  const addStep = (event) => {
+    nextStep = (
+      <p>Hi!</p>
+      // <Form.Field>
+      //   <label>Step {Number(event.target.name) + 1}:</label>
+      //   <input
+      //     placeholder="Step 1"
+      //     name={Number(event.target.name) + 1}
+      //     onChange={onDirectionsChange}
+      //     value={directions[event.target.name + 1]}
+      //   />
+      // </Form.Field>
+    );
+    console.log(nextStep);
+  };
+
   let history = useHistory();
   const onFormSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post(process.env.REACT_APP_API_DISHES_INDEX, formFields)
-      .then((response) => {
-        console.log("Post request sent!");
-        history.push(`/dishes/`);
-      })
-      .catch((error) => {
-        // What should we do when we know the post request failed?
-        // setErrorMessage(error.message);
-      });
 
-    //
+    const newFormFields = {
+      ...formFields,
+    };
+
+    for (const num in directions) {
+      if (directions[num]) {
+        newFormFields["directions"].push(directions[num]);
+      }
+    }
+
+    console.log(newFormFields);
+
+    // axios
+    //   .post(process.env.REACT_APP_API_DISHES_INDEX, formFields)
+    //   .then((response) => {
+    //     console.log("Post request sent!");
+    //     history.push(`/dishes/`);
+    //   })
+    //   .catch((error) => {
+    //     // What should we do when we know the post request failed?
+    //     // setErrorMessage(error.message);
+    //   });
   };
 
   return (
@@ -87,6 +144,18 @@ const NewDishForm = (props) => {
           onChange={onSelectChange}
           value={formFields.servings}
         />
+        <h2>Directions:</h2>
+        <Form.Field>
+          <label>Step 1:</label>
+          <input
+            placeholder="Step 1"
+            name="1"
+            onChange={onDirectionsChange}
+            value={directions["1"]}
+          />
+        </Form.Field>
+        {nextStep}
+        <Button onClick={addStep}></Button>
         <Button type="submit">Submit</Button>
       </Form>
     </Container>
