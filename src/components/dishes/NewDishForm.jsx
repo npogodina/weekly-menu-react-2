@@ -63,11 +63,11 @@ const NewDishForm = (props) => {
     setFormFields(newFormFields);
   };
 
-  const onCheckboxChange = (event) => {
+  const onCheckboxChange = (event, data) => {
     const newFormFields = {
       ...formFields,
     };
-    newFormFields[event.target.name] = !newFormFields[event.target.name];
+    newFormFields[data.name] = data.checked;
     setFormFields(newFormFields);
   };
 
@@ -156,37 +156,33 @@ const NewDishForm = (props) => {
 
         <Form.Group inline>
           <label>Meal:</label>
-          <Form.Field
-            control="input"
+          <Checkbox
             label="Breakfast"
-            type="checkbox"
             name="breakfast"
-            // checked={value === "breakfast"}
+            checked={formFields.breakfast}
             onChange={onCheckboxChange}
+            className="form-checkbox"
           />
-          <Form.Field
-            control="input"
+          <Checkbox
             label="Lunch"
-            type="checkbox"
             name="lunch"
-            // checked={value === "lunch"}
+            checked={formFields.lunch}
             onChange={onCheckboxChange}
+            className="form-checkbox"
           />
-          <Form.Field
-            control="input"
+          <Checkbox
             label="Dinner"
-            type="checkbox"
             name="dinner"
-            // checked={value === "dinner"}
+            checked={formFields.dinner}
             onChange={onCheckboxChange}
+            className="form-checkbox"
           />
-          <Form.Field
-            control="input"
+          <Checkbox
             label="Other"
-            type="checkbox"
             name="other"
-            // checked={value === "other"}
+            checked={formFields.other}
             onChange={onCheckboxChange}
+            className="form-checkbox"
           />
         </Form.Group>
 
