@@ -1,14 +1,28 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter, Switch, Route } from "react-router-dom"; // Route will change to PrivateRoute to use auth0
+import { Router, Switch, Route } from "react-router-dom"; // Route will change to PrivateRoute to use auth0
+import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
+import { createBrowserHistory } from "history";
 
 import Navbar from "./components/Navbar";
 import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
 import NewDishForm from "./components/dishes/NewDishForm";
+import { Loading } from "./components/Loading";
 
 import "./App.css";
 import PropTypes from "prop-types";
+
+export const history = createBrowserHistory();
+
+const ProtectedRoute = ({ component, ...args }) => (
+  <Route component={withAuthenticationRequired(component)} {...args} />
+);
+
+const onRedirectCallback = (appState) => {
+  // Use the router's history module to replace the url
+  history.replace((appState && appState.returnTo) || window.location.pathname);
+};
 
 const App = () => {
   const [dishList, setDishList] = useState([]);
@@ -26,15 +40,21 @@ const App = () => {
       });
   }, []);
 
+  const { isLoading, error } = useAuth0();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div>
-      <BrowserRouter>
+      <Router history={history}>
         <header>
           <Navbar />
         </header>
 
         <Switch>
-          <Route exact path="/dishes/new" render={() => <NewDishForm />} />
+          <ProtectedRoute exact path="/dishes/new" component={NewDishForm} />
 
           <Route
             exact
@@ -47,7 +67,7 @@ const App = () => {
             render={() => <DishPage dishList={dishList} />}
           />
         </Switch>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 };
