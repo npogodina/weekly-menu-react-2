@@ -158,7 +158,7 @@ const NewDishForm = (props) => {
     });
 
     ingredients.forEach((ingredient) => {
-      if (ingredient.name !== "") {
+      if (ingredient["name"] && ingredient["name"] !== "") {
         newFormFields["ingredients"].push(ingredient);
       }
     });
