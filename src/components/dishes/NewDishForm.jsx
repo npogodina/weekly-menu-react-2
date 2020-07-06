@@ -103,6 +103,30 @@ const NewDishForm = (props) => {
       ...formFields,
     };
 
+    if (newFormFields["breakfast"]) {
+      newFormFields["breakfast"] = "y";
+    } else {
+      newFormFields["breakfast"] = "n";
+    }
+
+    if (newFormFields["lunch"]) {
+      newFormFields["lunch"] = "y";
+    } else {
+      newFormFields["lunch"] = "n";
+    }
+
+    if (newFormFields["dinner"]) {
+      newFormFields["dinner"] = "y";
+    } else {
+      newFormFields["dinner"] = "n";
+    }
+
+    if (newFormFields["other"]) {
+      newFormFields["other"] = "y";
+    } else {
+      newFormFields["other"] = "n";
+    }
+
     directions.forEach((step) => {
       if (step !== "") {
         newFormFields["directions"].push(step);
