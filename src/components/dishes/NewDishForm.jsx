@@ -34,6 +34,15 @@ const NewDishForm = (props) => {
   const [directions, setDirections] = useState([""]);
   const [ingredients, setIngredients] = useState([{}]);
 
+  // onChange callbacks:
+  const onInputChange = (event) => {
+    const newFormFields = {
+      ...formFields,
+    };
+    newFormFields[event.target.name] = event.target.value;
+    setFormFields(newFormFields);
+  };
+
   const options = [
     { key: "1", text: "1", value: "1" },
     { key: "2", text: "2", value: "2" },
@@ -44,21 +53,11 @@ const NewDishForm = (props) => {
     { key: "7", text: "7", value: "7" },
     { key: "8", text: "8", value: "8" },
   ];
-
-  const onInputChange = (event) => {
-    const newFormFields = {
-      ...formFields,
-    };
-    newFormFields[event.target.name] = event.target.value;
-    setFormFields(newFormFields);
-  };
-
   const onSelectChange = (event, result) => {
     const newFormFields = {
       ...formFields,
     };
     const { name, value } = result;
-
     newFormFields[name] = value;
     setFormFields(newFormFields);
   };
@@ -95,13 +94,14 @@ const NewDishForm = (props) => {
     setIngredients(values);
   };
 
-  let history = useHistory();
-
+  // Validation handling
   const [errorMessage, setErrorMessage] = useState(null);
   const errorMessageBlob = (
     <Message error header="Not that fast!" content={errorMessage} />
   );
 
+  // onSubmit
+  let history = useHistory();
   const onFormSubmit = (event) => {
     event.preventDefault();
 
@@ -110,10 +110,23 @@ const NewDishForm = (props) => {
       return;
     }
 
+    let dup = false;
+    props.dishList.forEach((dish) => {
+      if (dish.name === formFields.name) {
+        setErrorMessage(`You already have a dish ${dish.name}.`);
+        dup = true;
+        return;
+      }
+    });
+    if (dup === true) {
+      return;
+    }
+
     const newFormFields = {
       ...formFields,
     };
 
+    // Needs refactor
     if (newFormFields["breakfast"]) {
       newFormFields["breakfast"] = "y";
     } else {

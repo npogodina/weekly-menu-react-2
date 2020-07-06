@@ -70,7 +70,9 @@ const App = () => {
           <ProtectedRoute
             exact
             path="/dishes/new"
-            component={() => <NewDishForm reloadDishes={reloadDishes} />}
+            component={() => (
+              <NewDishForm reloadDishes={reloadDishes} dishList={dishList} />
+            )}
           />
           {/* <Route exact path="/dishes/new" component={NewDishForm} /> */}
 
