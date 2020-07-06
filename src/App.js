@@ -76,15 +76,15 @@ const App = () => {
           />
           {/* <Route exact path="/dishes/new" component={NewDishForm} /> */}
 
-          <Route
+          <ProtectedRoute
             exact
             path="/dishes"
-            render={() => <Dishes dishList={dishList} />}
+            component={() => <Dishes dishList={dishList} />}
           />
-          <Route
+          <ProtectedRoute
             exact
             path="/dishes/:dishId"
-            render={() => <DishPage dishList={dishList} />}
+            component={() => <DishPage dishList={dishList} />}
           />
         </Switch>
       </Router>
