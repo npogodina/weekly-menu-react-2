@@ -54,7 +54,8 @@ const App = () => {
         </header>
 
         <Switch>
-          <ProtectedRoute exact path="/dishes/new" component={NewDishForm} />
+          {/* <ProtectedRoute exact path="/dishes/new" component={NewDishForm} /> */}
+          <Route exact path="/dishes/new" component={NewDishForm} />
 
           <Route
             exact

@@ -13,6 +13,8 @@ import {
   Placeholder,
 } from "semantic-ui-react";
 
+import "./NewDishForm.css";
+
 import PropTypes from "prop-types";
 
 const NewDishForm = (props) => {
@@ -131,7 +133,7 @@ const NewDishForm = (props) => {
     <Container className="cont">
       <h1>Adding awesome new dish!</h1>
       <Form onSubmit={onFormSubmit}>
-        <Form.Field>
+        <Form.Field width={8}>
           <label>Recipe Name</label>
           <input
             placeholder="Example: Italian Baked Eggs"
@@ -141,6 +143,7 @@ const NewDishForm = (props) => {
           />
         </Form.Field>
         <Form.Select
+          width={2}
           control={Select}
           label="How many servings?"
           placeholder="Servings"
@@ -192,7 +195,9 @@ const NewDishForm = (props) => {
           let placeholder = "Step " + (idx + 1);
           return (
             <Form.Group widths="equal">
-              <Icon bordered name="plus" size="large" onClick={addStep} />
+              <Button basic color="olive" id="plus-btn" onClick={addStep}>
+                <Icon fitted name="plus" size="large" />
+              </Button>
 
               <Form.Field>
                 <input
@@ -208,10 +213,12 @@ const NewDishForm = (props) => {
         {ingredients.map((ingredients, idx) => {
           let placeholder = "Ingredient " + (idx + 1);
           return (
-            <Form.Group widths="equal">
-              <Icon bordered name="plus" size="large" onClick={addIngredient} />
+            <Form.Group>
+              <Button basic color="olive" id="plus-btn" onClick={addIngredient}>
+                <Icon fitted name="plus" size="large" />
+              </Button>
 
-              <Form.Field>
+              <Form.Field width={2}>
                 <input
                   name="amount"
                   placeholder="1"
@@ -219,7 +226,7 @@ const NewDishForm = (props) => {
                 />
               </Form.Field>
 
-              <Form.Field>
+              <Form.Field width={4}>
                 <input
                   name="measurement"
                   placeholder="lbs"
@@ -227,7 +234,7 @@ const NewDishForm = (props) => {
                 />
               </Form.Field>
 
-              <Form.Field>
+              <Form.Field width={6}>
                 <input
                   name="name"
                   placeholder="cranberries"
