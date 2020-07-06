@@ -10,7 +10,7 @@ import {
   Checkbox,
   Select,
   Icon,
-  Placeholder,
+  Message,
 } from "semantic-ui-react";
 
 import "./NewDishForm.css";
@@ -96,8 +96,19 @@ const NewDishForm = (props) => {
   };
 
   let history = useHistory();
+
+  const [errorMessage, setErrorMessage] = useState(null);
+  const errorMessageBlob = (
+    <Message error header="Not that fast!" content={errorMessage} />
+  );
+
   const onFormSubmit = (event) => {
     event.preventDefault();
+
+    if (formFields.name === "") {
+      setErrorMessage("Dish name cannot be empty. Honestly, what's that?");
+      return;
+    }
 
     const newFormFields = {
       ...formFields,
@@ -157,6 +168,7 @@ const NewDishForm = (props) => {
 
   return (
     <Container className="cont">
+      {errorMessage && errorMessageBlob}
       <h1>Adding awesome new dish!</h1>
       <Form onSubmit={onFormSubmit}>
         <Form.Field width={8}>
