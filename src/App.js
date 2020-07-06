@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
 import NewDishForm from "./components/dishes/NewDishForm";
+import Profile from "./components/Profile";
 import { Loading } from "./components/Loading";
 
 import "./App.css";
@@ -26,6 +27,11 @@ const onRedirectCallback = (appState) => {
 
 const App = () => {
   const [dishList, setDishList] = useState([]);
+
+  let dishCount = 0;
+  if (dishList) {
+    dishCount = dishList.length;
+  }
 
   useEffect(() => {
     axios
@@ -65,6 +71,7 @@ const App = () => {
         <header>
           <Navbar />
         </header>
+        <Profile dishCount={dishCount} />
 
         <Switch>
           <ProtectedRoute
