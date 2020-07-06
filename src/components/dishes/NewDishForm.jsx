@@ -20,10 +20,10 @@ const NewDishForm = (props) => {
   const [formFields, setFormFields] = useState({
     userId: user.sub,
     name: "",
-    breakfast: "no",
-    lunch: "no",
-    dinner: "no",
-    other: "no",
+    breakfast: false,
+    lunch: false,
+    dinner: false,
+    other: false,
     servings: 1,
     directions: [],
     ingredients: [],
@@ -57,6 +57,14 @@ const NewDishForm = (props) => {
     const { name, value } = result;
 
     newFormFields[name] = value;
+    setFormFields(newFormFields);
+  };
+
+  const onCheckboxChange = (event) => {
+    const newFormFields = {
+      ...formFields,
+    };
+    newFormFields[event.target.name] = !newFormFields[event.target.name];
     setFormFields(newFormFields);
   };
 
@@ -123,10 +131,44 @@ const NewDishForm = (props) => {
           onChange={onSelectChange}
           value={formFields.servings}
         />
+
+        <Form.Group inline>
+          <label>Meal:</label>
+          <Form.Field
+            control="input"
+            label="Breakfast"
+            type="checkbox"
+            name="breakfast"
+            // checked={value === "breakfast"}
+            onChange={onCheckboxChange}
+          />
+          <Form.Field
+            control="input"
+            label="Lunch"
+            type="checkbox"
+            name="lunch"
+            // checked={value === "lunch"}
+            onChange={onCheckboxChange}
+          />
+          <Form.Field
+            control="input"
+            label="Dinner"
+            type="checkbox"
+            name="dinner"
+            // checked={value === "dinner"}
+            onChange={onCheckboxChange}
+          />
+          <Form.Field
+            control="input"
+            label="Other"
+            type="checkbox"
+            name="other"
+            // checked={value === "other"}
+            onChange={onCheckboxChange}
+          />
+        </Form.Group>
+
         <h2>Directions:</h2>
-
-        {/* <Button onClick={addStep}></Button> */}
-
         {directions.map((directions, idx) => {
           let placeholder = "Step " + (idx + 1);
           return (
