@@ -46,6 +46,19 @@ const App = () => {
     return <Loading />;
   }
 
+  const reloadDishes = () => {
+    axios
+      .get(process.env.REACT_APP_API_DISHES_INDEX)
+      .then((response) => {
+        const apiDishList = response.data;
+        setDishList(apiDishList);
+      })
+      .catch((error) => {
+        // Still need to handle errors
+        // setErrorMessage(error.message);
+      });
+  };
+
   return (
     <div>
       <Router history={history}>
@@ -54,7 +67,11 @@ const App = () => {
         </header>
 
         <Switch>
-          <ProtectedRoute exact path="/dishes/new" component={NewDishForm} />
+          <ProtectedRoute
+            exact
+            path="/dishes/new"
+            component={() => <NewDishForm reloadDishes={reloadDishes} />}
+          />
           {/* <Route exact path="/dishes/new" component={NewDishForm} /> */}
 
           <Route

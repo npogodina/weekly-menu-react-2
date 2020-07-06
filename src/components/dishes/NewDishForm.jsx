@@ -146,6 +146,7 @@ const NewDishForm = (props) => {
       .post(process.env.REACT_APP_API_DISHES_INDEX, newFormFields)
       .then((response) => {
         console.log("Post request sent!");
+        props.reloadDishes();
         history.push(`/dishes/`);
       })
       .catch((error) => {
