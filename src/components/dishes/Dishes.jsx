@@ -79,7 +79,7 @@ const Dishes = (props) => {
 
   return (
     <Container className="cont">
-      <Profile />
+      {/* <Profile /> */}
       <h1>Your dishes:</h1>
       <div className="">
         <Button.Group color="olive">
