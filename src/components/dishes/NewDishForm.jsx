@@ -116,17 +116,18 @@ const NewDishForm = (props) => {
     });
 
     console.log(newFormFields);
+    setFormFields(newFormFields);
 
-    // axios
-    //   .post(process.env.REACT_APP_API_DISHES_INDEX, formFields)
-    //   .then((response) => {
-    //     console.log("Post request sent!");
-    //     history.push(`/dishes/`);
-    //   })
-    //   .catch((error) => {
-    //     // What should we do when we know the post request failed?
-    //     // setErrorMessage(error.message);
-    //   });
+    axios
+      .post(process.env.REACT_APP_API_DISHES_INDEX, newFormFields)
+      .then((response) => {
+        console.log("Post request sent!");
+        history.push(`/dishes/`);
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        // setErrorMessage(error.message);
+      });
   };
 
   return (
@@ -191,9 +192,9 @@ const NewDishForm = (props) => {
           let placeholder = "Step " + (idx + 1);
           return (
             <Form.Group widths="equal">
-              <Button basic color="olive" id="plus-btn" onClick={addStep}>
+              <div basic color="olive" id="plus-btn" onClick={addStep}>
                 <Icon fitted name="plus" size="large" />
-              </Button>
+              </div>
 
               <Form.Field>
                 <input
@@ -210,9 +211,9 @@ const NewDishForm = (props) => {
           let placeholder = "Ingredient " + (idx + 1);
           return (
             <Form.Group>
-              <Button basic color="olive" id="plus-btn" onClick={addIngredient}>
+              <div basic color="olive" id="plus-btn" onClick={addIngredient}>
                 <Icon fitted name="plus" size="large" />
-              </Button>
+              </div>
 
               <Form.Field width={2}>
                 <input
