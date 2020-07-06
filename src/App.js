@@ -71,7 +71,7 @@ const App = () => {
         <header>
           <Navbar />
         </header>
-        <Profile dishCount={dishCount} />
+        {/* <Profile dishCount={dishCount} /> */}
 
         <Switch>
           <ProtectedRoute
