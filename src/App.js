@@ -10,6 +10,7 @@ import DishPage from "./components/dishes/DishPage";
 import NewDishForm from "./components/dishes/NewDishForm";
 import NewMenuPage from "./components/menus/NewMenuPage";
 import EditMenuPage from "./components/menus/EditMenuPage";
+import MenuPage from "./components/menus/MenuPage";
 import { Loading } from "./components/Loading";
 
 import "./App.css";
@@ -99,6 +100,7 @@ const App = () => {
             path="/menus/new"
             component={() => <NewMenuPage dishList={dishList} />}
           />
+          <Route exact path="/menus/:menuId" component={() => <MenuPage />} />
           <Route
             exact
             path="/menus/new/edit"

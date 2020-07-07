@@ -25,6 +25,7 @@ const NewMenuPage = (props) => {
       })
       .then((response) => {
         console.log("Post request sent!");
+        console.log(response);
         // props.reloadDishes();
         // history.push(`/dishes/`);
       })
