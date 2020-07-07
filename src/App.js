@@ -9,6 +9,7 @@ import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
 import NewDishForm from "./components/dishes/NewDishForm";
 import NewMenuPage from "./components/menus/NewMenuPage";
+import EditMenuPage from "./components/menus/EditMenuPage";
 import { Loading } from "./components/Loading";
 
 import "./App.css";
@@ -97,6 +98,11 @@ const App = () => {
             exact
             path="/menus/new"
             component={() => <NewMenuPage dishList={dishList} />}
+          />
+          <Route
+            exact
+            path="/menus/new/edit"
+            component={() => <EditMenuPage dishList={dishList} />}
           />
         </Switch>
       </Router>
