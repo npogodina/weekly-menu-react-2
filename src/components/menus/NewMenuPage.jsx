@@ -37,18 +37,34 @@ const NewMenuPage = (props) => {
       });
   };
 
-  // const menuLines = (menu) => {
-  //   return menu.map((day) => {
-  //     return (
-  //       <Table.Row>
-  //         <Table.Cell>{day}</Table.Cell>
-  //         <Table.Cell>{menu[startDate.toISOString()]["breakfast"]}</Table.Cell>
-  //         <Table.Cell>Resets rating to default value</Table.Cell>
-  //         <Table.Cell />
-  //       </Table.Row>
-  //     );
-  //   });
-  // };
+  const dates = [startDate.toISOString()];
+  for (let i = 1; i < 7; i++) {
+    let day = new Date(startDate);
+    day.setDate(day.getDate() + i);
+    dates.push(day.toISOString());
+  }
+
+  console.log(dates);
+
+  let menuLines = null;
+  let menuLinesToRender = null;
+
+  if (menu) {
+    menuLines = (dates, menu) => {
+      return dates.map((day) => {
+        return (
+          <Table.Row>
+            <Table.Cell>{day}</Table.Cell>
+            <Table.Cell>{menu[day]["breakfast"]}</Table.Cell>
+            <Table.Cell>{menu[day]["lunch"]}</Table.Cell>
+            <Table.Cell>{menu[day]["dinner"]}</Table.Cell>
+          </Table.Row>
+        );
+      });
+    };
+
+    menuLinesToRender = <Table.Body>{menuLines(dates, menu)}</Table.Body>;
+  }
 
   return (
     <Container className="cont">
@@ -71,16 +87,15 @@ const NewMenuPage = (props) => {
             </Table.Row>
           </Table.Header>
 
-          <Table.Body>
-            <Table.Row>
+          {menuLinesToRender}
+          {/* <Table.Row>
               <Table.Cell>{startDate.toISOString()}</Table.Cell>
               <Table.Cell>
                 {menu[startDate.toISOString()]["breakfast"]}
               </Table.Cell>
               <Table.Cell>{menu[startDate.toISOString()]["lunch"]}</Table.Cell>
               <Table.Cell>{menu[startDate.toISOString()]["dinner"]}</Table.Cell>
-            </Table.Row>
-          </Table.Body>
+            </Table.Row> */}
         </Table>
       )}
     </Container>
