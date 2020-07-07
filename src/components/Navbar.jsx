@@ -50,7 +50,9 @@ const Navbar = () => {
           name="menu"
           active={activeItem === "menu"}
           onClick={handleItemClick}
-        />
+        >
+          <Link to={`/menus/new`}>New Menu</Link>
+        </Menu.Item>
 
         {!isAuthenticated && (
           <Menu.Menu position="right">
