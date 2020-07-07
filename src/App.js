@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
 import NewDishForm from "./components/dishes/NewDishForm";
-import Profile from "./components/Profile";
+import NewMenuPage from "./components/menus/NewMenuPage";
 import { Loading } from "./components/Loading";
 
 import "./App.css";
@@ -83,7 +83,7 @@ const App = () => {
           />
           {/* <Route exact path="/dishes/new" component={NewDishForm} /> */}
 
-          <ProtectedRoute
+          <Route
             exact
             path="/dishes"
             component={() => <Dishes dishList={dishList} />}
@@ -92,6 +92,11 @@ const App = () => {
             exact
             path="/dishes/:dishId"
             component={() => <DishPage dishList={dishList} />}
+          />
+          <Route
+            exact
+            path="/menus/new"
+            component={() => <NewMenuPage dishList={dishList} />}
           />
         </Switch>
       </Router>
