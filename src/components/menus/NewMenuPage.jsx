@@ -28,8 +28,6 @@ const NewMenuPage = (props) => {
         console.log("Post request sent!");
         console.log(response);
         setMenu(response.data.menu);
-        // props.reloadDishes();
-        // history.push(`/dishes/`);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?
@@ -88,14 +86,6 @@ const NewMenuPage = (props) => {
           </Table.Header>
 
           {menuLinesToRender}
-          {/* <Table.Row>
-              <Table.Cell>{startDate.toISOString()}</Table.Cell>
-              <Table.Cell>
-                {menu[startDate.toISOString()]["breakfast"]}
-              </Table.Cell>
-              <Table.Cell>{menu[startDate.toISOString()]["lunch"]}</Table.Cell>
-              <Table.Cell>{menu[startDate.toISOString()]["dinner"]}</Table.Cell>
-            </Table.Row> */}
         </Table>
       )}
     </Container>
