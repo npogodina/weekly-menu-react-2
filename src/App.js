@@ -38,6 +38,7 @@ const App = () => {
   }
 
   useEffect(() => {
+    console.log("Use Effect call to get dishes");
     if (user) {
       axios
         .get(process.env.REACT_APP_API_DISHES_INDEX, {
@@ -54,7 +55,7 @@ const App = () => {
           // setErrorMessage(error.message);
         });
     }
-  }, []);
+  }, user);
 
   const { isLoading, error } = useAuth0();
 
