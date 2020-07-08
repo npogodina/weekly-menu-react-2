@@ -65,7 +65,11 @@ const App = () => {
 
   const reloadDishes = () => {
     axios
-      .get(process.env.REACT_APP_API_DISHES_INDEX)
+      .get(process.env.REACT_APP_API_DISHES_INDEX, {
+        params: {
+          userId: user.sub,
+        },
+      })
       .then((response) => {
         const apiDishList = response.data;
         setDishList(apiDishList);
