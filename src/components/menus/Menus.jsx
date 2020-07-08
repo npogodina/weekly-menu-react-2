@@ -22,13 +22,14 @@ const Menus = (props) => {
   }, []);
 
   const makeComponents = (menus) => {
-    return menus.map((menu) => {
+    return menus.map((menu, i) => {
       return (
         <Menu
           key={menu.menuId}
           dishId={menu.menuId}
           startDate={menu.startDate}
           timestamp={menu.timestamp}
+          num={i + 1}
         />
       );
     });
