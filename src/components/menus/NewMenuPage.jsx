@@ -67,27 +67,43 @@ const NewMenuPage = (props) => {
 
   return (
     <Container className="cont">
-      <h2>Please, select the start date for the next week's menu.</h2>
-      <Form onSubmit={onFormSubmit}>
-        <Form.Field>
-          <DatePicker selected={startDate} onChange={onDateChange} />
-        </Form.Field>
-        <Button type="submit">Generate Menu</Button>
-      </Form>
+      {!menu && (
+        <div>
+          <h2>Please, select the start date for the next week's menu.</h2>
+          <Form onSubmit={onFormSubmit}>
+            <Form.Field>
+              <DatePicker selected={startDate} onChange={onDateChange} />
+            </Form.Field>
+            <Button type="submit">Generate Menu</Button>
+          </Form>
+        </div>
+      )}
 
       {menu && (
-        <Table definition celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell width={2} />
-              <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
-              <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
-              <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-
-          {menuLinesToRender}
-        </Table>
+        <div>
+          <h2>Here's what we suggest!</h2>
+          <Table definition celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell width={2} />
+                <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
+                <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
+                <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            {menuLinesToRender}
+          </Table>
+          <h2>Happy?</h2>
+          <Button.Group>
+            <Button color="green">Yes!</Button>
+            <Button.Or />
+            <Button color="yellow">Edit</Button>
+            <Button.Or />
+            <Button color="orange">Redo</Button>
+            <Button.Or />
+            <Button color="red">Cancel</Button>
+          </Button.Group>
+        </div>
       )}
     </Container>
   );
