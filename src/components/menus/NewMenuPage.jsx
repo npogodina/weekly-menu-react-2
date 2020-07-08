@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import dateformat from "dateformat";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { Container, Form, Button, Table } from "semantic-ui-react";
@@ -52,7 +53,7 @@ const NewMenuPage = (props) => {
       return dates.map((day) => {
         return (
           <Table.Row>
-            <Table.Cell>{day}</Table.Cell>
+            <Table.Cell>{dateformat(day, "m/d ddd")}</Table.Cell>
             <Table.Cell>{menu[day]["breakfast"]}</Table.Cell>
             <Table.Cell>{menu[day]["lunch"]}</Table.Cell>
             <Table.Cell>{menu[day]["dinner"]}</Table.Cell>
@@ -78,10 +79,10 @@ const NewMenuPage = (props) => {
         <Table definition celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell width={1} />
-              <Table.HeaderCell width={5}>Breakfast</Table.HeaderCell>
-              <Table.HeaderCell width={5}>Lunch</Table.HeaderCell>
-              <Table.HeaderCell width={5}>Dinner</Table.HeaderCell>
+              <Table.HeaderCell width={2} />
+              <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
+              <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
+              <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
