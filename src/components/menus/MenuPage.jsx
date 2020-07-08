@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useLocation } from "react-router-dom";
 
-// import { useAuth0 } from "@auth0/auth0-react";
 import { Container, Table } from "semantic-ui-react";
 
-const EditMenuPage = (props) => {
-  // const { user, isAuthenticated } = useAuth0();
+const MenuPage = (props) => {
+  const { user, isAuthenticated } = useAuth0();
+  const location = useLocation();
+
+  const [menu, setMenu] = useState([]);
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(6)}`
+      )
+      .then((response) => {
+        const apiMenuList = response.data;
+        setMenu(apiMenuList);
+      })
+      .catch((error) => {
+        // Still need to handle errors
+        // setErrorMessage(error.message);
+      });
+  }, []);
 
   return (
     <Container className="cont">
@@ -31,4 +50,4 @@ const EditMenuPage = (props) => {
   );
 };
 
-export default EditMenuPage;
+export default MenuPage;
