@@ -96,13 +96,17 @@ const App = () => {
             path="/dishes/:dishId"
             component={() => <DishPage dishList={dishList} />}
           />
-          <Route
+          <ProtectedRoute
             exact
             path="/menus/new"
             component={() => <NewMenuPage dishList={dishList} />}
           />
-          <Route exact path="/menus" component={() => <Menus />} />
-          <Route exact path="/menus/:menuId" component={() => <MenuPage />} />
+          <ProtectedRoute exact path="/menus" component={() => <Menus />} />
+          <ProtectedRoute
+            exact
+            path="/menus/:menuId"
+            component={() => <MenuPage />}
+          />
           <Route
             exact
             path="/menus/new/edit"
