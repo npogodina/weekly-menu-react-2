@@ -15,9 +15,9 @@ ReactDOM.render(
       domain="weekly-menu.us.auth0.com"
       clientId="ZUlWNaGmI3ANjJsT1WPZJ0FDt7a9SJFw"
       onRedirectCallback={onRedirectCallback}
-      // audience="https://am54xet7t0.execute-api.us-west-2.amazonaws.com/dev"
-      // scope="read:dishes"
-      // scope="read:current_user update:current_user_metadata"
+      //   audience="https://am54xet7t0.execute-api.us-west-2.amazonaws.com/dev"
+      //   // scope="read:dishes"
+      //   scope="read:current_user"
     >
       <App />
     </Auth0Provider>

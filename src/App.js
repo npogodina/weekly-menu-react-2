@@ -4,7 +4,7 @@ import { Router, Switch, Route } from "react-router-dom"; // Route will change t
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import { createBrowserHistory } from "history";
 
-import { Api } from "./components/API";
+import API from "./components/API";
 import Navbar from "./components/Navbar";
 import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
