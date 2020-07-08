@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Menu from "./Menu";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { Container, Table, Button } from "semantic-ui-react";
 
 import PropTypes from "prop-types";
 
 const Menus = (props) => {
+  const { user, isAuthenticated } = useAuth0();
   const [menus, setMenus] = useState([]);
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_API_MENUS_INDEX)
+      .get(process.env.REACT_APP_API_MENUS_INDEX, {
+        params: {
+          userId: user.sub,
+        },
+      })
       .then((response) => {
         const apiMenuList = response.data;
         setMenus(apiMenuList);
