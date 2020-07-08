@@ -46,13 +46,25 @@ const Navbar = () => {
           </Dropdown.Menu>
         </Dropdown>
 
-        <Menu.Item
-          name="menu"
-          active={activeItem === "menu"}
-          onClick={handleItemClick}
-        >
-          <Link to={`/menus/new`}>New Menu</Link>
-        </Menu.Item>
+        <Dropdown item text="Menus">
+          <Dropdown.Menu>
+            <Dropdown.Item
+              name="menus"
+              active={activeItem === "menus"}
+              onClick={handleItemClick}
+            >
+              <Link to={`/menus`}>Menus</Link>
+            </Dropdown.Item>
+
+            <Dropdown.Item
+              name="menus"
+              active={activeItem === "menus"}
+              onClick={handleItemClick}
+            >
+              <Link to={`/menus/new`}>New Menu</Link>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
         {!isAuthenticated && (
           <Menu.Menu position="right">
