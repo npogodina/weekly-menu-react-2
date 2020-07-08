@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useLocation } from "react-router-dom";
+import dateformat from "dateformat";
 
-import { Container, Table } from "semantic-ui-react";
+import { Container, Table, Button } from "semantic-ui-react";
 
 const MenuPage = (props) => {
   const { user, isAuthenticated } = useAuth0();
   const location = useLocation();
 
-  const [menu, setMenu] = useState([]);
+  const [menu, setMenu] = useState(null);
   useEffect(() => {
     axios
       .get(
@@ -25,27 +26,60 @@ const MenuPage = (props) => {
       });
   }, []);
 
+  let menuLines = null;
+  let menuLinesToRender = null;
+
+  if (menu) {
+    const dates = [menu["startDate"]];
+    for (let i = 1; i < 7; i++) {
+      let day = new Date(menu["startDate"]);
+      day.setDate(day.getDate() + i);
+      dates.push(day.toISOString());
+    }
+    menuLines = (dates, menu) => {
+      return dates.map((day) => {
+        return (
+          <Table.Row>
+            <Table.Cell>{dateformat(day, "m/d ddd")}</Table.Cell>
+            <Table.Cell>{menu["menu"][day]["breakfast"]}</Table.Cell>
+            <Table.Cell>{menu["menu"][day]["lunch"]}</Table.Cell>
+            <Table.Cell>{menu["menu"][day]["dinner"]}</Table.Cell>
+          </Table.Row>
+        );
+      });
+    };
+
+    menuLinesToRender = <Table.Body>{menuLines(dates, menu)}</Table.Body>;
+  }
+
   return (
     <Container className="cont">
-      <Table definition celled>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell width={1} />
-            <Table.HeaderCell width={5}>Breakfast</Table.HeaderCell>
-            <Table.HeaderCell width={5}>Lunch</Table.HeaderCell>
-            <Table.HeaderCell width={5}>Dinner</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>2020/7/7</Table.Cell>
-            <Table.Cell>None</Table.Cell>
-            <Table.Cell>Resets rating to default value</Table.Cell>
-            <Table.Cell />
-          </Table.Row>
-        </Table.Body>
-      </Table>
+      {menu && (
+        <div>
+          <h2>Here's what we suggest!</h2>
+          <Table definition celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell width={2} />
+                <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
+                <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
+                <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            {menuLinesToRender}
+          </Table>
+          <h2>Happy?</h2>
+          <Button.Group>
+            <Button color="green">Yes!</Button>
+            <Button.Or />
+            <Button color="yellow">Edit</Button>
+            <Button.Or />
+            <Button color="orange">Redo</Button>
+            <Button.Or />
+            <Button color="red">Cancel</Button>
+          </Button.Group>
+        </div>
+      )}
     </Container>
   );
 };
