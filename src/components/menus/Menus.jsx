@@ -1,110 +1,53 @@
 import React, { useState, useEffect } from "react";
-// import Dish from "./Dish";
-import Profile from "../Profile";
+import axios from "axios";
+import Menu from "./Menu";
 
 import { Container, Table, Button } from "semantic-ui-react";
 
 import PropTypes from "prop-types";
 
 const Menus = (props) => {
-  const [filter, setFilter] = useState("All");
+  const [menus, setMenus] = useState([]);
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_API_MENUS_INDEX)
+      .then((response) => {
+        const apiMenuList = response.data;
+        setMenus(apiMenuList);
+      })
+      .catch((error) => {
+        // Still need to handle errors
+        // setErrorMessage(error.message);
+      });
+  }, []);
 
-  const makeComponents = (dishes) => {
-    return dishes.map((dish) => {
+  const makeComponents = (menus) => {
+    return menus.map((menu) => {
       return (
-        <Dish
-          key={dish.dishId}
-          dishId={dish.dishId}
-          name={dish.name}
-          timestamp={dish.timestamp}
-          servings={dish.servings}
-          directions={dish.directions}
-          ingredients={dish.ingredients}
-          breakfast={dish.breakfast}
-          lunch={dish.lunch}
-          dinner={dish.dinner}
-          other={dish.other}
+        <Menu
+          key={menu.menuId}
+          dishId={menu.menuId}
+          startDate={menu.startDate}
+          timestamp={menu.timestamp}
         />
       );
     });
   };
 
-  const allDishComponents = makeComponents(props.dishList);
-  let breakfasts = [];
-  let lunches = [];
-  let dinners = [];
-  let other = [];
-  let breakfastDishComponents = [];
-  let lunchDishComponents = [];
-  let dinnerDishComponents = [];
-  let otherDishComponents = [];
-
-  props.dishList.forEach((dish) => {
-    if (dish.lunch[0] === "y") {
-      lunches.push(dish);
-    }
-    if (dish.breakfast[0] === "y") {
-      breakfasts.push(dish);
-    }
-    if (dish.dinner[0] === "y") {
-      dinners.push(dish);
-    }
-    if (dish.other[0] === "y") {
-      other.push(dish);
-    }
-
-    breakfastDishComponents = makeComponents(breakfasts);
-    lunchDishComponents = makeComponents(lunches);
-    dinnerDishComponents = makeComponents(dinners);
-    otherDishComponents = makeComponents(other);
-  });
-
   let componentsToRender = null;
-
-  const applyFilter = (event) => {
-    setFilter(event.target.name);
-  };
-
-  if (filter === "Breakfast") {
-    componentsToRender = <Table.Body>{breakfastDishComponents}</Table.Body>;
-  } else if (filter === "Lunch") {
-    componentsToRender = <Table.Body>{lunchDishComponents}</Table.Body>;
-  } else if (filter === "Dinner") {
-    componentsToRender = <Table.Body>{dinnerDishComponents}</Table.Body>;
-  } else if (filter === "Other") {
-    componentsToRender = <Table.Body>{otherDishComponents}</Table.Body>;
-  } else {
-    componentsToRender = <Table.Body>{allDishComponents}</Table.Body>;
+  if (menus) {
+    componentsToRender = makeComponents(menus);
   }
 
   return (
     <Container className="cont">
-      {/* <Profile /> */}
-      <h1>Your dishes:</h1>
-      <div className="">
-        <Button.Group color="olive">
-          <Button className="" name="Breakfast" onClick={applyFilter}>
-            Breakfast
-          </Button>
-          <Button className="" name="Lunch" onClick={applyFilter}>
-            Lunch
-          </Button>
-          <Button className="" name="Dinner" onClick={applyFilter}>
-            Dinner
-          </Button>
-          <Button className="" name="All" onClick={applyFilter}>
-            All
-          </Button>
-        </Button.Group>
-      </div>
+      <h1>Your menus:</h1>
 
       <Table compact>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Meals</Table.HeaderCell>
-            <Table.HeaderCell>Servings</Table.HeaderCell>
-            <Table.HeaderCell>Recipe?</Table.HeaderCell>
+            <Table.HeaderCell></Table.HeaderCell>
+            <Table.HeaderCell>Dates</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         {componentsToRender}
