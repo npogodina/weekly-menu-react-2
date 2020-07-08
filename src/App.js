@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
 import NewDishForm from "./components/dishes/NewDishForm";
+import Menus from "./components/menus/Menus";
 import NewMenuPage from "./components/menus/NewMenuPage";
 import EditMenuPage from "./components/menus/EditMenuPage";
 import MenuPage from "./components/menus/MenuPage";
@@ -100,6 +101,7 @@ const App = () => {
             path="/menus/new"
             component={() => <NewMenuPage dishList={dishList} />}
           />
+          <Route exact path="/menus" component={() => <Menus />} />
           <Route exact path="/menus/:menuId" component={() => <MenuPage />} />
           <Route
             exact
