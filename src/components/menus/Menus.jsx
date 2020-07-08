@@ -26,7 +26,7 @@ const Menus = (props) => {
       return (
         <Menu
           key={menu.menuId}
-          dishId={menu.menuId}
+          menuId={menu.menuId}
           startDate={menu.startDate}
           timestamp={menu.timestamp}
           num={i + 1}
