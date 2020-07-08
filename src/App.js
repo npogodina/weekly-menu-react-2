@@ -29,6 +29,7 @@ const onRedirectCallback = (appState) => {
 };
 
 const App = () => {
+  const { user, isAuthenticated } = useAuth0();
   const [dishList, setDishList] = useState([]);
 
   let dishCount = 0;
@@ -37,16 +38,22 @@ const App = () => {
   }
 
   useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_API_DISHES_INDEX)
-      .then((response) => {
-        const apiDishList = response.data;
-        setDishList(apiDishList);
-      })
-      .catch((error) => {
-        // Still need to handle errors
-        // setErrorMessage(error.message);
-      });
+    if (user) {
+      axios
+        .get(process.env.REACT_APP_API_DISHES_INDEX, {
+          params: {
+            userId: user.sub,
+          },
+        })
+        .then((response) => {
+          const apiDishList = response.data;
+          setDishList(apiDishList);
+        })
+        .catch((error) => {
+          // Still need to handle errors
+          // setErrorMessage(error.message);
+        });
+    }
   }, []);
 
   const { isLoading, error } = useAuth0();
@@ -86,7 +93,7 @@ const App = () => {
           />
           {/* <Route exact path="/dishes/new" component={NewDishForm} /> */}
 
-          <Route
+          <ProtectedRoute
             exact
             path="/dishes"
             component={() => <Dishes dishList={dishList} />}
