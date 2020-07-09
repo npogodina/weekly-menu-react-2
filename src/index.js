@@ -12,8 +12,8 @@ const onRedirectCallback = (appState) => {
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider
-      domain="weekly-menu.us.auth0.com"
-      clientId="ZUlWNaGmI3ANjJsT1WPZJ0FDt7a9SJFw"
+      domain={process.env.REACT_APP_AUTH0_DOMAIN}
+      clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
       onRedirectCallback={onRedirectCallback}
     >
       <App />
