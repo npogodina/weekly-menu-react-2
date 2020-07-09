@@ -4,7 +4,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useLocation } from "react-router-dom";
 import dateformat from "dateformat";
 
-import { Container, Table, Button } from "semantic-ui-react";
+import {
+  Container,
+  Table,
+  Button,
+  List,
+  Card,
+  CardContent,
+} from "semantic-ui-react";
 
 const MenuPage = (props) => {
   const { user, isAuthenticated } = useAuth0();
@@ -28,6 +35,8 @@ const MenuPage = (props) => {
 
   let menuLines = null;
   let menuLinesToRender = null;
+  let groceryListLines = null;
+  let groceryListToRender = null;
 
   if (menu) {
     const dates = [menu["startDate"]];
@@ -48,8 +57,26 @@ const MenuPage = (props) => {
         );
       });
     };
-
     menuLinesToRender = <Table.Body>{menuLines(dates, menu)}</Table.Body>;
+
+    groceryListLines = (menu) => {
+      let arr = [];
+      Object.keys(menu["groceryList"]).forEach((item) => {
+        arr.push(
+          <List.Item>
+            {/* <List.Icon name="github" size="large" verticalAlign="middle" /> */}
+            <List.Content>
+              <List.Header as="a">
+                {item}: {menu["groceryList"][item][0]["amount"]}
+              </List.Header>
+              <List.Description as="a">Updated 34 mins ago</List.Description>
+            </List.Content>
+          </List.Item>
+        );
+      });
+      return arr;
+    };
+    groceryListToRender = <List relaxed>{groceryListLines(menu)}</List>;
   }
 
   return (
@@ -78,6 +105,10 @@ const MenuPage = (props) => {
             <Button.Or />
             <Button color="red">Cancel</Button>
           </Button.Group>
+          <h2>Grocery List</h2>
+          <Card>
+            <CardContent>{groceryListToRender}</CardContent>
+          </Card>
         </div>
       )}
     </Container>
