@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useLocation } from "react-router-dom";
 import dateformat from "dateformat";
+import "./MenuPage.css";
 
 import {
   Container,
@@ -60,21 +61,22 @@ const MenuPage = (props) => {
     menuLinesToRender = <Table.Body>{menuLines(dates, menu)}</Table.Body>;
 
     groceryListLines = (menu) => {
-      let arr = [];
-      Object.keys(menu["groceryList"]).forEach((item) => {
-        arr.push(
+      return menu["groceryListText"].map((item) => {
+        return (
           <List.Item>
-            {/* <List.Icon name="github" size="large" verticalAlign="middle" /> */}
+            <List.Icon
+              name="check circle outline"
+              size="large"
+              verticalAlign="middle"
+              color="green"
+            />
             <List.Content>
-              <List.Header as="a">
-                {item}: {menu["groceryList"][item][0]["amount"]}
-              </List.Header>
-              <List.Description as="a">Updated 34 mins ago</List.Description>
+              <List.Header>{item["main"]}</List.Header>
+              <List.Description as="a">{item["for"]}</List.Description>
             </List.Content>
           </List.Item>
         );
       });
-      return arr;
     };
     groceryListToRender = <List relaxed>{groceryListLines(menu)}</List>;
   }
@@ -106,9 +108,11 @@ const MenuPage = (props) => {
             <Button color="red">Cancel</Button>
           </Button.Group>
           <h2>Grocery List</h2>
-          <Card>
-            <CardContent>{groceryListToRender}</CardContent>
-          </Card>
+          <div styleName="width: 50%">
+            <Card id="groceryList">
+              <CardContent>{groceryListToRender}</CardContent>
+            </Card>
+          </div>
         </div>
       )}
     </Container>

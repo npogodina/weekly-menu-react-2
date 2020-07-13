@@ -6,6 +6,7 @@ import dateformat from "dateformat";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { Container, Form, Button, Table } from "semantic-ui-react";
+import "./MenuPage.css";
 
 const NewMenuPage = (props) => {
   const { user, isAuthenticated } = useAuth0();
