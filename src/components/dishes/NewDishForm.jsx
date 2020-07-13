@@ -85,7 +85,7 @@ const NewDishForm = (props) => {
   const onIngredientsChange = (i, event) => {
     const values = [...ingredients];
     console.log(event.target.value);
-    values[i][event.target.name] = [event.target.value][0];
+    values[i][event.target.name] = [event.target.value][0].toLowerCase();
     setIngredients(values);
   };
 
