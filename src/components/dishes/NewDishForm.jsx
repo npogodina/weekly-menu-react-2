@@ -84,6 +84,7 @@ const NewDishForm = (props) => {
 
   const onIngredientsChange = (i, event) => {
     const values = [...ingredients];
+    console.log(event.target.value);
     values[i][event.target.name] = [event.target.value][0];
     setIngredients(values);
   };
@@ -95,9 +96,9 @@ const NewDishForm = (props) => {
   };
 
   // Validation handling
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState([]);
   const errorMessageBlob = (
-    <Message error header="Not that fast!" content={errorMessage} />
+    <Message error header="Not that fast!" list={errorMessage} />
   );
 
   // onSubmit
@@ -106,14 +107,20 @@ const NewDishForm = (props) => {
     event.preventDefault();
 
     if (formFields.name === "") {
-      setErrorMessage("Dish name cannot be empty. Honestly, what's that?");
+      let message = "Dish name cannot be empty. Honestly, what's that?";
+      let updatedErrorMessage = [...errorMessage];
+      updatedErrorMessage.push(message);
+      setErrorMessage(updatedErrorMessage);
       return;
     }
 
     let dup = false;
     props.dishList.forEach((dish) => {
       if (dish.name === formFields.name) {
-        setErrorMessage(`You already have a dish ${dish.name}.`);
+        let message = `You already have a dish ${dish.name}.`;
+        let updatedErrorMessage = [...errorMessage];
+        updatedErrorMessage.push(message);
+        setErrorMessage(updatedErrorMessage);
         dup = true;
         return;
       }
@@ -181,7 +188,7 @@ const NewDishForm = (props) => {
 
   return (
     <Container className="cont">
-      {errorMessage && errorMessageBlob}
+      {errorMessage.length !== 0 && errorMessageBlob}
       <h1>Adding awesome new dish!</h1>
       <Form onSubmit={onFormSubmit}>
         <Form.Field width={8}>
