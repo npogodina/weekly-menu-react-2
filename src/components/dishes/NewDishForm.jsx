@@ -106,12 +106,13 @@ const NewDishForm = (props) => {
   const onFormSubmit = (event) => {
     event.preventDefault();
     let updatedErrorMessage = [];
+    let error = false;
 
     if (formFields.name === "") {
       let message = "Dish name cannot be empty. Honestly, what's that?";
       updatedErrorMessage.push(message);
       setErrorMessage(updatedErrorMessage);
-      return;
+      error = true;
     }
 
     let dup = false;
@@ -120,13 +121,10 @@ const NewDishForm = (props) => {
         let message = `You already have a dish ${dish.name}.`;
         updatedErrorMessage.push(message);
         setErrorMessage(updatedErrorMessage);
-        dup = true;
+        error = true;
         return;
       }
     });
-    if (dup === true) {
-      return;
-    }
 
     const newFormFields = {
       ...formFields,
@@ -163,11 +161,25 @@ const NewDishForm = (props) => {
       }
     });
 
+    const regex = /^([0-9]+([.][0-9]*)?|[.][0-9]+)$/;
     ingredients.forEach((ingredient) => {
       if (ingredient["name"] && ingredient["name"] !== "") {
         newFormFields["ingredients"].push(ingredient);
       }
+      if (ingredient["amount"] && ingredient["name"]) {
+        if (!regex.test(ingredient["amount"])) {
+          let message = `${ingredient.name}: amount should be a number.`;
+          updatedErrorMessage.push(message);
+          setErrorMessage(updatedErrorMessage);
+          error = true;
+          return;
+        }
+      }
     });
+
+    if (error === true) {
+      return;
+    }
 
     console.log(newFormFields);
     setFormFields(newFormFields);
