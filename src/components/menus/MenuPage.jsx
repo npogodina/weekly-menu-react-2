@@ -72,7 +72,7 @@ const MenuPage = (props) => {
             />
             <List.Content>
               <List.Header>{item["main"]}</List.Header>
-              <List.Description as="a">{item["for"]}</List.Description>
+              <List.Description>{item["for"]}</List.Description>
             </List.Content>
           </List.Item>
         );
