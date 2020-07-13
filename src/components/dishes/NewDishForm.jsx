@@ -205,7 +205,7 @@ const NewDishForm = (props) => {
         <Form.Field width={8}>
           <label>Recipe Name</label>
           <input
-            placeholder="Example: Italian Baked Eggs"
+            placeholder="Example: Cranberry Orange Pie"
             name="name"
             onChange={onInputChange}
             value={formFields.name}

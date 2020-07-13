@@ -1,0 +1,25 @@
+.navbar {
+  margin: 20px;
+  margin-top: 10px;
+}
+
+.navbar-image {
+  margin-bottom: 20px;
+  background-image: url(../img/apples.jpg);
+  background-size: cover;
+  background-position: bottom;
+  /* background-image: linear-gradient(
+      to bottom,
+      rgba(3, 82, 41, 0.8),
+      rgba(45, 46, 51, 0.5)
+    ),
+    url(../img/lemons.jpg); */
+}
+
+.navbar-filler {
+  height: 10px;
+}
+
+.navbar-filler-2 {
+  height: 100px;
+}

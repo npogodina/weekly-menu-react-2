@@ -6,7 +6,8 @@ import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import ProfileSmall from "./ProfileSmall";
 
-import { Input, Menu, Dropdown } from "semantic-ui-react";
+import { Input, Menu, Dropdown, Container } from "semantic-ui-react";
+import "./Navbar.css";
 
 import PropTypes from "prop-types";
 
@@ -19,73 +20,77 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <Menu>
-        <Menu.Item
-          name="home"
-          active={activeItem === "home"}
-          onClick={handleItemClick}
-        />
-        <Dropdown item text="Dishes">
-          <Dropdown.Menu>
-            <Dropdown.Item
-              name="dishes"
-              active={activeItem === "dishes"}
-              onClick={handleItemClick}
-            >
-              <Link to={`/dishes`}>Dishes</Link>
-            </Dropdown.Item>
+    <div className="navbar-image">
+      <div className="navbar-filler"></div>
+      <div className="navbar">
+        <Menu>
+          <Menu.Item
+            name="home"
+            active={activeItem === "home"}
+            onClick={handleItemClick}
+          />
+          <Dropdown item text="Dishes">
+            <Dropdown.Menu>
+              <Dropdown.Item
+                name="dishes"
+                active={activeItem === "dishes"}
+                onClick={handleItemClick}
+              >
+                <Link to={`/dishes`}>Dishes</Link>
+              </Dropdown.Item>
 
-            <Dropdown.Item
-              name="dishes"
-              active={activeItem === "dishes"}
-              onClick={handleItemClick}
-            >
-              <Link to={`/dishes/new`}>Add Dish</Link>
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+              <Dropdown.Item
+                name="dishes"
+                active={activeItem === "dishes"}
+                onClick={handleItemClick}
+              >
+                <Link to={`/dishes/new`}>Add Dish</Link>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
 
-        <Dropdown item text="Menus">
-          <Dropdown.Menu>
-            <Dropdown.Item
-              name="menus"
-              active={activeItem === "menus"}
-              onClick={handleItemClick}
-            >
-              <Link to={`/menus`}>Menus</Link>
-            </Dropdown.Item>
+          <Dropdown item text="Menus">
+            <Dropdown.Menu>
+              <Dropdown.Item
+                name="menus"
+                active={activeItem === "menus"}
+                onClick={handleItemClick}
+              >
+                <Link to={`/menus`}>Menus</Link>
+              </Dropdown.Item>
 
-            <Dropdown.Item
-              name="menus"
-              active={activeItem === "menus"}
-              onClick={handleItemClick}
-            >
-              <Link to={`/menus/new`}>New Menu</Link>
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+              <Dropdown.Item
+                name="menus"
+                active={activeItem === "menus"}
+                onClick={handleItemClick}
+              >
+                <Link to={`/menus/new`}>New Menu</Link>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
 
-        {!isAuthenticated && (
-          <Menu.Menu position="right">
-            <Menu.Item>
-              <LoginButton />
-            </Menu.Item>
-          </Menu.Menu>
-        )}
+          {!isAuthenticated && (
+            <Menu.Menu position="right">
+              <Menu.Item>
+                <LoginButton />
+              </Menu.Item>
+            </Menu.Menu>
+          )}
 
-        {isAuthenticated && (
-          <Menu.Menu position="right">
-            <Menu.Item>
-              <ProfileSmall />
-              {/* <Input icon="search" placeholder="Search..." /> */}
-            </Menu.Item>
-            <Menu.Item>
-              <LogoutButton />
-            </Menu.Item>
-          </Menu.Menu>
-        )}
-      </Menu>
+          {isAuthenticated && (
+            <Menu.Menu position="right">
+              <Menu.Item>
+                <ProfileSmall />
+                {/* <Input icon="search" placeholder="Search..." /> */}
+              </Menu.Item>
+              <Menu.Item>
+                <LogoutButton />
+              </Menu.Item>
+            </Menu.Menu>
+          )}
+        </Menu>
+      </div>
+      <div className="navbar-filler-2"></div>
     </div>
   );
 };
