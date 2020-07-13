@@ -105,10 +105,10 @@ const NewDishForm = (props) => {
   let history = useHistory();
   const onFormSubmit = (event) => {
     event.preventDefault();
+    let updatedErrorMessage = [];
 
     if (formFields.name === "") {
       let message = "Dish name cannot be empty. Honestly, what's that?";
-      let updatedErrorMessage = [...errorMessage];
       updatedErrorMessage.push(message);
       setErrorMessage(updatedErrorMessage);
       return;
@@ -118,7 +118,6 @@ const NewDishForm = (props) => {
     props.dishList.forEach((dish) => {
       if (dish.name === formFields.name) {
         let message = `You already have a dish ${dish.name}.`;
-        let updatedErrorMessage = [...errorMessage];
         updatedErrorMessage.push(message);
         setErrorMessage(updatedErrorMessage);
         dup = true;
