@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dish from "./Dish";
 import Profile from "../Profile";
 
-import { Container, Table, Button } from "semantic-ui-react";
+import { Container, Table, Button, Card } from "semantic-ui-react";
 
 import PropTypes from "prop-types";
 
@@ -79,36 +79,41 @@ const Dishes = (props) => {
 
   return (
     <Container className="cont">
-      {/* <Profile /> */}
-      <h1>Your dishes:</h1>
-      <div className="">
-        <Button.Group color="olive">
-          <Button className="" name="Breakfast" onClick={applyFilter}>
-            Breakfast
-          </Button>
-          <Button className="" name="Lunch" onClick={applyFilter}>
-            Lunch
-          </Button>
-          <Button className="" name="Dinner" onClick={applyFilter}>
-            Dinner
-          </Button>
-          <Button className="" name="All" onClick={applyFilter}>
-            All
-          </Button>
-        </Button.Group>
-      </div>
+      <Card fluid>
+        <Card.Content>
+          <h1>Your dishes:</h1>
 
-      <Table compact>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Meals</Table.HeaderCell>
-            <Table.HeaderCell>Servings</Table.HeaderCell>
-            <Table.HeaderCell>Recipe?</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        {componentsToRender}
-      </Table>
+          {/* <Profile /> */}
+          <div className="">
+            <Button.Group color="green">
+              <Button className="" name="Breakfast" onClick={applyFilter}>
+                Breakfast
+              </Button>
+              <Button className="" name="Lunch" onClick={applyFilter}>
+                Lunch
+              </Button>
+              <Button className="" name="Dinner" onClick={applyFilter}>
+                Dinner
+              </Button>
+              <Button className="" name="All" onClick={applyFilter}>
+                All
+              </Button>
+            </Button.Group>
+          </div>
+
+          <Table compact>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Name</Table.HeaderCell>
+                <Table.HeaderCell>Meals</Table.HeaderCell>
+                <Table.HeaderCell>Servings</Table.HeaderCell>
+                <Table.HeaderCell>Recipe?</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            {componentsToRender}
+          </Table>
+        </Card.Content>
+      </Card>
     </Container>
   );
 };

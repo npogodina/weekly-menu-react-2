@@ -83,38 +83,42 @@ const MenuPage = (props) => {
 
   return (
     <Container className="cont">
-      {menu && (
-        <div>
-          <h2>Here's what we suggest!</h2>
-          <Table definition celled>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell width={2} />
-                <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
-                <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
-                <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            {menuLinesToRender}
-          </Table>
-          <h2>Happy?</h2>
-          <Button.Group>
-            <Button color="green">Yes!</Button>
-            <Button.Or />
-            <Button color="yellow">Edit</Button>
-            <Button.Or />
-            <Button color="orange">Redo</Button>
-            <Button.Or />
-            <Button color="red">Cancel</Button>
-          </Button.Group>
-          <h2>Grocery List</h2>
-          <div styleName="width: 50%">
-            <Card id="groceryList">
-              <CardContent>{groceryListToRender}</CardContent>
-            </Card>
-          </div>
-        </div>
-      )}
+      <Card fluid className="main">
+        <Card.Content>
+          {menu && (
+            <div>
+              <h2>Here's what we suggest!</h2>
+              <Table definition celled>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell width={2} />
+                    <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
+                    <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
+                    <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+                {menuLinesToRender}
+              </Table>
+              <h2>Happy?</h2>
+              <Button.Group>
+                <Button color="green">Yes!</Button>
+                <Button.Or />
+                <Button color="yellow">Edit</Button>
+                <Button.Or />
+                <Button color="orange">Redo</Button>
+                <Button.Or />
+                <Button color="red">Cancel</Button>
+              </Button.Group>
+              <h2>Grocery List</h2>
+              <div styleName="width: 50%">
+                <Card id="groceryList">
+                  <CardContent>{groceryListToRender}</CardContent>
+                </Card>
+              </div>
+            </div>
+          )}
+        </Card.Content>
+      </Card>
     </Container>
   );
 };

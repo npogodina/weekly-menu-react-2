@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import {
   Container,
+  Card,
   Form,
   Button,
   Checkbox,
@@ -199,119 +200,128 @@ const NewDishForm = (props) => {
 
   return (
     <Container className="cont">
-      {errorMessage.length !== 0 && errorMessageBlob}
-      <h1>Adding awesome new dish!</h1>
-      <Form onSubmit={onFormSubmit}>
-        <Form.Field width={8}>
-          <label>Recipe Name</label>
-          <input
-            placeholder="Example: Cranberry Orange Pie"
-            name="name"
-            onChange={onInputChange}
-            value={formFields.name}
-          />
-        </Form.Field>
-        <Form.Select
-          width={2}
-          control={Select}
-          label="How many servings?"
-          placeholder="Servings"
-          name="servings"
-          selection
-          options={options}
-          onChange={onSelectChange}
-          value={formFields.servings}
-        />
+      <Card fluid>
+        <Card.Content>
+          {errorMessage.length !== 0 && errorMessageBlob}
+          <h1>Adding awesome new dish!</h1>
+          <Form onSubmit={onFormSubmit}>
+            <Form.Field width={8}>
+              <label>Recipe Name</label>
+              <input
+                placeholder="Example: Cranberry Orange Pie"
+                name="name"
+                onChange={onInputChange}
+                value={formFields.name}
+              />
+            </Form.Field>
+            <Form.Select
+              width={2}
+              control={Select}
+              label="How many servings?"
+              placeholder="Servings"
+              name="servings"
+              selection
+              options={options}
+              onChange={onSelectChange}
+              value={formFields.servings}
+            />
 
-        <Form.Group inline>
-          <label>Meal:</label>
-          <Checkbox
-            label="Breakfast"
-            name="breakfast"
-            checked={formFields.breakfast}
-            onChange={onCheckboxChange}
-            className="form-checkbox"
-          />
-          <Checkbox
-            label="Lunch"
-            name="lunch"
-            checked={formFields.lunch}
-            onChange={onCheckboxChange}
-            className="form-checkbox"
-          />
-          <Checkbox
-            label="Dinner"
-            name="dinner"
-            checked={formFields.dinner}
-            onChange={onCheckboxChange}
-            className="form-checkbox"
-          />
-          <Checkbox
-            label="Other"
-            name="other"
-            checked={formFields.other}
-            onChange={onCheckboxChange}
-            className="form-checkbox"
-          />
-        </Form.Group>
-
-        <h2>Directions:</h2>
-        {directions.map((directions, idx) => {
-          let placeholder = "Step " + (idx + 1);
-          return (
-            <Form.Group widths="equal">
-              <div basic color="olive" id="plus-btn" onClick={addStep}>
-                <Icon fitted name="plus" size="large" />
-              </div>
-
-              <Form.Field>
-                <input
-                  placeholder={placeholder}
-                  onChange={(e) => onDirectionsChange(idx, e)}
-                />
-              </Form.Field>
+            <Form.Group inline>
+              <label>Meal:</label>
+              <Checkbox
+                label="Breakfast"
+                name="breakfast"
+                checked={formFields.breakfast}
+                onChange={onCheckboxChange}
+                className="form-checkbox"
+              />
+              <Checkbox
+                label="Lunch"
+                name="lunch"
+                checked={formFields.lunch}
+                onChange={onCheckboxChange}
+                className="form-checkbox"
+              />
+              <Checkbox
+                label="Dinner"
+                name="dinner"
+                checked={formFields.dinner}
+                onChange={onCheckboxChange}
+                className="form-checkbox"
+              />
+              <Checkbox
+                label="Other"
+                name="other"
+                checked={formFields.other}
+                onChange={onCheckboxChange}
+                className="form-checkbox"
+              />
             </Form.Group>
-          );
-        })}
 
-        <h2>Ingredients:</h2>
-        {ingredients.map((ingredients, idx) => {
-          let placeholder = "Ingredient " + (idx + 1);
-          return (
-            <Form.Group>
-              <div basic color="olive" id="plus-btn" onClick={addIngredient}>
-                <Icon fitted name="plus" size="large" />
-              </div>
+            <h2>Directions:</h2>
+            {directions.map((directions, idx) => {
+              let placeholder = "Step " + (idx + 1);
+              return (
+                <Form.Group widths="equal">
+                  <div basic color="olive" id="plus-btn" onClick={addStep}>
+                    <Icon fitted name="plus" size="large" />
+                  </div>
 
-              <Form.Field width={2}>
-                <input
-                  name="amount"
-                  placeholder="1"
-                  onChange={(e) => onIngredientsChange(idx, e)}
-                />
-              </Form.Field>
+                  <Form.Field>
+                    <input
+                      placeholder={placeholder}
+                      onChange={(e) => onDirectionsChange(idx, e)}
+                    />
+                  </Form.Field>
+                </Form.Group>
+              );
+            })}
 
-              <Form.Field width={4}>
-                <input
-                  name="measurement"
-                  placeholder="lbs"
-                  onChange={(e) => onIngredientsChange(idx, e)}
-                />
-              </Form.Field>
+            <h2>Ingredients:</h2>
+            {ingredients.map((ingredients, idx) => {
+              let placeholder = "Ingredient " + (idx + 1);
+              return (
+                <Form.Group>
+                  <div
+                    basic
+                    color="olive"
+                    id="plus-btn"
+                    onClick={addIngredient}
+                  >
+                    <Icon fitted name="plus" size="large" />
+                  </div>
 
-              <Form.Field width={6}>
-                <input
-                  name="name"
-                  placeholder="cranberries"
-                  onChange={(e) => onIngredientsChange(idx, e)}
-                />
-              </Form.Field>
-            </Form.Group>
-          );
-        })}
+                  <Form.Field width={2}>
+                    <input
+                      name="amount"
+                      placeholder="1"
+                      onChange={(e) => onIngredientsChange(idx, e)}
+                    />
+                  </Form.Field>
 
-        <Button type="submit">Submit</Button>
-      </Form>
+                  <Form.Field width={4}>
+                    <input
+                      name="measurement"
+                      placeholder="lbs"
+                      onChange={(e) => onIngredientsChange(idx, e)}
+                    />
+                  </Form.Field>
+
+                  <Form.Field width={6}>
+                    <input
+                      name="name"
+                      placeholder="cranberries"
+                      onChange={(e) => onIngredientsChange(idx, e)}
+                    />
+                  </Form.Field>
+                </Form.Group>
+              );
+            })}
+
+            <Button type="submit">Submit</Button>
+          </Form>
+        </Card.Content>
+      </Card>
     </Container>
   );
 };

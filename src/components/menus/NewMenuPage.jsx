@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import dateformat from "dateformat";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import { Container, Form, Button, Table } from "semantic-ui-react";
+import { Container, Form, Button, Table, Card } from "semantic-ui-react";
 
 const NewMenuPage = (props) => {
   const { user, isAuthenticated } = useAuth0();
@@ -67,44 +67,48 @@ const NewMenuPage = (props) => {
 
   return (
     <Container className="cont">
-      {!menu && (
-        <div>
-          <h2>Please, select the start date for the next week's menu.</h2>
-          <Form onSubmit={onFormSubmit}>
-            <Form.Field>
-              <DatePicker selected={startDate} onChange={onDateChange} />
-            </Form.Field>
-            <Button type="submit">Generate Menu</Button>
-          </Form>
-        </div>
-      )}
+      <Card fluid>
+        <Card.Content>
+          {!menu && (
+            <div>
+              <h2>Please, select the start date for the next week's menu.</h2>
+              <Form onSubmit={onFormSubmit}>
+                <Form.Field>
+                  <DatePicker selected={startDate} onChange={onDateChange} />
+                </Form.Field>
+                <Button type="submit">Generate Menu</Button>
+              </Form>
+            </div>
+          )}
 
-      {menu && (
-        <div>
-          <h2>Here's what we suggest!</h2>
-          <Table definition celled>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell width={2} />
-                <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
-                <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
-                <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            {menuLinesToRender}
-          </Table>
-          <h2>Happy?</h2>
-          <Button.Group>
-            <Button color="green">Yes!</Button>
-            <Button.Or />
-            <Button color="yellow">Edit</Button>
-            <Button.Or />
-            <Button color="orange">Redo</Button>
-            <Button.Or />
-            <Button color="red">Cancel</Button>
-          </Button.Group>
-        </div>
-      )}
+          {menu && (
+            <div>
+              <h2>Here's what we suggest!</h2>
+              <Table definition celled>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell width={2} />
+                    <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
+                    <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
+                    <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+                {menuLinesToRender}
+              </Table>
+              <h2>Happy?</h2>
+              <Button.Group>
+                <Button color="green">Yes!</Button>
+                <Button.Or />
+                <Button color="yellow">Edit</Button>
+                <Button.Or />
+                <Button color="orange">Redo</Button>
+                <Button.Or />
+                <Button color="red">Cancel</Button>
+              </Button.Group>
+            </div>
+          )}
+        </Card.Content>
+      </Card>
     </Container>
   );
 };

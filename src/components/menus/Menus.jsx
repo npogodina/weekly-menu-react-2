@@ -3,7 +3,7 @@ import axios from "axios";
 import Menu from "./Menu";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { Container, Table, Button } from "semantic-ui-react";
+import { Container, Card, Table, Button } from "semantic-ui-react";
 
 import PropTypes from "prop-types";
 
@@ -48,17 +48,21 @@ const Menus = (props) => {
 
   return (
     <Container className="cont">
-      <h1>Your menus:</h1>
+      <Card fluid>
+        <Card.Content>
+          <h1>Your menus:</h1>
 
-      <Table compact>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell>Dates</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        {componentsToRender}
-      </Table>
+          <Table compact>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell></Table.HeaderCell>
+                <Table.HeaderCell>Dates</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            {componentsToRender}
+          </Table>
+        </Card.Content>
+      </Card>
     </Container>
   );
 };
