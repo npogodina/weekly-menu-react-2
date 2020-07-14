@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useHistory } from "react-router-dom";
+import axios from "axios";
 
 import { Container, Card, Grid, Image, List, Button } from "semantic-ui-react";
 
@@ -62,6 +63,26 @@ const DishPage = (props) => {
   //   };
   // }
 
+  let history = useHistory();
+  const location = useLocation();
+  const onDeleteClick = (event) => {
+    event.preventDefault();
+    console.group(location.pathname.slice(7));
+    axios
+      .delete(
+        `${process.env.REACT_APP_API_DISHES_INDEX}${location.pathname.slice(7)}`
+      )
+      .then((response) => {
+        console.log("Dish deleted!");
+        props.reloadDishes();
+        history.push(`/dishes/`);
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        // setErrorMessage(error.message);
+      });
+  };
+
   if (dish) {
     return (
       <Container className="cont">
@@ -83,7 +104,9 @@ const DishPage = (props) => {
                   <p>{tags.join(", ")}</p>
                   <h3>Made: 5 times</h3>
                   <Button color="orange">Edit</Button>
-                  <Button color="red">Delete</Button>
+                  <Button color="red" onClick={onDeleteClick}>
+                    Delete
+                  </Button>
                 </Grid.Column>
               </Grid.Row>
 

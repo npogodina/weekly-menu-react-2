@@ -106,7 +106,9 @@ const App = () => {
           <ProtectedRoute
             exact
             path="/dishes/:dishId"
-            component={() => <DishPage dishList={dishList} />}
+            component={() => (
+              <DishPage dishList={dishList} reloadDishes={reloadDishes} />
+            )}
           />
           <ProtectedRoute
             exact
