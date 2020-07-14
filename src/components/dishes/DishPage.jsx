@@ -83,7 +83,7 @@ const DishPage = (props) => {
   };
 
   const onEditClick = () => {
-    history.push(`/dishes/${location.pathname.slice(7)}/edit`);
+    history.push(`/dishes${location.pathname.slice(7)}/edit`);
   };
 
   if (dish) {

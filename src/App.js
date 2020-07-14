@@ -90,7 +90,7 @@ const App = () => {
         {/* <Profile dishCount={dishCount} /> */}
 
         <Switch>
-          <ProtectedRoute
+          <Route
             exact
             path="/dishes/new"
             component={() => (
@@ -99,34 +99,30 @@ const App = () => {
           />
           {/* <Route exact path="/dishes/new" component={NewDishForm} /> */}
 
-          <ProtectedRoute
+          <Route
             exact
             path="/dishes"
             component={() => <Dishes dishList={dishList} />}
           />
-          <ProtectedRoute
+          <Route
             exact
             path="/dishes/:dishId"
             component={() => (
               <DishPage dishList={dishList} reloadDishes={reloadDishes} />
             )}
           />
-          <ProtectedRoute
+          <Route
             exact
             path="/dishes/:dishId/edit"
-            component={() => <EditDishForm />}
+            component={() => <EditDishForm reloadDishes={reloadDishes} />}
           />
-          <ProtectedRoute
+          <Route
             exact
             path="/menus/new"
             component={() => <NewMenuPage dishList={dishList} />}
           />
-          <ProtectedRoute exact path="/menus" component={() => <Menus />} />
-          <ProtectedRoute
-            exact
-            path="/menus/:menuId"
-            component={() => <MenuPage />}
-          />
+          <Route exact path="/menus" component={() => <Menus />} />
+          <Route exact path="/menus/:menuId" component={() => <MenuPage />} />
           <Route
             exact
             path="/menus/new/edit"
