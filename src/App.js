@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
 import NewDishForm from "./components/dishes/NewDishForm";
+import EditDishForm from "./components/dishes/EditDishForm";
 import Menus from "./components/menus/Menus";
 import NewMenuPage from "./components/menus/NewMenuPage";
 import EditMenuPage from "./components/menus/EditMenuPage";
@@ -109,6 +110,11 @@ const App = () => {
             component={() => (
               <DishPage dishList={dishList} reloadDishes={reloadDishes} />
             )}
+          />
+          <ProtectedRoute
+            exact
+            path="/dishes/:dishId/edit"
+            component={() => <EditDishForm />}
           />
           <ProtectedRoute
             exact

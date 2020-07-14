@@ -65,8 +65,7 @@ const DishPage = (props) => {
 
   let history = useHistory();
   const location = useLocation();
-  const onDeleteClick = (event) => {
-    event.preventDefault();
+  const onDeleteClick = () => {
     console.group(location.pathname.slice(7));
     axios
       .delete(
@@ -81,6 +80,10 @@ const DishPage = (props) => {
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
+  };
+
+  const onEditClick = () => {
+    history.push(`/dishes/${location.pathname.slice(7)}/edit`);
   };
 
   if (dish) {
@@ -103,7 +106,9 @@ const DishPage = (props) => {
                   <h3>Tags:</h3>
                   <p>{tags.join(", ")}</p>
                   <h3>Made: 5 times</h3>
-                  <Button color="orange">Edit</Button>
+                  <Button color="orange" onClick={onEditClick}>
+                    Edit
+                  </Button>
                   <Button color="red" onClick={onDeleteClick}>
                     Delete
                   </Button>
