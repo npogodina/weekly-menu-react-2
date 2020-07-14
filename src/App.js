@@ -5,6 +5,7 @@ import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import { createBrowserHistory } from "history";
 
 import Navbar from "./components/Navbar";
+import Home from "./components/Home";
 import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
 import NewDishForm from "./components/dishes/NewDishForm";
@@ -90,6 +91,7 @@ const App = () => {
         {/* <Profile dishCount={dishCount} /> */}
 
         <Switch>
+          <Route exact path="/" component={() => <Home />}></Route>
           <ProtectedRoute
             exact
             path="/dishes/new"

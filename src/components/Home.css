@@ -1,0 +1,51 @@
+.home-h1 {
+  font-family: "Source Serif Pro", serif;
+  text-align: center;
+}
+
+.home-banner {
+  height: 50vh;
+  max-height: 350px;
+  background-image: url(../img/home-banner-2.png);
+  background-color: lightyellow;
+  background-size: cover;
+  position: relative;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.home-banner-text {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  /* font-family: "Source Serif Pro", serif; */
+  font-size: large;
+  font-weight: 300;
+}
+
+.home-banner-header {
+  text-transform: uppercase;
+  /* font-family: "Source Serif Pro", serif; */
+  /* font-weight: 700; */
+}
+
+.home-banner-text-li {
+  margin-bottom: 15px;
+}
+
+.home-cont {
+}
+
+#home-card {
+  /* height: 500px;
+  width: 500px; */
+  /* height: 50vh;
+  background-image: url(../img/pattern2.jpg);
+  background-position: bottom;
+  padding: 50px; */
+}
+
+#home-card-inner {
+  height: 40vh;
+}
