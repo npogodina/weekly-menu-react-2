@@ -1,14 +1,14 @@
 .navbar {
   margin: 20px;
-  margin-top: 10px;
+  margin-top: 50px;
 }
 
 .navbar-image {
   margin-bottom: 20px;
-  /* height: 100vh;
+  /* height: 100vh; */
   background-image: url(../img/navbar.png);
   background-size: cover;
-  background-position: left; */
+  background-position: bottom;
   /* background-position: bottom; */
   /* background-image: linear-gradient(
       to bottom,
@@ -23,5 +23,5 @@
 }
 
 .navbar-filler-2 {
-  height: 55px;
+  height: 30px;
 }
