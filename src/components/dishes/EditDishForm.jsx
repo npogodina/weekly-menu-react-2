@@ -37,6 +37,7 @@ const EditDishForm = (props) => {
   });
 
   useEffect(() => {
+    console.log("Calling useEffect");
     axios
       .get(
         `${process.env.REACT_APP_API_DISHES_INDEX}${location.pathname.slice(
@@ -60,6 +61,11 @@ const EditDishForm = (props) => {
         };
         setFormFields(newFormFields);
         setDirections(data.directions);
+        if (data.ingredients.length > 0) {
+          setIngredients(data.ingredients);
+        } else {
+          setIngredients([{}]);
+        }
       })
       .catch((error) => {
         // Still need to handle errors
@@ -318,6 +324,7 @@ const EditDishForm = (props) => {
                       name="amount"
                       placeholder="1"
                       onChange={(e) => onIngredientsChange(idx, e)}
+                      value={ingredients.amount || null}
                     />
                   </Form.Field>
 
@@ -326,6 +333,7 @@ const EditDishForm = (props) => {
                       name="measurement"
                       placeholder="lbs"
                       onChange={(e) => onIngredientsChange(idx, e)}
+                      value={ingredients.measurement || null}
                     />
                   </Form.Field>
 
@@ -334,6 +342,7 @@ const EditDishForm = (props) => {
                       name="name"
                       placeholder="cranberries"
                       onChange={(e) => onIngredientsChange(idx, e)}
+                      value={ingredients.name || null}
                     />
                   </Form.Field>
                 </Form.Group>
