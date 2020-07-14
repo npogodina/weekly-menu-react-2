@@ -28,7 +28,9 @@ const Navbar = () => {
             name="home"
             active={activeItem === "home"}
             onClick={handleItemClick}
-          />
+          >
+            <Link to={`/`}>Home</Link>
+          </Menu.Item>
           <Dropdown item text="Dishes">
             <Dropdown.Menu>
               <Dropdown.Item
