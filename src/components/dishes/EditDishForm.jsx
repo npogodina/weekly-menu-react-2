@@ -230,17 +230,8 @@ const EditDishForm = (props) => {
       <Card fluid>
         <Card.Content>
           {errorMessage.length !== 0 && errorMessageBlob}
-          <h1>Adding awesome new dish!</h1>
+          <h1>Editing {formFields.name}</h1>
           <Form onSubmit={onFormSubmit}>
-            <Form.Field width={8}>
-              <label>Recipe Name</label>
-              <input
-                placeholder="Example: Cranberry Orange Pie"
-                name="name"
-                onChange={onInputChange}
-                value={formFields.name}
-              />
-            </Form.Field>
             <Form.Select
               width={2}
               control={Select}
