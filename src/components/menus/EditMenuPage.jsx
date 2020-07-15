@@ -7,7 +7,7 @@ import CranberryCard from "./CranberryCard";
 import BoxTarget from "./BoxTarget";
 
 // import { useAuth0 } from "@auth0/auth0-react";
-import { Container, Table } from "semantic-ui-react";
+import { Container, Table, Grid } from "semantic-ui-react";
 // import "./EditMenuPage.css";
 
 const EditMenuPage = (props) => {
@@ -90,9 +90,9 @@ const EditMenuPage = (props) => {
   ]);
   const [dishes, setDishes] = useState([null, null, null]);
 
-  let recipeCards = null;
+  let newDishCards = null;
   if (props.dishList) {
-    recipeCards = props.dishList.map((dish) => {
+    newDishCards = props.dishList.map((dish) => {
       return <CranberryCard name={dish.name} key={dish.id} />;
     });
   }
@@ -101,23 +101,29 @@ const EditMenuPage = (props) => {
 
   return (
     <Container className="cont">
-      {recipeCards}
-      {menu && (
-        <div>
-          <h2>Here's what we suggest!</h2>
-          <Table definition celled>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell width={2} />
-                <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
-                <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
-                <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            {menuLinesToRender}
-          </Table>
-        </div>
-      )}
+      <Grid columns={2} divided>
+        <Grid.Row>
+          <Grid.Column width={3}>{newDishCards}</Grid.Column>
+          <Grid.Column width={13}>
+            {menu && (
+              <div>
+                <h2>Here's what we suggest!</h2>
+                <Table definition celled>
+                  <Table.Header>
+                    <Table.Row>
+                      <Table.HeaderCell width={2} />
+                      <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
+                      <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
+                      <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
+                    </Table.Row>
+                  </Table.Header>
+                  {menuLinesToRender}
+                </Table>
+              </div>
+            )}
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </Container>
   );
 };
