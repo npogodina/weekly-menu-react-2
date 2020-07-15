@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 
 // import { useAuth0 } from "@auth0/auth0-react";
-import { Container, Table } from "semantic-ui-react";
+import { Container, Table, Card } from "semantic-ui-react";
+import "./EditMenuPage.css";
 
 const EditMenuPage = (props) => {
   // const { user, isAuthenticated } = useAuth0();
 
   return (
     <Container className="cont">
+      <Card id="test-card">
+        <Card.Content id="test-card">Cranberry Pie</Card.Content>
+      </Card>
+
       <Table definition celled>
         <Table.Header>
           <Table.Row>
@@ -21,8 +26,8 @@ const EditMenuPage = (props) => {
         <Table.Body>
           <Table.Row>
             <Table.Cell>2020/7/7</Table.Cell>
-            <Table.Cell>None</Table.Cell>
-            <Table.Cell>Resets rating to default value</Table.Cell>
+            <Table.Cell></Table.Cell>
+            <Table.Cell></Table.Cell>
             <Table.Cell />
           </Table.Row>
         </Table.Body>
