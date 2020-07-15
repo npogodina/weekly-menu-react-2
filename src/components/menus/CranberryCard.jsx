@@ -21,7 +21,8 @@ const CranberryCard = (props) => {
 
   return (
     <Ref innerRef={drag}>
-      <Card id="test-card" color={isDragging ? "green" : "orange"}>
+      <Card fluid id="test-card">
+        {/* <Card fluid id="test-card" color={isDragging ? "orange" : "green"}> */}
         <Card.Content id="test-card-content">{props.name}</Card.Content>
       </Card>
     </Ref>

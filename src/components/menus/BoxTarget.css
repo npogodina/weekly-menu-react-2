@@ -1,7 +1,10 @@
-.no-dish {
-  background-color: lightyellow;
+.positive.no-dish {
+  background-color: #e0f2e5;
 }
-
-.has-dish {
-  background-color: olivedrab;
+/* 
+.ui.table td.positive#droppable {
+  background-color: lightsalmon;
 }
+.ui.table td.negative#droppable {
+  background-color: lightsalmon;
+} */

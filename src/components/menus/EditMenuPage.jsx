@@ -39,8 +39,10 @@ const EditMenuPage = (props) => {
   const setDish = (dishName, dishDate, dishMeal, boxDate, boxMeal) => {
     let copiedMenu = { ...menu };
     copiedMenu[boxDate][boxMeal] = dishName;
-    copiedMenu[dishDate][dishMeal] = null;
-    setDishes(copiedMenu);
+    if (dishDate) {
+      copiedMenu[dishDate][dishMeal] = null;
+    }
+    setMenu(copiedMenu);
   };
 
   let menuLines = null;
@@ -83,13 +85,7 @@ const EditMenuPage = (props) => {
     menuLinesToRender = <Table.Body>{menuLines(dates, menu)}</Table.Body>;
   }
 
-  /////////////////////
-  const [recipes, setRecipes] = useState([
-    { name: "Orange Pie", id: 1 },
-    { name: "Orange Scone", id: 2 },
-  ]);
-  const [dishes, setDishes] = useState([null, null, null]);
-
+  // Display dishList as Cards
   let newDishCards = null;
   if (props.dishList) {
     newDishCards = props.dishList.map((dish) => {
@@ -97,17 +93,18 @@ const EditMenuPage = (props) => {
     });
   }
 
-  /////////////////////
-
   return (
     <Container className="cont">
       <Grid columns={2} divided>
         <Grid.Row>
-          <Grid.Column width={3}>{newDishCards}</Grid.Column>
+          <Grid.Column width={3}>
+            <h2>Your dishes:</h2>
+            {newDishCards}
+          </Grid.Column>
           <Grid.Column width={13}>
             {menu && (
               <div>
-                <h2>Here's what we suggest!</h2>
+                <h2>Your menu:</h2>
                 <Table definition celled>
                   <Table.Header>
                     <Table.Row>

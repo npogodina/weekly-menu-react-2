@@ -23,7 +23,11 @@ const BoxTarget = (props) => {
 
   return (
     <Ref innerRef={drop}>
-      <Table.Cell className={isOver ? "has-dish" : "no-dish"}>
+      <Table.Cell
+        positive={props.dishName ? true : false}
+        negative={props.dishName ? false : true}
+        id={isOver ? "droppable" : "no-dish"}
+      >
         {props.dishName && (
           <CranberryCard
             date={props.date}

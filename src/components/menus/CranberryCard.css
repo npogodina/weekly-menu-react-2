@@ -1,25 +1,13 @@
 #test-card {
-  width: 120px;
-  margin: 10px;
+  width: 150px;
+  /* margin: 10px; */
 }
 
 #test-card-content {
   padding: 3px;
+  padding-left: 5px;
 }
 
 .dragging {
   color: orange;
 }
-/* 
-.card-active {
-  color: purple;
-}
-
-.card-hidden {
-  color: pink;
-  visibility: hidden;
-} */
-
-/* .dragging #test-card {
-  background-color: orange;
-} */
