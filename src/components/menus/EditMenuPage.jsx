@@ -16,14 +16,18 @@ import { Container, Table, Button, Card, Ref } from "semantic-ui-react";
 const EditMenuPage = (props) => {
   // const { user, isAuthenticated } = useAuth0();
   const [menu, setMenu] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+
   useEffect(() => {
     axios
       .get(
         `${process.env.REACT_APP_API_MENUS_INDEX}/98c138ef-764c-4ba5-b589-2cf0435478c2`
       )
       .then((response) => {
-        const apiMenuList = response.data;
+        const apiMenuList = response.data.menu;
+        const apiStartDate = response.data.startDate;
         setMenu(apiMenuList);
+        setStartDate(apiStartDate);
       })
       .catch((error) => {
         // Still need to handle errors
@@ -31,24 +35,46 @@ const EditMenuPage = (props) => {
       });
   }, []);
 
+  const setDish = (dishName, dishDate, dishMeal, boxDate, boxMeal) => {
+    let copiedMenu = { ...menu };
+    copiedMenu[boxDate][boxMeal] = dishName;
+    copiedMenu[dishDate][dishMeal] = null;
+    setDishes(copiedMenu);
+  };
+
   let menuLines = null;
   let menuLinesToRender = null;
 
-  if (menu) {
-    const dates = [menu["startDate"]];
+  if (menu && startDate) {
+    const dates = [startDate];
     for (let i = 1; i < 7; i++) {
-      let day = new Date(menu["startDate"]);
+      let day = new Date(startDate);
       day.setDate(day.getDate() + i);
       dates.push(day.toISOString());
     }
     menuLines = (dates, menu) => {
-      return dates.map((day) => {
+      return dates.map((day, i) => {
         return (
           <Table.Row>
             <Table.Cell>{dateformat(day, "m/d ddd")}</Table.Cell>
-            <Table.Cell>{menu["menu"][day]["breakfast"]}</Table.Cell>
-            <Table.Cell>{menu["menu"][day]["lunch"]}</Table.Cell>
-            <Table.Cell>{menu["menu"][day]["dinner"]}</Table.Cell>
+            <BoxTarget
+              date={day}
+              meal={"breakfast"}
+              dishName={menu[day]["breakfast"]}
+              setDish={setDish}
+            ></BoxTarget>
+            <BoxTarget
+              date={day}
+              meal={"lunch"}
+              dishName={menu[day]["lunch"]}
+              setDish={setDish}
+            ></BoxTarget>
+            <BoxTarget
+              date={day}
+              meal={"dinner"}
+              dishName={menu[day]["dinner"]}
+              setDish={setDish}
+            ></BoxTarget>
           </Table.Row>
         );
       });
@@ -61,19 +87,6 @@ const EditMenuPage = (props) => {
     { name: "Orange Scone", id: 2 },
   ]);
   const [dishes, setDishes] = useState([null, null, null]);
-
-  const setDish = (dishId, boxId) => {
-    let updatedDishes = [...dishes];
-    console.log(dishes);
-    let filteredDishes = updatedDishes.map((dish) => {
-      if (dish && dish === dishId) {
-        console.log(dish, dishId);
-        return (dish = null);
-      }
-    });
-    filteredDishes[boxId] = dishId;
-    setDishes(filteredDishes);
-  };
 
   const recipeCards = recipes.map((recipe) => {
     return <CranberryCard name={recipe.name} id={recipe.id} key={recipe.key} />;

@@ -12,13 +12,14 @@ const BoxTarget = (props) => {
   // const ref = useRef(null);
   // const [dish, setDish] = useState(null);
 
-  const onDrop = (dishId, boxId) => {
-    props.setDish(dishId, boxId);
+  const onDrop = (dishName, dishDate, dishMeal, boxDate, boxMeal) => {
+    props.setDish(dishName, dishDate, dishMeal, boxDate, boxMeal);
   };
 
   const [{ isOver }, drop] = useDrop({
     accept: ItemTypes.CARD,
-    drop: (item, monitor) => onDrop(item.id, props.id),
+    drop: (item, monitor) =>
+      onDrop(item.name, item.date, item.meal, props.date, props.meal),
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
@@ -27,13 +28,15 @@ const BoxTarget = (props) => {
   return (
     <Ref innerRef={drop}>
       <Table.Cell className={isOver ? "has-dish" : "no-dish"}>
-        {props.dish && (
-          <CranberryCard
-            name={props.dish}
-            id={props.dish}
-            // id={(Math.random() * 100).toFixed(0)}
-          ></CranberryCard>
-        )}
+        {/* {props.dish && ( */}
+        <CranberryCard
+          date={props.date}
+          meal={props.meal}
+          name={props.dishName}
+          // id={props.dish}
+          // id={(Math.random() * 1000).toFixed(0)}
+        ></CranberryCard>
+        {/* )} */}
       </Table.Cell>
     </Ref>
   );

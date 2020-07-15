@@ -14,7 +14,8 @@ const CranberryCard = (props) => {
     item: {
       type: ItemTypes.CARD,
       name: props.name,
-      id: props.id,
+      date: props.date,
+      meal: props.meal,
     },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
