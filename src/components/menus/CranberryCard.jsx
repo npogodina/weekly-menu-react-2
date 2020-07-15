@@ -9,14 +9,17 @@ import "./CranberryCard.css";
 const CranberryCard = (props) => {
   // const { user, isAuthenticated } = useAuth0();
   // const ref = useRef(null);
+
   const [{ isDragging }, drag] = useDrag({
     item: {
       type: ItemTypes.CARD,
       name: props.name,
+      id: props.id,
     },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
+    // begin: (monitor) => resetBoxDish(),
   });
 
   return (

@@ -10,6 +10,15 @@
 .dragging {
   color: orange;
 }
+/* 
+.card-active {
+  color: purple;
+}
+
+.card-hidden {
+  color: pink;
+  visibility: hidden;
+} */
 
 /* .dragging #test-card {
   background-color: orange;

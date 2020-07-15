@@ -13,21 +13,32 @@ import { Container, Table, Card, Ref } from "semantic-ui-react";
 const EditMenuPage = (props) => {
   // const { user, isAuthenticated } = useAuth0();
   // const ref = useRef(null);
+  const [recipes, setRecipes] = useState([
+    { name: "Orange Pie", id: 1 },
+    { name: "Orange Scone", id: 2 },
+  ]);
+  const [dishes, setDishes] = useState([null, null, null]);
+
+  const setDish = (dishId, boxId) => {
+    let updatedDishes = [...dishes];
+    console.log(dishes);
+    let filteredDishes = updatedDishes.map((dish) => {
+      if (dish && dish === dishId) {
+        console.log(dish, dishId);
+        return (dish = null);
+      }
+    });
+    filteredDishes[boxId] = dishId;
+    setDishes(filteredDishes);
+  };
+
+  const recipeCards = recipes.map((recipe) => {
+    return <CranberryCard name={recipe.name} id={recipe.id} key={recipe.key} />;
+  });
 
   return (
     <Container className="cont">
-      <CranberryCard name="Cranberry Scone"></CranberryCard>
-      <CranberryCard name="Cranberry Pie"></CranberryCard>
-      {/* <div ref={drag} className={isDragging ? "dragging" : ""}>
-        <Card id="test-card">
-          <Card.Content id="test-card-content">Cranberry Pie</Card.Content>
-        </Card>
-      </div>
-      <div ref={drag} className={isDragging ? "dragging" : ""}>
-        <Card id="test-card">
-          <Card.Content id="test-card-content">Cranberry Scone</Card.Content>
-        </Card>
-      </div> */}
+      {recipeCards}
 
       <Table definition celled>
         <Table.Header>
@@ -44,9 +55,9 @@ const EditMenuPage = (props) => {
         <Table.Body>
           <Table.Row>
             <Table.Cell>2020/7/7</Table.Cell>
-            <BoxTarget></BoxTarget>
-            <Table.Cell></Table.Cell>
-            <Table.Cell />
+            <BoxTarget id={0} dish={dishes[0]} setDish={setDish}></BoxTarget>
+            <BoxTarget id={1} dish={dishes[1]} setDish={setDish}></BoxTarget>
+            <BoxTarget id={2} dish={dishes[2]} setDish={setDish}></BoxTarget>
           </Table.Row>
         </Table.Body>
       </Table>
