@@ -1,4 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import dateformat from "dateformat";
+
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { ItemTypes } from "../../utils/items";
@@ -7,12 +10,52 @@ import CranberryCard from "./CranberryCard";
 import BoxTarget from "./BoxTarget";
 
 // import { useAuth0 } from "@auth0/auth0-react";
-import { Container, Table, Card, Ref } from "semantic-ui-react";
+import { Container, Table, Button, Card, Ref } from "semantic-ui-react";
 // import "./EditMenuPage.css";
 
 const EditMenuPage = (props) => {
   // const { user, isAuthenticated } = useAuth0();
-  // const ref = useRef(null);
+  const [menu, setMenu] = useState(null);
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API_MENUS_INDEX}/98c138ef-764c-4ba5-b589-2cf0435478c2`
+      )
+      .then((response) => {
+        const apiMenuList = response.data;
+        setMenu(apiMenuList);
+      })
+      .catch((error) => {
+        // Still need to handle errors
+        // setErrorMessage(error.message);
+      });
+  }, []);
+
+  let menuLines = null;
+  let menuLinesToRender = null;
+
+  if (menu) {
+    const dates = [menu["startDate"]];
+    for (let i = 1; i < 7; i++) {
+      let day = new Date(menu["startDate"]);
+      day.setDate(day.getDate() + i);
+      dates.push(day.toISOString());
+    }
+    menuLines = (dates, menu) => {
+      return dates.map((day) => {
+        return (
+          <Table.Row>
+            <Table.Cell>{dateformat(day, "m/d ddd")}</Table.Cell>
+            <Table.Cell>{menu["menu"][day]["breakfast"]}</Table.Cell>
+            <Table.Cell>{menu["menu"][day]["lunch"]}</Table.Cell>
+            <Table.Cell>{menu["menu"][day]["dinner"]}</Table.Cell>
+          </Table.Row>
+        );
+      });
+    };
+    menuLinesToRender = <Table.Body>{menuLines(dates, menu)}</Table.Body>;
+  }
+  /////////////////////
   const [recipes, setRecipes] = useState([
     { name: "Orange Pie", id: 1 },
     { name: "Orange Scone", id: 2 },
@@ -39,14 +82,28 @@ const EditMenuPage = (props) => {
   return (
     <Container className="cont">
       {recipeCards}
+      {menu && (
+        <div>
+          <h2>Here's what we suggest!</h2>
+          <Table definition celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell width={2} />
+                <Table.HeaderCell width={4}>Breakfast</Table.HeaderCell>
+                <Table.HeaderCell width={4}>Lunch</Table.HeaderCell>
+                <Table.HeaderCell width={4}>Dinner</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            {menuLinesToRender}
+          </Table>
+        </div>
+      )}
 
-      <Table definition celled>
+      {/* <Table definition celled>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell width={1} />
-            {/* <div ref={drag}> */}
             <Table.HeaderCell width={5}>Breakfast</Table.HeaderCell>
-            {/* </div> */}
             <Table.HeaderCell width={5}>Lunch</Table.HeaderCell>
             <Table.HeaderCell width={5}>Dinner</Table.HeaderCell>
           </Table.Row>
@@ -60,7 +117,7 @@ const EditMenuPage = (props) => {
             <BoxTarget id={2} dish={dishes[2]} setDish={setDish}></BoxTarget>
           </Table.Row>
         </Table.Body>
-      </Table>
+      </Table> */}
     </Container>
   );
 };

@@ -43,8 +43,8 @@ const App = () => {
   }
 
   useEffect(() => {
-    console.log("Use Effect call to get dishes");
     if (user) {
+      console.log("Use Effect call to get dishes");
       axios
         .get(process.env.REACT_APP_API_DISHES_INDEX, {
           params: {
@@ -56,6 +56,7 @@ const App = () => {
           setDishList(apiDishList);
         })
         .catch((error) => {
+          console.log(error);
           // Still need to handle errors
           // setErrorMessage(error.message);
         });
