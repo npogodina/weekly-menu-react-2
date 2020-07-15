@@ -90,9 +90,13 @@ const EditMenuPage = (props) => {
   ]);
   const [dishes, setDishes] = useState([null, null, null]);
 
-  const recipeCards = recipes.map((recipe) => {
-    return <CranberryCard name={recipe.name} id={recipe.id} key={recipe.key} />;
-  });
+  let recipeCards = null;
+  if (props.dishList) {
+    recipeCards = props.dishList.map((dish) => {
+      return <CranberryCard name={dish.name} key={dish.id} />;
+    });
+  }
+
   /////////////////////
 
   return (
