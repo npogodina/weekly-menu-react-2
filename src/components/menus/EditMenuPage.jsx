@@ -2,15 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import dateformat from "dateformat";
 
-import { DndProvider, useDrag, useDrop } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { ItemTypes } from "../../utils/items";
-
 import CranberryCard from "./CranberryCard";
 import BoxTarget from "./BoxTarget";
 
 // import { useAuth0 } from "@auth0/auth0-react";
-import { Container, Table, Button, Card, Ref } from "semantic-ui-react";
+import { Container, Table } from "semantic-ui-react";
 // import "./EditMenuPage.css";
 
 const EditMenuPage = (props) => {
@@ -81,6 +77,7 @@ const EditMenuPage = (props) => {
     };
     menuLinesToRender = <Table.Body>{menuLines(dates, menu)}</Table.Body>;
   }
+
   /////////////////////
   const [recipes, setRecipes] = useState([
     { name: "Orange Pie", id: 1 },
@@ -91,6 +88,7 @@ const EditMenuPage = (props) => {
   const recipeCards = recipes.map((recipe) => {
     return <CranberryCard name={recipe.name} id={recipe.id} key={recipe.key} />;
   });
+  /////////////////////
 
   return (
     <Container className="cont">
@@ -111,26 +109,6 @@ const EditMenuPage = (props) => {
           </Table>
         </div>
       )}
-
-      {/* <Table definition celled>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell width={1} />
-            <Table.HeaderCell width={5}>Breakfast</Table.HeaderCell>
-            <Table.HeaderCell width={5}>Lunch</Table.HeaderCell>
-            <Table.HeaderCell width={5}>Dinner</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>2020/7/7</Table.Cell>
-            <BoxTarget id={0} dish={dishes[0]} setDish={setDish}></BoxTarget>
-            <BoxTarget id={1} dish={dishes[1]} setDish={setDish}></BoxTarget>
-            <BoxTarget id={2} dish={dishes[2]} setDish={setDish}></BoxTarget>
-          </Table.Row>
-        </Table.Body>
-      </Table> */}
     </Container>
   );
 };
