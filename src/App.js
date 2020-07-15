@@ -129,15 +129,15 @@ const App = () => {
               component={() => <NewMenuPage dishList={dishList} />}
             />
             <ProtectedRoute exact path="/menus" component={() => <Menus />} />
-            <Route
-              exact
-              path="/menus/edit"
-              component={() => <EditMenuPage dishList={dishList} />}
-            />
             <ProtectedRoute
               exact
               path="/menus/:menuId"
               component={() => <MenuPage />}
+            />
+            <Route
+              exact
+              path="/menus/:menuId/edit"
+              component={() => <EditMenuPage dishList={dishList} />}
             />
           </Switch>
         </Router>
