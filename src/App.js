@@ -16,6 +16,9 @@ import EditMenuPage from "./components/menus/EditMenuPage";
 import MenuPage from "./components/menus/MenuPage";
 import { Loading } from "./components/Loading";
 
+import { DndProvider, useDrag, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 import "./App.css";
 import PropTypes from "prop-types";
 
@@ -83,60 +86,62 @@ const App = () => {
   };
 
   return (
-    <div>
-      <Router history={history}>
-        <header>
-          <Navbar />
-        </header>
-        {/* <Profile dishCount={dishCount} /> */}
+    <DndProvider backend={HTML5Backend}>
+      <div>
+        <Router history={history}>
+          <header>
+            <Navbar />
+          </header>
+          {/* <Profile dishCount={dishCount} /> */}
 
-        <Switch>
-          <Route exact path="/" component={() => <Home />}></Route>
-          <ProtectedRoute
-            exact
-            path="/dishes/new"
-            component={() => (
-              <NewDishForm reloadDishes={reloadDishes} dishList={dishList} />
-            )}
-          />
-          {/* <ProtectedRoute exact path="/dishes/new" component={NewDishForm} /> */}
+          <Switch>
+            <Route exact path="/" component={() => <Home />}></Route>
+            <ProtectedRoute
+              exact
+              path="/dishes/new"
+              component={() => (
+                <NewDishForm reloadDishes={reloadDishes} dishList={dishList} />
+              )}
+            />
+            {/* <ProtectedRoute exact path="/dishes/new" component={NewDishForm} /> */}
 
-          <ProtectedRoute
-            exact
-            path="/dishes"
-            component={() => <Dishes dishList={dishList} />}
-          />
-          <ProtectedRoute
-            exact
-            path="/dishes/:dishId"
-            component={() => (
-              <DishPage dishList={dishList} reloadDishes={reloadDishes} />
-            )}
-          />
-          <ProtectedRoute
-            exact
-            path="/dishes/:dishId/edit"
-            component={() => <EditDishForm reloadDishes={reloadDishes} />}
-          />
-          <ProtectedRoute
-            exact
-            path="/menus/new"
-            component={() => <NewMenuPage dishList={dishList} />}
-          />
-          <ProtectedRoute exact path="/menus" component={() => <Menus />} />
-          <Route
-            exact
-            path="/menus/edit"
-            component={() => <EditMenuPage dishList={dishList} />}
-          />
-          <ProtectedRoute
-            exact
-            path="/menus/:menuId"
-            component={() => <MenuPage />}
-          />
-        </Switch>
-      </Router>
-    </div>
+            <ProtectedRoute
+              exact
+              path="/dishes"
+              component={() => <Dishes dishList={dishList} />}
+            />
+            <ProtectedRoute
+              exact
+              path="/dishes/:dishId"
+              component={() => (
+                <DishPage dishList={dishList} reloadDishes={reloadDishes} />
+              )}
+            />
+            <ProtectedRoute
+              exact
+              path="/dishes/:dishId/edit"
+              component={() => <EditDishForm reloadDishes={reloadDishes} />}
+            />
+            <ProtectedRoute
+              exact
+              path="/menus/new"
+              component={() => <NewMenuPage dishList={dishList} />}
+            />
+            <ProtectedRoute exact path="/menus" component={() => <Menus />} />
+            <Route
+              exact
+              path="/menus/edit"
+              component={() => <EditMenuPage dishList={dishList} />}
+            />
+            <ProtectedRoute
+              exact
+              path="/menus/:menuId"
+              component={() => <MenuPage />}
+            />
+          </Switch>
+        </Router>
+      </div>
+    </DndProvider>
   );
 };
 

@@ -1,0 +1,16 @@
+#test-card {
+  width: 120px;
+  margin: 10px;
+}
+
+#test-card-content {
+  padding: 3px;
+}
+
+.dragging {
+  color: orange;
+}
+
+/* .dragging #test-card {
+  background-color: orange;
+} */
