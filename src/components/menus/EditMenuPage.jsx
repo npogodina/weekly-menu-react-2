@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import dateformat from "dateformat";
 
@@ -14,10 +15,14 @@ const EditMenuPage = (props) => {
   const [menu, setMenu] = useState(null);
   const [startDate, setStartDate] = useState(null);
 
+  const location = useLocation();
   useEffect(() => {
     axios
       .get(
-        `${process.env.REACT_APP_API_MENUS_INDEX}/98c138ef-764c-4ba5-b589-2cf0435478c2`
+        `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(
+          6,
+          -4
+        )}`
       )
       .then((response) => {
         const apiMenuList = response.data.menu;

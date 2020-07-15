@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import dateformat from "dateformat";
 import "./MenuPage.css";
 
@@ -81,6 +81,11 @@ const MenuPage = (props) => {
     groceryListToRender = <List relaxed>{groceryListLines(menu)}</List>;
   }
 
+  let history = useHistory();
+  const onEditClick = () => {
+    history.push(`/menus${location.pathname.slice(6)}/edit`);
+  };
+
   return (
     <Container className="cont">
       <Card fluid className="main">
@@ -103,7 +108,9 @@ const MenuPage = (props) => {
               <Button.Group>
                 <Button color="green">Yes!</Button>
                 <Button.Or />
-                <Button color="yellow">Edit</Button>
+                <Button color="yellow" onClick={onEditClick}>
+                  Edit
+                </Button>
                 <Button.Or />
                 <Button color="orange">Redo</Button>
                 <Button.Or />
