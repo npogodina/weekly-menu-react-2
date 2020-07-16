@@ -13,7 +13,9 @@ const GroceryItem = (props) => {
     setCheckedOff(!checkedOff);
   };
 
-  const onInputChange = () => {};
+  // const onInputChange = (i, event) => {
+
+  // };
 
   return (
     <Form.Group widths="equal">
@@ -23,7 +25,7 @@ const GroceryItem = (props) => {
 
       <Form.Field>
         <input
-          onChange={(e) => onInputChange(props.idx, e)}
+          onChange={(e) => props.onInputChange(props.idx, e)}
           value={props.item.main}
           className={checkedOff ? "checked-off" : "not-checked-off"}
         />

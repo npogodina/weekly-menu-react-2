@@ -44,7 +44,7 @@ const GroceryListPage = (props) => {
 
   const onInputChange = (i, event) => {
     const values = [...formFields];
-    values[i] = event.target.value;
+    values[i].main = event.target.value;
     setFormFields(values);
   };
 
@@ -76,6 +76,24 @@ const GroceryListPage = (props) => {
       });
   };
 
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    let updatedMenu = { ...menu };
+    updatedMenu.groceryListText = formFields;
+    setMenu(updatedMenu);
+
+    axios
+      .post(process.env.REACT_APP_API_MENUS_INDEX, menu)
+      .then((response) => {
+        console.log("Post request sent!");
+        history.back();
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        // setErrorMessage(error.message);
+      });
+  };
+
   return (
     <Container className="cont">
       <Card fluid className="main">
@@ -88,10 +106,17 @@ const GroceryListPage = (props) => {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column width={8}>
-                <Form>
+                <Form onSubmit={onFormSubmit}>
                   {formFields.map((item, idx) => {
-                    return <GroceryItem item={item} idx={idx} />;
+                    return (
+                      <GroceryItem
+                        item={item}
+                        idx={idx}
+                        onInputChange={onInputChange}
+                      />
+                    );
                   })}
+                  <Button type="submit">Submit</Button>
                 </Form>
               </Grid.Column>
             </Grid.Row>
