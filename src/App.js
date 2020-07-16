@@ -14,6 +14,7 @@ import Menus from "./components/menus/Menus";
 import NewMenuPage from "./components/menus/NewMenuPage";
 import EditMenuPage from "./components/menus/EditMenuPage";
 import MenuPage from "./components/menus/MenuPage";
+import GroceryListPage from "./components/menus/GroceryListPage";
 import { Loading } from "./components/Loading";
 
 import { DndProvider, useDrag, useDrop } from "react-dnd";
@@ -138,6 +139,11 @@ const App = () => {
               exact
               path="/menus/:menuId/edit"
               component={() => <EditMenuPage dishList={dishList} />}
+            />
+            <Route
+              exact
+              path="/menus/:menuId/grocerylist"
+              component={() => <GroceryListPage />}
             />
           </Switch>
         </Router>

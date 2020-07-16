@@ -125,7 +125,7 @@ const MenuPage = (props) => {
         <Card.Content>
           {menu && (
             <div>
-              <h2>Here's your manu for the week!</h2>
+              <h2>Here's your menu for the week!</h2>
               <Table definition celled>
                 <Table.Header>
                   <Table.Row>
