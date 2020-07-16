@@ -108,8 +108,7 @@ const EditMenuPage = (props) => {
         }
       )
       .then((response) => {
-        console.log("Post request sent!");
-        history.push(`/dishes${location.pathname.slice(6, -4)}`);
+        history.push(`/menus/${response.data}`);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?
