@@ -88,13 +88,30 @@ const MenuPage = (props) => {
     history.push(`/menus${location.pathname.slice(6)}/edit`);
   };
 
+  const onRedoClick = () => {
+    axios
+      .post(process.env.REACT_APP_API_MENUS_INDEX, {
+        userId: user.sub,
+        startDate: menu.startDate,
+      })
+      .then((response) => {
+        console.log("Post request sent!");
+        console.log(response);
+        history.push(`/menus/${response.data.menuId}`);
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        // setErrorMessage(error.message);
+      });
+  };
+
   return (
     <Container className="cont">
       <Card fluid className="main">
         <Card.Content>
           {menu && (
             <div>
-              <h2>Here's what we suggest!</h2>
+              <h2>Here's your manu for the week!</h2>
               <Table definition celled>
                 <Table.Header>
                   <Table.Row>
@@ -108,13 +125,13 @@ const MenuPage = (props) => {
               </Table>
               <h2>Happy?</h2>
               <Button.Group>
-                <Button color="green">Yes!</Button>
-                <Button.Or />
                 <Button color="yellow" onClick={onEditClick}>
                   Edit
                 </Button>
                 <Button.Or />
-                <Button color="orange">Redo</Button>
+                <Button color="orange" onClick={onRedoClick}>
+                  Redo
+                </Button>
                 <Button.Or />
                 <Button color="red">Cancel</Button>
               </Button.Group>
