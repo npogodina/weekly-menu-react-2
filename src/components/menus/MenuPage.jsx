@@ -88,6 +88,10 @@ const MenuPage = (props) => {
     history.push(`/menus${location.pathname.slice(6)}/edit`);
   };
 
+  const onGroceryListEditClick = () => {
+    history.push(`/menus${location.pathname.slice(6)}/grocerylist`);
+  };
+
   const onRedoClick = () => {
     axios
       .post(process.env.REACT_APP_API_MENUS_INDEX, {
@@ -152,13 +156,21 @@ const MenuPage = (props) => {
                 </Button>
               </Button.Group>
               {menu["groceryListText"] && (
-                <section>
+                <section className="mt-35">
                   <h2>Grocery List</h2>
                   <div styleName="width: 50%">
                     <Card id="groceryList">
                       <CardContent>{groceryListToRender}</CardContent>
                     </Card>
                   </div>
+                  <h2>Happy?</h2>
+                  <Button.Group>
+                    <Button color="yellow" onClick={onGroceryListEditClick}>
+                      Edit
+                    </Button>
+                    <Button.Or />
+                    <Button color="red">Delete</Button>
+                  </Button.Group>
                 </section>
               )}
             </div>
