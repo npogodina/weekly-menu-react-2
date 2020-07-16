@@ -6,12 +6,12 @@ import dateformat from "dateformat";
 import CranberryCard from "./CranberryCard";
 import BoxTarget from "./BoxTarget";
 
-// import { useAuth0 } from "@auth0/auth0-react";
-import { Container, Table, Grid } from "semantic-ui-react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Container, Table, Grid, Button } from "semantic-ui-react";
 // import "./EditMenuPage.css";
 
 const EditMenuPage = (props) => {
-  // const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [menu, setMenu] = useState(null);
   const [startDate, setStartDate] = useState(null);
 
@@ -93,6 +93,30 @@ const EditMenuPage = (props) => {
     });
   }
 
+  let history = useHistory();
+  const onMenuSubmit = () => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(
+          6,
+          -4
+        )}`,
+        {
+          userId: user.sub,
+          startDate: startDate,
+          menu: menu,
+        }
+      )
+      .then((response) => {
+        console.log("Post request sent!");
+        history.push(`/dishes${location.pathname.slice(6, -4)}`);
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        // setErrorMessage(error.message);
+      });
+  };
+
   return (
     <Container className="cont">
       <Grid columns={2} divided>
@@ -116,6 +140,9 @@ const EditMenuPage = (props) => {
                   </Table.Header>
                   {menuLinesToRender}
                 </Table>
+                <Button type="submit" onClick={onMenuSubmit}>
+                  Update Menu
+                </Button>
               </div>
             )}
           </Grid.Column>
