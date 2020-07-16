@@ -104,7 +104,7 @@ const EditMenuPage = (props) => {
         {
           userId: user.sub,
           startDate: startDate,
-          menu: menu,
+          updatedMenu: menu,
         }
       )
       .then((response) => {
