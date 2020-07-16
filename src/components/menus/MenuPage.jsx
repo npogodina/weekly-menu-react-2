@@ -105,6 +105,20 @@ const MenuPage = (props) => {
       });
   };
 
+  const onDeleteClick = () => {
+    axios
+      .delete(
+        `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(6)}`
+      )
+      .then((response) => {
+        history.push(`/menus/`);
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        // setErrorMessage(error.message);
+      });
+  };
+
   return (
     <Container className="cont">
       <Card fluid className="main">
@@ -133,7 +147,9 @@ const MenuPage = (props) => {
                   Redo
                 </Button>
                 <Button.Or />
-                <Button color="red">Cancel</Button>
+                <Button color="red" onClick={onDeleteClick}>
+                  Delete
+                </Button>
               </Button.Group>
               {menu["groceryListText"] && (
                 <section>
