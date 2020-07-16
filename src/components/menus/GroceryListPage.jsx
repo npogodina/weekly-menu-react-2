@@ -3,8 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import dateformat from "dateformat";
 
-import CranberryCard from "./CranberryCard";
-import BoxTarget from "./BoxTarget";
+import GroceryItem from "./GroceryItem";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import {
@@ -82,25 +81,21 @@ const GroceryListPage = (props) => {
       <Card fluid className="main">
         <Card.Content>
           <h2>Editing grocery list</h2>
-          {formFields.map((item, idx) => {
-            let placeholder = "Step " + (idx + 1);
-            return (
-              <Form.Group widths="equal">
-                <div basic color="olive" id="plus-btn" onClick={addItem}>
-                  <Icon fitted name="plus" size="large" />
-                </div>
-
-                <Form.Field>
-                  <input
-                    placeholder={placeholder}
-                    onChange={(e) => onInputChange(idx, e)}
-                    value={item.main}
-                  />
-                </Form.Field>
-              </Form.Group>
-            );
-          })}
-
+          <Grid columns={2} divided>
+            <Grid.Row>
+              <Grid.Column width={3}></Grid.Column>
+              <Grid.Column width={13}></Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={8}>
+                <Form>
+                  {formFields.map((item, idx) => {
+                    return <GroceryItem item={item} idx={idx} />;
+                  })}
+                </Form>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
           {/* <Grid columns={2} divided>
             <Grid.Row>
               <Grid.Column width={3}></Grid.Column>
