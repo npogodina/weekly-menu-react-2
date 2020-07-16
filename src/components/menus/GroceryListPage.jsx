@@ -7,13 +7,21 @@ import CranberryCard from "./CranberryCard";
 import BoxTarget from "./BoxTarget";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import { Container, Table, Grid, Button } from "semantic-ui-react";
+import {
+  Container,
+  Table,
+  Grid,
+  Button,
+  Card,
+  Form,
+  Icon,
+} from "semantic-ui-react";
 // import "./EditMenuPage.css";
 
 const GroceryListPage = (props) => {
   const { user, isAuthenticated } = useAuth0();
   const [menu, setMenu] = useState(null);
-  const [startDate, setStartDate] = useState(null);
+  const [formFields, setFormFields] = useState([""]);
 
   const location = useLocation();
   useEffect(() => {
@@ -26,15 +34,26 @@ const GroceryListPage = (props) => {
       )
       .then((response) => {
         const apiMenuList = response.data;
-        const apiStartDate = response.data.startDate;
         setMenu(apiMenuList);
-        setStartDate(apiStartDate);
+        setFormFields(response.data.groceryListText);
       })
       .catch((error) => {
         // Still need to handle errors
         // setErrorMessage(error.message);
       });
   }, []);
+
+  const onInputChange = (i, event) => {
+    const values = [...formFields];
+    values[i] = event.target.value;
+    setFormFields(values);
+  };
+
+  const addItem = () => {
+    const values = [...formFields];
+    values.push("");
+    setFormFields(values);
+  };
 
   let history = useHistory();
   const onMenuSubmit = () => {
@@ -46,7 +65,6 @@ const GroceryListPage = (props) => {
         )}`,
         {
           userId: user.sub,
-          startDate: startDate,
           updatedMenu: menu,
         }
       )
@@ -61,12 +79,36 @@ const GroceryListPage = (props) => {
 
   return (
     <Container className="cont">
-      <Grid columns={2} divided>
-        <Grid.Row>
-          <Grid.Column width={3}></Grid.Column>
-          <Grid.Column width={13}></Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <Card fluid className="main">
+        <Card.Content>
+          <h2>Editing grocery list</h2>
+          {formFields.map((item, idx) => {
+            let placeholder = "Step " + (idx + 1);
+            return (
+              <Form.Group widths="equal">
+                <div basic color="olive" id="plus-btn" onClick={addItem}>
+                  <Icon fitted name="plus" size="large" />
+                </div>
+
+                <Form.Field>
+                  <input
+                    placeholder={placeholder}
+                    onChange={(e) => onInputChange(idx, e)}
+                    value={item.main}
+                  />
+                </Form.Field>
+              </Form.Group>
+            );
+          })}
+
+          {/* <Grid columns={2} divided>
+            <Grid.Row>
+              <Grid.Column width={3}></Grid.Column>
+              <Grid.Column width={13}></Grid.Column>
+            </Grid.Row>
+          </Grid> */}
+        </Card.Content>
+      </Card>
     </Container>
   );
 };
