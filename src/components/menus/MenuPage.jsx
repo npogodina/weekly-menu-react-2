@@ -60,25 +60,27 @@ const MenuPage = (props) => {
     };
     menuLinesToRender = <Table.Body>{menuLines(dates, menu)}</Table.Body>;
 
-    groceryListLines = (menu) => {
-      return menu["groceryListText"].map((item) => {
-        return (
-          <List.Item>
-            <List.Icon
-              name="check circle outline"
-              size="large"
-              verticalAlign="middle"
-              color="green"
-            />
-            <List.Content>
-              <List.Header>{item["main"]}</List.Header>
-              <List.Description>{item["for"]}</List.Description>
-            </List.Content>
-          </List.Item>
-        );
-      });
-    };
-    groceryListToRender = <List relaxed>{groceryListLines(menu)}</List>;
+    if (menu["groceryListText"]) {
+      groceryListLines = (menu) => {
+        return menu["groceryListText"].map((item) => {
+          return (
+            <List.Item>
+              <List.Icon
+                name="check circle outline"
+                size="large"
+                verticalAlign="middle"
+                color="green"
+              />
+              <List.Content>
+                <List.Header>{item["main"]}</List.Header>
+                <List.Description>{item["for"]}</List.Description>
+              </List.Content>
+            </List.Item>
+          );
+        });
+      };
+      groceryListToRender = <List relaxed>{groceryListLines(menu)}</List>;
+    }
   }
 
   let history = useHistory();
@@ -116,12 +118,16 @@ const MenuPage = (props) => {
                 <Button.Or />
                 <Button color="red">Cancel</Button>
               </Button.Group>
-              <h2>Grocery List</h2>
-              <div styleName="width: 50%">
-                <Card id="groceryList">
-                  <CardContent>{groceryListToRender}</CardContent>
-                </Card>
-              </div>
+              {menu["groceryListText"] && (
+                <section>
+                  <h2>Grocery List</h2>
+                  <div styleName="width: 50%">
+                    <Card id="groceryList">
+                      <CardContent>{groceryListToRender}</CardContent>
+                    </Card>
+                  </div>
+                </section>
+              )}
             </div>
           )}
         </Card.Content>
