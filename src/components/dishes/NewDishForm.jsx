@@ -203,7 +203,7 @@ const NewDishForm = (props) => {
       <Card fluid>
         <Card.Content>
           {errorMessage.length !== 0 && errorMessageBlob}
-          <h1>Adding awesome new dish!</h1>
+          <h1>Adding new dish</h1>
           <Form onSubmit={onFormSubmit}>
             <Form.Field width={8}>
               <label>Recipe Name</label>
