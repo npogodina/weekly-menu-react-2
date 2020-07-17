@@ -204,7 +204,7 @@ const NewDishForm = (props) => {
 
   return (
     <Container className="cont">
-      <Card fluid>
+      <Card fluid id="newdishform-card">
         <Card.Content>
           {errorMessage.length !== 0 && errorMessageBlob}
           <h1>Adding new dish</h1>
