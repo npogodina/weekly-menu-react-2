@@ -20,20 +20,31 @@ const GroceryItem = (props) => {
 
   return (
     <Form.Group widths="equal" id="grocery-form">
-      <div className="icon-div">
+      {!checkedOff && (
+        <div className="icon-div">
+          <Icon
+            name="check circle outline"
+            size="large"
+            id="grocery-checkmark"
+            onClick={toggleItem}
+            className={checkedOff ? "checked-off-icon" : "not-checked-off-icon"}
+          />
+          <Icon
+            name="check circle"
+            size="large"
+            id="grocery-checkmark-checked"
+            onClick={toggleItem}
+          />
+        </div>
+      )}
+      {checkedOff && (
         <Icon
-          name="check circle outline"
+          name="check circle"
           size="large"
           id="grocery-checkmark"
           onClick={toggleItem}
         />
-        <Icon
-          name="check circle"
-          size="large"
-          id="grocery-checkmark-checked"
-          onClick={toggleItem}
-        />
-      </div>
+      )}
 
       <Form.Field>
         <input

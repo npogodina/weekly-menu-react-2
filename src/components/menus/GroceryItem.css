@@ -37,23 +37,6 @@
   position: relative;
 }
 
-/* #grocery-checkmark:hover {
-  font-size: 25px;
-  color: darkgreen;
+/* .checked-off-icon#grocery-checkbox {
   display: none;
-} */
-
-/* #grocery-checkmark-checked:hover {
-  font-size: 25px;
-  color: darkgreen;
-  display: block;
-} */
-
-/* #grocery-form:hover i {
-  width: 40px;
-  opacity: 1;
-} */
-
-/* #grocery-checkmark:hover + div input {
-  text-decoration: line-through;
 } */
