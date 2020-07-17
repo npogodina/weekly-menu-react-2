@@ -206,18 +206,21 @@ const NewDishForm = (props) => {
           <h1>Adding new dish</h1>
           <Form onSubmit={onFormSubmit}>
             <Form.Field width={8}>
-              <label>Recipe Name</label>
+              <label>
+                <h2>Recipe Name:</h2>
+              </label>
               <input
                 placeholder="Example: Cranberry Orange Pie"
                 name="name"
                 onChange={onInputChange}
                 value={formFields.name}
+                className="input-border"
               />
             </Form.Field>
+            <h2>How many servings?</h2>
             <Form.Select
               width={2}
               control={Select}
-              label="How many servings?"
               placeholder="Servings"
               name="servings"
               selection
@@ -226,8 +229,10 @@ const NewDishForm = (props) => {
               value={formFields.servings}
             />
 
-            <Form.Group inline>
-              <label>Meal:</label>
+            <Form.Group inline id="meal-fields">
+              <label>
+                <h2 className="h2-meal">Meal:</h2>
+              </label>
               <Checkbox
                 label="Breakfast"
                 name="breakfast"
@@ -264,7 +269,7 @@ const NewDishForm = (props) => {
               return (
                 <Form.Group widths="equal">
                   <div basic color="olive" id="plus-btn" onClick={addStep}>
-                    <Icon fitted name="plus" size="large" />
+                    <Icon fitted name="plus" size="large" color="green" />
                   </div>
 
                   <Form.Field>
@@ -288,7 +293,7 @@ const NewDishForm = (props) => {
                     id="plus-btn"
                     onClick={addIngredient}
                   >
-                    <Icon fitted name="plus" size="large" />
+                    <Icon fitted name="plus" size="large" color="green" />
                   </div>
 
                   <Form.Field width={2}>
@@ -318,7 +323,13 @@ const NewDishForm = (props) => {
               );
             })}
 
-            <Button type="submit">Submit</Button>
+            <Button.Group>
+              <Button type="Reset">Cancel</Button>
+              <Button.Or />
+              <Button positive type="Submit">
+                Add dish
+              </Button>
+            </Button.Group>
           </Form>
         </Card.Content>
       </Card>

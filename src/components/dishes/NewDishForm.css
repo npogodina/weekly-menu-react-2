@@ -1,3 +1,12 @@
+.h2-meal {
+  margin-top: 10px;
+  padding-bottom: 3px;
+}
+
+#meal-fields {
+  margin-top: 24px;
+}
+
 #plus-btn {
   padding: 10px;
 }
@@ -5,3 +14,13 @@
 .form-checkbox {
   margin-right: 20px;
 }
+
+/* input {
+  border: 1px solid #21ba45 !important;
+  color: green !important;
+} */
+
+/* ::placeholder {
+  color: #87bd94 !important;
+  opacity: 1; 
+} */
