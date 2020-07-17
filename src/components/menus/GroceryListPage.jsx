@@ -119,15 +119,9 @@ const GroceryListPage = (props) => {
                     />
                   );
                 })}
-                <div id="add-ingredient-card" onClick={addItem}>
-                  <Card>
-                    <Card.Content id="add-ingredient">
-                      <Icon size="big" name="plus square" />
-                      Add Ingredient
-                    </Card.Content>
-                  </Card>
-                </div>
-
+                <Button type="reset" onClick={addItem}>
+                  Add Ingredient
+                </Button>
                 <Button type="submit" id="update-grocery-list-btn">
                   Update
                 </Button>
