@@ -7,6 +7,9 @@
   height: 100px;
   background-image: url(../../img/grocery-card.jpg);
 }
+.grocery-button-group {
+  float: right;
+}
 
 #grocery-list-card {
   width: 50%;
@@ -27,6 +30,6 @@
   border: none;
 }
 
-/* #update-grocery-list-btn {
-  padding-bottom: 14px;
-} */
+#update-grocery-list-btn {
+  margin-right: 0;
+}

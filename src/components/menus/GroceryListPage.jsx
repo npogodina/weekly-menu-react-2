@@ -119,12 +119,19 @@ const GroceryListPage = (props) => {
                     />
                   );
                 })}
-                <Button type="reset" onClick={addItem}>
-                  Add Ingredient
-                </Button>
-                <Button type="submit" id="update-grocery-list-btn">
-                  Update
-                </Button>
+                <div className="grocery-button-group">
+                  <Button type="reset" onClick={addItem} color="yellow">
+                    Add Ingredient
+                  </Button>
+
+                  <Button
+                    type="submit"
+                    id="update-grocery-list-btn"
+                    color="green"
+                  >
+                    Update
+                  </Button>
+                </div>
               </Form>
             </Card.Content>
             <div className="grocery-image"></div>
