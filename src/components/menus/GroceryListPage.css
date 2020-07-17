@@ -2,3 +2,13 @@
   margin-left: 40px;
   margin-bottom: 10px;
 }
+
+.grocery-image {
+  height: 100px;
+  background-image: url(../../img/grocery-card.jpg);
+}
+
+#grocery-list-card {
+  width: 50%;
+  margin: auto;
+}

@@ -14,6 +14,7 @@ import {
   Card,
   Form,
   Icon,
+  Image,
 } from "semantic-ui-react";
 import "./GroceryListPage.css";
 
@@ -95,29 +96,34 @@ const GroceryListPage = (props) => {
       <Card fluid className="main">
         <Card.Content>
           <h2>Editing grocery list</h2>
-          <Grid columns={2}>
-            <Grid.Row className="grocery-list-subheader">
-              <Grid.Column>
-                <h3>Item:</h3>
-              </Grid.Column>
-              <Grid.Column>
-                <h3>For:</h3>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-          <Form onSubmit={onFormSubmit}>
-            {formFields.map((item, idx) => {
-              return (
-                <GroceryItem
-                  item={item}
-                  idx={idx}
-                  onInputChange={onInputChange}
-                  checkOff={checkOff}
-                />
-              );
-            })}
-            <Button type="submit">Submit</Button>
-          </Form>
+          <Card id="grocery-list-card">
+            <Card.Content>
+              <Grid columns={2}>
+                <Grid.Row className="grocery-list-subheader">
+                  <Grid.Column>
+                    <h3>Item:</h3>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <h3>For:</h3>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+              <Form onSubmit={onFormSubmit}>
+                {formFields.map((item, idx) => {
+                  return (
+                    <GroceryItem
+                      item={item}
+                      idx={idx}
+                      onInputChange={onInputChange}
+                      checkOff={checkOff}
+                    />
+                  );
+                })}
+                <Button type="submit">Submit</Button>
+              </Form>
+            </Card.Content>
+            <div className="grocery-image"></div>
+          </Card>
         </Card.Content>
       </Card>
     </Container>
