@@ -198,6 +198,10 @@ const NewDishForm = (props) => {
       });
   };
 
+  const onCancel = () => {
+    history.push(`/dishes/`);
+  };
+
   return (
     <Container className="cont">
       <Card fluid>
@@ -324,7 +328,9 @@ const NewDishForm = (props) => {
             })}
 
             <Button.Group>
-              <Button type="Reset">Cancel</Button>
+              <Button type="Reset" onClick={onCancel}>
+                Cancel
+              </Button>
               <Button.Or />
               <Button positive type="Submit">
                 Add dish
