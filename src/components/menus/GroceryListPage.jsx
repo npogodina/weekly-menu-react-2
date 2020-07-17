@@ -48,6 +48,12 @@ const GroceryListPage = (props) => {
     setFormFields(values);
   };
 
+  const checkOff = (i) => {
+    const values = [...formFields];
+    values[i]["checkedOff"] = true;
+    setFormFields(values);
+  };
+
   const addItem = () => {
     const values = [...formFields];
     values.push("");
@@ -56,6 +62,12 @@ const GroceryListPage = (props) => {
 
   let history = useHistory();
   const onFormSubmit = () => {
+    let filteredFormFields = [];
+    formFields.forEach((item) => {
+      if (!item.checkedOff) {
+        filteredFormFields.push(item);
+      }
+    });
     axios
       .patch(
         `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(
@@ -65,7 +77,7 @@ const GroceryListPage = (props) => {
         {
           userId: user.sub,
           startDate: menu.startDate,
-          updatedGroceryListText: formFields,
+          updatedGroceryListText: filteredFormFields,
         }
       )
       .then((response) => {
@@ -100,6 +112,7 @@ const GroceryListPage = (props) => {
                   item={item}
                   idx={idx}
                   onInputChange={onInputChange}
+                  checkOff={checkOff}
                 />
               );
             })}

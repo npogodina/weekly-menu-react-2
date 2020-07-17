@@ -11,6 +11,7 @@ const GroceryItem = (props) => {
 
   const toggleItem = () => {
     setCheckedOff(!checkedOff);
+    props.checkOff(props.idx);
   };
 
   // const onInputChange = (i, event) => {
