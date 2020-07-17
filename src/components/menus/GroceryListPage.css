@@ -12,3 +12,17 @@
   width: 50%;
   margin: auto;
 }
+
+#add-ingredient-card {
+  width: 150px;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+#add-ingredient {
+  padding: 5px;
+}
+
+#update-grocery-list-btn {
+  padding-bottom: 14px;
+}

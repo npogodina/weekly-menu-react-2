@@ -14,7 +14,7 @@ import {
   Card,
   Form,
   Icon,
-  Image,
+  Header,
 } from "semantic-ui-react";
 import "./GroceryListPage.css";
 
@@ -57,7 +57,7 @@ const GroceryListPage = (props) => {
 
   const addItem = () => {
     const values = [...formFields];
-    values.push("");
+    values.push({});
     setFormFields(values);
   };
 
@@ -119,7 +119,18 @@ const GroceryListPage = (props) => {
                     />
                   );
                 })}
-                <Button type="submit">Submit</Button>
+                <div id="add-ingredient-card" onClick={addItem}>
+                  <Card>
+                    <Card.Content id="add-ingredient">
+                      <Icon size="big" name="plus square" />
+                      Add Ingredient
+                    </Card.Content>
+                  </Card>
+                </div>
+
+                <Button type="submit" id="update-grocery-list-btn">
+                  Update
+                </Button>
               </Form>
             </Card.Content>
             <div className="grocery-image"></div>
