@@ -2,7 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
 
-import { Container, Card, Grid, Image, List, Button } from "semantic-ui-react";
+import {
+  Container,
+  Card,
+  Grid,
+  Image,
+  List,
+  Button,
+  Divider,
+  Message,
+} from "semantic-ui-react";
+import "./DishPage.css";
+import LemonDivider from "../../img/divider-lemon.png";
 
 import PropTypes from "prop-types";
 
@@ -91,38 +102,66 @@ const DishPage = (props) => {
       <Container className="cont">
         <Card fluid>
           <Card.Content>
-            <Grid celled="internally">
+            <Grid>
               <Grid.Row>
                 <Grid.Column>
                   <h1>{dish.name}</h1>
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row>
-                <Grid.Column width={6}>
-                  <Image src="https://myheartbeets.com/wp-content/uploads/2018/03/pressure-cooker-split-pea-soup.jpg" />
+                <Grid.Column>
+                  <Card id="dish-image-card">
+                    <Image
+                      id="dish-image"
+                      src="https://kyxarka.ru/wp-content/uploads/2018/12/1622.jpg"
+                    />
+                  </Card>
                 </Grid.Column>
-                <Grid.Column width={10}>
-                  <h3>Servings: {dish.servings}</h3>
-                  <h3>Tags:</h3>
-                  <p>{tags.join(", ")}</p>
-                  <h3>Made: 5 times</h3>
-                  <Button color="orange" onClick={onEditClick}>
-                    Edit
-                  </Button>
-                  <Button color="red" onClick={onDeleteClick}>
-                    Delete
-                  </Button>
+              </Grid.Row>
+            </Grid>
+            <Divider horizontal>
+              <img id="dish-divider-image" src={LemonDivider}></img>
+            </Divider>
+            <Grid id="grid">
+              <Grid.Row>
+                <Grid.Column width={4}>
+                  <Message>
+                    <h3>Servings: {dish.servings}</h3>
+                  </Message>
+                </Grid.Column>
+                <Grid.Column width={4}>
+                  <Message>
+                    <h3>Tags: {tags.join(", ")}</h3>
+                  </Message>
+                </Grid.Column>
+                <Grid.Column width={4}>
+                  <Message id="dish-buttons-message">
+                    <Button fluid color="orange" onClick={onEditClick}>
+                      Edit
+                    </Button>
+                  </Message>
+                </Grid.Column>
+                <Grid.Column width={4}>
+                  <Message id="dish-buttons-message">
+                    <Button fluid color="red" onClick={onDeleteClick}>
+                      Delete
+                    </Button>
+                  </Message>
                 </Grid.Column>
               </Grid.Row>
 
               <Grid.Row>
-                <Grid.Column width={6}>
-                  <h2>Ingredients:</h2>
-                  <List bulleted>{ingredients}</List>
+                <Grid.Column width={4}>
+                  <Message>
+                    <h3>Ingredients:</h3>
+                    <List bulleted>{ingredients}</List>
+                  </Message>
                 </Grid.Column>
-                <Grid.Column width={10}>
-                  <h2>Directions:</h2>
-                  <List ordered>{steps}</List>
+                <Grid.Column width={12}>
+                  <Message>
+                    <h3>Directions:</h3>
+                    <List ordered>{steps}</List>
+                  </Message>
                 </Grid.Column>
               </Grid.Row>
             </Grid>

@@ -1,0 +1,22 @@
+#dish-image-card {
+  width: 80%;
+  margin: auto;
+}
+
+#dish-image {
+  object-fit: cover;
+}
+
+#dish-divider-image {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#dish-buttons-message {
+  padding: 0;
+  font-size: 18px;
+}
+
+#grid {
+  margin: auto;
+}
