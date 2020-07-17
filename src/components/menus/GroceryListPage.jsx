@@ -65,7 +65,7 @@ const GroceryListPage = (props) => {
   const onFormSubmit = () => {
     let filteredFormFields = [];
     formFields.forEach((item) => {
-      if (!item.checkedOff) {
+      if (!item.checkedOff && item.main) {
         filteredFormFields.push(item);
       }
     });
