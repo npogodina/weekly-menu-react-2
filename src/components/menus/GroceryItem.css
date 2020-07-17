@@ -1,3 +1,59 @@
 .checked-off {
   text-decoration: line-through;
 }
+
+#grocery-checkmark {
+  color: #21ba45;
+  padding-top: 10px;
+  margin-left: 10px;
+  padding-right: 30px;
+  /* width: 0;
+  display: inline-block;
+  transition: 0.2s linear;
+  opacity: 0; */
+}
+
+#grocery-checkmark-checked {
+  color: #21ba45;
+  padding-top: 10px;
+  margin-left: 10px;
+  padding-right: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.icon-div {
+  position: relative;
+}
+
+.icon-div:hover #grocery-checkmark {
+  display: none;
+}
+
+.icon-div:hover #grocery-checkmark-checked {
+  display: block;
+  position: relative;
+}
+
+/* #grocery-checkmark:hover {
+  font-size: 25px;
+  color: darkgreen;
+  display: none;
+} */
+
+/* #grocery-checkmark-checked:hover {
+  font-size: 25px;
+  color: darkgreen;
+  display: block;
+} */
+
+/* #grocery-form:hover i {
+  width: 40px;
+  opacity: 1;
+} */
+
+/* #grocery-checkmark:hover + div input {
+  text-decoration: line-through;
+} */

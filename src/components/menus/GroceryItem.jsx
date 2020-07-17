@@ -19,9 +19,20 @@ const GroceryItem = (props) => {
   // };
 
   return (
-    <Form.Group widths="equal">
-      <div basic id="plus-btn" onClick={toggleItem}>
-        <Icon fitted name="check circle" size="large" color="green" />
+    <Form.Group widths="equal" id="grocery-form">
+      <div className="icon-div">
+        <Icon
+          name="check circle outline"
+          size="large"
+          id="grocery-checkmark"
+          onClick={toggleItem}
+        />
+        <Icon
+          name="check circle"
+          size="large"
+          id="grocery-checkmark-checked"
+          onClick={toggleItem}
+        />
       </div>
 
       <Form.Field>
