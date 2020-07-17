@@ -107,7 +107,7 @@ const Dishes = (props) => {
                 <Table.HeaderCell>Name</Table.HeaderCell>
                 <Table.HeaderCell>Meals</Table.HeaderCell>
                 <Table.HeaderCell>Servings</Table.HeaderCell>
-                <Table.HeaderCell>Recipe?</Table.HeaderCell>
+                <Table.HeaderCell>Directions?</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             {componentsToRender}
