@@ -32,3 +32,7 @@
   display: block;
   position: relative;
 }
+
+#grocery-form-for {
+  color: #4a90be;
+}

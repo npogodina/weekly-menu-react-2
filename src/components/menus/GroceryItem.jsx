@@ -52,6 +52,7 @@ const GroceryItem = (props) => {
           value={props.item.main}
           className={checkedOff ? "checked-off" : "not-checked-off"}
           name="main"
+          id="grocery-form-main"
         />
       </Form.Field>
 
@@ -61,6 +62,7 @@ const GroceryItem = (props) => {
           value={props.item.for}
           className={checkedOff ? "checked-off" : "not-checked-off"}
           name="for"
+          id="grocery-form-for"
         />
       </Form.Field>
     </Form.Group>
