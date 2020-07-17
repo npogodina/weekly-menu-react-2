@@ -55,38 +55,22 @@ const GroceryListPage = (props) => {
   };
 
   let history = useHistory();
-  const onMenuSubmit = () => {
+  const onFormSubmit = () => {
     axios
-      .post(
+      .patch(
         `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(
           6,
-          -4
+          -11
         )}`,
         {
           userId: user.sub,
-          updatedMenu: menu,
+          startDate: menu.startDate,
+          updatedGroceryListText: formFields,
         }
       )
       .then((response) => {
-        history.push(`/menus/${response.data}`);
-      })
-      .catch((error) => {
-        // What should we do when we know the post request failed?
-        // setErrorMessage(error.message);
-      });
-  };
-
-  const onFormSubmit = (event) => {
-    event.preventDefault();
-    let updatedMenu = { ...menu };
-    updatedMenu.groceryListText = formFields;
-    setMenu(updatedMenu);
-
-    axios
-      .post(process.env.REACT_APP_API_MENUS_INDEX, menu)
-      .then((response) => {
-        console.log("Post request sent!");
-        history.back();
+        console.log("Patch request sent to update grocery list text");
+        history.push(`/menus${location.pathname.slice(6, -11)}`);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?
