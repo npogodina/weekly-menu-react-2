@@ -15,12 +15,12 @@ import {
   Form,
   Icon,
 } from "semantic-ui-react";
-// import "./EditMenuPage.css";
+import "./GroceryListPage.css";
 
 const GroceryListPage = (props) => {
   const { user, isAuthenticated } = useAuth0();
   const [menu, setMenu] = useState(null);
-  const [formFields, setFormFields] = useState([""]);
+  const [formFields, setFormFields] = useState([{}]);
 
   const location = useLocation();
   useEffect(() => {
@@ -44,7 +44,7 @@ const GroceryListPage = (props) => {
 
   const onInputChange = (i, event) => {
     const values = [...formFields];
-    values[i].main = event.target.value;
+    values[i][event.target.name] = event.target.value;
     setFormFields(values);
   };
 
@@ -99,34 +99,28 @@ const GroceryListPage = (props) => {
       <Card fluid className="main">
         <Card.Content>
           <h2>Editing grocery list</h2>
-          <Grid columns={2} divided>
-            <Grid.Row>
-              <Grid.Column width={3}></Grid.Column>
-              <Grid.Column width={13}></Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column width={8}>
-                <Form onSubmit={onFormSubmit}>
-                  {formFields.map((item, idx) => {
-                    return (
-                      <GroceryItem
-                        item={item}
-                        idx={idx}
-                        onInputChange={onInputChange}
-                      />
-                    );
-                  })}
-                  <Button type="submit">Submit</Button>
-                </Form>
+          <Grid columns={2}>
+            <Grid.Row className="grocery-list-subheader">
+              <Grid.Column>
+                <h3>Item:</h3>
+              </Grid.Column>
+              <Grid.Column>
+                <h3>For:</h3>
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          {/* <Grid columns={2} divided>
-            <Grid.Row>
-              <Grid.Column width={3}></Grid.Column>
-              <Grid.Column width={13}></Grid.Column>
-            </Grid.Row>
-          </Grid> */}
+          <Form onSubmit={onFormSubmit}>
+            {formFields.map((item, idx) => {
+              return (
+                <GroceryItem
+                  item={item}
+                  idx={idx}
+                  onInputChange={onInputChange}
+                />
+              );
+            })}
+            <Button type="submit">Submit</Button>
+          </Form>
         </Card.Content>
       </Card>
     </Container>

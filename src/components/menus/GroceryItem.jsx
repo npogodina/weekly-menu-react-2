@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import { Form, Icon } from "semantic-ui-react";
+import { Form, Icon, Grid } from "semantic-ui-react";
 import "./GroceryItem.css";
 
 import PropTypes from "prop-types";
@@ -28,6 +28,16 @@ const GroceryItem = (props) => {
           onChange={(e) => props.onInputChange(props.idx, e)}
           value={props.item.main}
           className={checkedOff ? "checked-off" : "not-checked-off"}
+          name="main"
+        />
+      </Form.Field>
+
+      <Form.Field>
+        <input
+          onChange={(e) => props.onInputChange(props.idx, e)}
+          value={props.item.for}
+          className={checkedOff ? "checked-off" : "not-checked-off"}
+          name="for"
         />
       </Form.Field>
     </Form.Group>
