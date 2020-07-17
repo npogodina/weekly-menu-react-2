@@ -7,10 +7,6 @@
   padding-top: 10px;
   margin-left: 10px;
   padding-right: 30px;
-  /* width: 0;
-  display: inline-block;
-  transition: 0.2s linear;
-  opacity: 0; */
 }
 
 #grocery-checkmark-checked {
@@ -36,7 +32,3 @@
   display: block;
   position: relative;
 }
-
-/* .checked-off-icon#grocery-checkbox {
-  display: none;
-} */
