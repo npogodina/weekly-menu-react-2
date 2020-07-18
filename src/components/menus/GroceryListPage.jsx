@@ -91,6 +91,10 @@ const GroceryListPage = (props) => {
       });
   };
 
+  const onCancel = () => {
+    history.push(`/menus${location.pathname.slice(6, -12)}`);
+  };
+
   return (
     <Container className="cont">
       <Card fluid className="main">
@@ -119,18 +123,20 @@ const GroceryListPage = (props) => {
                     />
                   );
                 })}
-                <div className="grocery-button-group">
+                <div>
                   <Button type="reset" onClick={addItem} color="yellow">
                     Add Ingredient
                   </Button>
 
-                  <Button
-                    type="submit"
-                    id="update-grocery-list-btn"
-                    color="green"
-                  >
-                    Update
-                  </Button>
+                  <Button.Group className="grocery-button-group">
+                    <Button type="Reset" onClick={onCancel}>
+                      Cancel
+                    </Button>
+                    <Button.Or />
+                    <Button positive type="Submit" id="update-grocery-list-btn">
+                      Update menu
+                    </Button>
+                  </Button.Group>
                 </div>
               </Form>
             </Card.Content>
