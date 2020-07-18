@@ -20,3 +20,20 @@
 #grid {
   margin: auto;
 }
+
+.dish-button {
+  padding-top: 19px !important;
+  padding-bottom: 18px !important;
+  /* font-size: 18px !important; */
+}
+
+div.ui.bulleted.list {
+  margin-left: 0;
+}
+
+div.item.list-block {
+  /* font-size: 16px; */
+  margin-top: 5px;
+  margin-left: 0;
+  line-height: 1.5 !important;
+}

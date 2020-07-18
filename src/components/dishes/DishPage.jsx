@@ -119,45 +119,53 @@ const DishPage = (props) => {
                 </Grid.Column>
               </Grid.Row>
             </Grid>
+
             <Divider horizontal>
               <img id="dish-divider-image" src={LemonDivider}></img>
             </Divider>
+
             <Grid id="grid">
               <Grid.Row>
-                <Grid.Column width={4}>
+                <Grid.Column width={5}>
                   <Message>
                     <h3>Servings: {dish.servings}</h3>
                   </Message>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column width={6}>
                   <Message>
                     <h3>Tags: {tags.join(", ")}</h3>
                   </Message>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column width={5}>
                   <Message id="dish-buttons-message">
-                    <Button fluid color="orange" onClick={onEditClick}>
-                      Edit
-                    </Button>
-                  </Message>
-                </Grid.Column>
-                <Grid.Column width={4}>
-                  <Message id="dish-buttons-message">
-                    <Button fluid color="red" onClick={onDeleteClick}>
-                      Delete
-                    </Button>
+                    <Button.Group fluid>
+                      <Button
+                        color="yellow"
+                        onClick={onEditClick}
+                        className="dish-button"
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        color="red"
+                        onClick={onDeleteClick}
+                        className="dish-button"
+                      >
+                        Delete
+                      </Button>
+                    </Button.Group>
                   </Message>
                 </Grid.Column>
               </Grid.Row>
 
               <Grid.Row>
-                <Grid.Column width={4}>
+                <Grid.Column width={5}>
                   <Message>
                     <h3>Ingredients:</h3>
-                    <List bulleted>{ingredients}</List>
+                    <List>{ingredients}</List>
                   </Message>
                 </Grid.Column>
-                <Grid.Column width={12}>
+                <Grid.Column width={11}>
                   <Message>
                     <h3>Directions:</h3>
                     <List ordered>{steps}</List>
