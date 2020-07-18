@@ -123,6 +123,29 @@ const MenuPage = (props) => {
       });
   };
 
+  const onGroceryListDeleteClick = () => {
+    let emptyList = [];
+    axios
+      .patch(
+        `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(6)}`,
+        {
+          userId: user.sub,
+          startDate: menu.startDate,
+          updatedGroceryListText: emptyList,
+        }
+      )
+      .then((response) => {
+        console.log("Patch request sent to update grocery list text");
+        let updatedMenu = { ...menu };
+        updatedMenu.groceryListText = [];
+        setMenu(updatedMenu);
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        // setErrorMessage(error.message);
+      });
+  };
+
   return (
     <Container className="cont">
       <Card fluid className="main">
@@ -178,7 +201,9 @@ const MenuPage = (props) => {
                       Edit
                     </Button>
                     <Button.Or />
-                    <Button color="red">Delete</Button>
+                    <Button color="red" onClick={onGroceryListDeleteClick}>
+                      Delete
+                    </Button>
                   </Button.Group>
                 </section>
               )}
