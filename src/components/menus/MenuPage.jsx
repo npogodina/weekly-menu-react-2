@@ -161,6 +161,7 @@ const MenuPage = (props) => {
                   <div styleName="width: 50%">
                     <Card id="groceryList">
                       <CardContent>{groceryListToRender}</CardContent>
+                      <div className="grocery-image"></div>
                     </Card>
                   </div>
                   <h2>Happy?</h2>
