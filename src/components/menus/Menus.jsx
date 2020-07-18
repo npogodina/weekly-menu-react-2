@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { Container, Card, Table, Button } from "semantic-ui-react";
+import "./Menus.css";
 
 import PropTypes from "prop-types";
 
@@ -48,11 +49,11 @@ const Menus = (props) => {
 
   return (
     <Container className="cont">
-      <Card fluid>
+      <Card fluid id="menus-card">
         <Card.Content>
           <h1>Your menus:</h1>
 
-          <Table compact>
+          <Table compact id="menus-table">
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell></Table.HeaderCell>

@@ -1,0 +1,11 @@
+#menus-card {
+  background-image: url(../../img/menus.png) !important;
+  /* background-size: cover; */
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#menus-table {
+  width: 40%;
+}
