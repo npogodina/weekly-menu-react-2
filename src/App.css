@@ -1,3 +1,11 @@
+html {
+  font-size: 15px !important;
+}
+
+body {
+  font-size: 15px !important;
+}
+
 h1 {
   color: #21ba45;
 }
