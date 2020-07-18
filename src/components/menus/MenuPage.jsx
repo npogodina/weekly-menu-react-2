@@ -165,7 +165,7 @@ const MenuPage = (props) => {
                       )}
                       {menu["groceryListText"].length === 0 && (
                         <CardContent>
-                          <p>Your dishes don't have ingredients.</p>
+                          <p>Nothing here.</p>
                         </CardContent>
                       )}
 
