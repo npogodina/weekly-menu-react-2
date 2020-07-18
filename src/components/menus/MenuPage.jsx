@@ -160,7 +160,15 @@ const MenuPage = (props) => {
                   <h2>Grocery List</h2>
                   <div styleName="width: 50%">
                     <Card id="groceryList">
-                      <CardContent>{groceryListToRender}</CardContent>
+                      {menu["groceryListText"].length > 0 && (
+                        <CardContent>{groceryListToRender}</CardContent>
+                      )}
+                      {menu["groceryListText"].length === 0 && (
+                        <CardContent>
+                          <p>Your dishes don't have ingredients.</p>
+                        </CardContent>
+                      )}
+
                       <div className="grocery-image"></div>
                     </Card>
                   </div>
