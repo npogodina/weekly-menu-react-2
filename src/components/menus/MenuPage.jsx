@@ -201,9 +201,14 @@ const MenuPage = (props) => {
                       Edit
                     </Button>
                     <Button.Or />
-                    <Button color="red" onClick={onGroceryListDeleteClick}>
-                      Delete
-                    </Button>
+                    {menu["groceryListText"].length > 0 && (
+                      <Button color="red" onClick={onGroceryListDeleteClick}>
+                        Delete
+                      </Button>
+                    )}
+                    {menu["groceryListText"].length === 0 && (
+                      <Button disabled>Delete</Button>
+                    )}
                   </Button.Group>
                 </section>
               )}
