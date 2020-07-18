@@ -161,6 +161,10 @@ const EditMenuPage = (props) => {
       });
   };
 
+  const onCancel = () => {
+    history.push(`/menus${location.pathname.slice(6, -5)}`);
+  };
+
   return (
     <Container className="cont">
       <Grid columns={2} divided>
@@ -201,9 +205,18 @@ const EditMenuPage = (props) => {
                   </Table.Header>
                   {menuLinesToRender}
                 </Table>
-                <Button type="submit" onClick={onMenuSubmit}>
+                {/* <Button type="submit" onClick={onMenuSubmit}>
                   Update Menu
-                </Button>
+                </Button> */}
+                <Button.Group>
+                  <Button type="Reset" onClick={onCancel}>
+                    Cancel
+                  </Button>
+                  <Button.Or />
+                  <Button positive type="Submit" onClick={onMenuSubmit}>
+                    Update menu
+                  </Button>
+                </Button.Group>
               </div>
             )}
           </Grid.Column>
