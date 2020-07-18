@@ -8,7 +8,7 @@ import BoxTarget from "./BoxTarget";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { Container, Table, Grid, Button } from "semantic-ui-react";
-// import "./EditMenuPage.css";
+import "./EditMenuPage.css";
 
 const EditMenuPage = (props) => {
   const { user, isAuthenticated } = useAuth0();
@@ -86,11 +86,56 @@ const EditMenuPage = (props) => {
   }
 
   // Display dishList as Cards
-  let newDishCards = null;
-  if (props.dishList) {
-    newDishCards = props.dishList.map((dish) => {
+  // let newDishCards = null;
+  // if (props.dishList) {
+  //   newDishCards = props.dishList.map((dish) => {
+  //     return <CranberryCard name={dish.name} key={dish.id} />;
+  //   });
+  // }
+
+  const [filter, setFilter] = useState("Breakfast");
+
+  const makeDishCards = (dishes) => {
+    return dishes.map((dish) => {
       return <CranberryCard name={dish.name} key={dish.id} />;
     });
+  };
+
+  let breakfasts = [];
+  let lunches = [];
+  let dinners = [];
+  let breakfastDishComponents = [];
+  let lunchDishComponents = [];
+  let dinnerDishComponents = [];
+
+  props.dishList.forEach((dish) => {
+    if (dish.lunch[0] === "y") {
+      lunches.push(dish);
+    }
+    if (dish.breakfast[0] === "y") {
+      breakfasts.push(dish);
+    }
+    if (dish.dinner[0] === "y") {
+      dinners.push(dish);
+    }
+
+    breakfastDishComponents = makeDishCards(breakfasts);
+    lunchDishComponents = makeDishCards(lunches);
+    dinnerDishComponents = makeDishCards(dinners);
+  });
+
+  let cardsToRender = null;
+
+  const applyFilter = (event) => {
+    setFilter(event.target.name);
+  };
+
+  if (filter === "Breakfast") {
+    cardsToRender = <Table.Body>{breakfastDishComponents}</Table.Body>;
+  } else if (filter === "Lunch") {
+    cardsToRender = <Table.Body>{lunchDishComponents}</Table.Body>;
+  } else if (filter === "Dinner") {
+    cardsToRender = <Table.Body>{dinnerDishComponents}</Table.Body>;
   }
 
   let history = useHistory();
@@ -122,7 +167,24 @@ const EditMenuPage = (props) => {
         <Grid.Row>
           <Grid.Column width={3}>
             <h2>Your dishes:</h2>
-            {newDishCards}
+            <div className="">
+              <Button.Group
+                color="green"
+                size="small"
+                className="edit-menu-btn-group"
+              >
+                <Button className="" name="Breakfast" onClick={applyFilter}>
+                  B
+                </Button>
+                <Button className="" name="Lunch" onClick={applyFilter}>
+                  L
+                </Button>
+                <Button className="" name="Dinner" onClick={applyFilter}>
+                  D
+                </Button>
+              </Button.Group>
+            </div>
+            {cardsToRender}
           </Grid.Column>
           <Grid.Column width={13}>
             {menu && (
