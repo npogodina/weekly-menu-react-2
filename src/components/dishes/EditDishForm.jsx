@@ -217,12 +217,16 @@ const EditDishForm = (props) => {
       .then((response) => {
         console.log("Post request sent!");
         props.reloadDishes();
-        history.push(`/dishes/`);
+        history.push(`/dishes`);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
+  };
+
+  const onCancel = () => {
+    history.push(`/dishes${location.pathname.slice(7, -5)}`);
   };
 
   return (
@@ -232,10 +236,10 @@ const EditDishForm = (props) => {
           {errorMessage.length !== 0 && errorMessageBlob}
           <h1>Editing {formFields.name}</h1>
           <Form onSubmit={onFormSubmit}>
+            <h3>How many servings?</h3>
             <Form.Select
               width={2}
               control={Select}
-              label="How many servings?"
               placeholder="Servings"
               name="servings"
               selection
@@ -244,8 +248,11 @@ const EditDishForm = (props) => {
               value={formFields.servings}
             />
 
-            <Form.Group inline>
-              <label>Meal:</label>
+            <Form.Group inline className="meal-fields">
+              <label>
+                {" "}
+                <h3 className="h3-meal">Meal:</h3>
+              </label>
               <Checkbox
                 label="Breakfast"
                 name="breakfast"
@@ -276,13 +283,13 @@ const EditDishForm = (props) => {
               />
             </Form.Group>
 
-            <h2>Directions:</h2>
+            <h3>Directions:</h3>
             {directions.map((directions, idx) => {
               let placeholder = "Step " + (idx + 1);
               return (
                 <Form.Group widths="equal">
                   <div basic color="olive" id="plus-btn" onClick={addStep}>
-                    <Icon fitted name="plus" size="large" />
+                    <Icon fitted name="plus" size="large" color="green" />
                   </div>
 
                   <Form.Field>
@@ -296,7 +303,7 @@ const EditDishForm = (props) => {
               );
             })}
 
-            <h2>Ingredients:</h2>
+            <h3>Ingredients:</h3>
             {ingredients.map((ingredients, idx) => {
               let placeholder = "Ingredient " + (idx + 1);
               return (
@@ -307,13 +314,12 @@ const EditDishForm = (props) => {
                     id="plus-btn"
                     onClick={addIngredient}
                   >
-                    <Icon fitted name="plus" size="large" />
+                    <Icon fitted name="plus" size="large" color="green" />
                   </div>
 
                   <Form.Field width={2}>
                     <input
                       name="amount"
-                      placeholder="1"
                       onChange={(e) => onIngredientsChange(idx, e)}
                       value={ingredients.amount || null}
                     />
@@ -322,7 +328,6 @@ const EditDishForm = (props) => {
                   <Form.Field width={4}>
                     <input
                       name="measurement"
-                      placeholder="lbs"
                       onChange={(e) => onIngredientsChange(idx, e)}
                       value={ingredients.measurement || null}
                     />
@@ -331,7 +336,6 @@ const EditDishForm = (props) => {
                   <Form.Field width={6}>
                     <input
                       name="name"
-                      placeholder="cranberries"
                       onChange={(e) => onIngredientsChange(idx, e)}
                       value={ingredients.name || null}
                     />
@@ -340,7 +344,15 @@ const EditDishForm = (props) => {
               );
             })}
 
-            <Button type="submit">Submit</Button>
+            <Button.Group>
+              <Button type="Reset" onClick={onCancel}>
+                Cancel
+              </Button>
+              <Button.Or />
+              <Button positive type="Submit">
+                Update dish
+              </Button>
+            </Button.Group>
           </Form>
         </Card.Content>
       </Card>

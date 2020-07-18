@@ -211,7 +211,7 @@ const NewDishForm = (props) => {
           <Form onSubmit={onFormSubmit}>
             <Form.Field width={8}>
               <label>
-                <h2>Recipe Name:</h2>
+                <h3>Recipe Name:</h3>
               </label>
               <input
                 placeholder="Example: Cranberry Orange Pie"
@@ -221,7 +221,7 @@ const NewDishForm = (props) => {
                 className="input-border"
               />
             </Form.Field>
-            <h2>How many servings?</h2>
+            <h3>How many servings?</h3>
             <Form.Select
               width={2}
               control={Select}
@@ -233,9 +233,9 @@ const NewDishForm = (props) => {
               value={formFields.servings}
             />
 
-            <Form.Group inline id="meal-fields">
+            <Form.Group inline className="meal-fields">
               <label>
-                <h2 className="h2-meal">Meal:</h2>
+                <h3 className="h3-meal">Meal:</h3>
               </label>
               <Checkbox
                 label="Breakfast"
@@ -267,7 +267,7 @@ const NewDishForm = (props) => {
               />
             </Form.Group>
 
-            <h2>Directions:</h2>
+            <h3>Directions:</h3>
             {directions.map((directions, idx) => {
               let placeholder = "Step " + (idx + 1);
               return (
@@ -286,7 +286,7 @@ const NewDishForm = (props) => {
               );
             })}
 
-            <h2>Ingredients:</h2>
+            <h3>Ingredients:</h3>
             {ingredients.map((ingredients, idx) => {
               let placeholder = "Ingredient " + (idx + 1);
               return (

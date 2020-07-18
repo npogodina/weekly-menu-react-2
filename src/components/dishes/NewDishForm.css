@@ -1,10 +1,10 @@
-.h2-meal {
+.h3-meal {
   margin-top: 10px;
   padding-bottom: 3px;
 }
 
-#meal-fields {
-  margin-top: 24px;
+.meal-fields {
+  margin-top: 24px !important;
 }
 
 #plus-btn {
