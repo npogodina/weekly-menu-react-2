@@ -38,6 +38,16 @@
 .home-cont {
 }
 
+.avatar {
+  border-radius: 500rem !important;
+}
+
+.blog-post {
+  max-width: 60vw;
+  margin: auto !important;
+  padding-top: 50px;
+}
+
 #home-card {
   /* height: 500px;
   width: 500px; */
