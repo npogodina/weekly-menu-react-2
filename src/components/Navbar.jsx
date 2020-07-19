@@ -11,12 +11,13 @@ import "./Navbar.css";
 
 import PropTypes from "prop-types";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const { user, isAuthenticated } = useAuth0();
 
   const [activeItem, setActiveItem] = useState("home");
   const handleItemClick = (e, { name }) => {
     setActiveItem(name);
+    props.resetMessage();
   };
 
   return (

@@ -97,12 +97,16 @@ const App = () => {
     });
   };
 
+  const resetMessageCallback = () => {
+    setMessage(null);
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div>
         <Router history={history}>
           <header>
-            <Navbar />
+            <Navbar resetMessage={resetMessageCallback} />
           </header>
           {/* <Profile dishCount={dishCount} /> */}
 
