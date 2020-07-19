@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,6 +17,8 @@ const NewMenuPage = (props) => {
     setStartDate(date);
   };
 
+  let history = useHistory();
+
   const onFormSubmit = (event) => {
     event.preventDefault();
     console.log("Executing onFormSubmit");
@@ -28,10 +31,11 @@ const NewMenuPage = (props) => {
       .then((response) => {
         console.log("Post request sent!");
         console.log(response);
-        // const message = `Successfully generated new menu`;
-        // const type = "success";
-        // props.setMessage(message, type);
-        setMenu(response.data.menu);
+        history.push(`/menus/${response.data.menuId}`);
+        const message = `Successfully generated new menu`;
+        const type = "success";
+        props.setMessage(message, type);
+        // setMenu(response.data.menu);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?
