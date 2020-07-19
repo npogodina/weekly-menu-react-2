@@ -231,7 +231,7 @@ const NewDishForm = (props) => {
                 <h3>Image URL:</h3>
               </label>
               <input
-                // placeholder="Example: Cranberry Orange Pie"
+                placeholder="Example: https://photos.google.com/..."
                 name="image"
                 onChange={onInputChange}
                 value={formFields.image}
