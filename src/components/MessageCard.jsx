@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const MessageCard = (props) => {
   return (
-    <div>
+    <div className="cont">
       {props.message.type === "error" && (
         <div className="ui container mt mb">
           <div className="ui negative message">
