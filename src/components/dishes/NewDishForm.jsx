@@ -191,6 +191,9 @@ const NewDishForm = (props) => {
         console.log("Post request sent!");
         props.reloadDishes();
         history.push(`/dishes/`);
+        const message = `Successfully add new dish: ${formFields.name}`;
+        const type = "success";
+        props.setMessage(message, type);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?

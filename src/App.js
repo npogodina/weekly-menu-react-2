@@ -5,6 +5,7 @@ import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import { createBrowserHistory } from "history";
 
 import Navbar from "./components/Navbar";
+import MessageCard from "./components/MessageCard";
 import Home from "./components/Home";
 import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
@@ -36,6 +37,8 @@ const onRedirectCallback = (appState) => {
 
 const App = () => {
   const { user, isAuthenticated } = useAuth0();
+  const [message, setMessage] = useState(null);
+
   const [dishList, setDishList] = useState([]);
 
   let dishCount = 0;
@@ -87,6 +90,13 @@ const App = () => {
       });
   };
 
+  const setMessageCallback = (data, type) => {
+    setMessage({
+      data,
+      type,
+    });
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div>
@@ -96,13 +106,19 @@ const App = () => {
           </header>
           {/* <Profile dishCount={dishCount} /> */}
 
+          {message && <MessageCard message={message} />}
+
           <Switch>
             <Route exact path="/" component={() => <Home />}></Route>
             <Route
               exact
               path="/dishes/new"
               component={() => (
-                <NewDishForm reloadDishes={reloadDishes} dishList={dishList} />
+                <NewDishForm
+                  reloadDishes={reloadDishes}
+                  dishList={dishList}
+                  setMessage={setMessageCallback}
+                />
               )}
             />
             {/* <Route exact path="/dishes/new" component={NewDishForm} /> */}
