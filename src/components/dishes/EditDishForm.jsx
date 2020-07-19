@@ -34,6 +34,7 @@ const EditDishForm = (props) => {
     servings: 1,
     directions: [],
     ingredients: [],
+    image: "",
   });
 
   useEffect(() => {
@@ -58,6 +59,7 @@ const EditDishForm = (props) => {
           servings: data.servings,
           directions: [],
           ingredients: [],
+          image: data.image,
         };
         setFormFields(newFormFields);
         setDirections(data.directions);
@@ -239,6 +241,19 @@ const EditDishForm = (props) => {
           {errorMessage.length !== 0 && errorMessageBlob}
           <h1>Editing {formFields.name}</h1>
           <Form onSubmit={onFormSubmit}>
+            <Form.Field width={8}>
+              <label>
+                <h3>Image URL:</h3>
+              </label>
+              <input
+                // placeholder="Example: Cranberry Orange Pie"
+                name="image"
+                onChange={onInputChange}
+                value={formFields.image}
+                className="input-border"
+              />
+            </Form.Field>
+
             <h3>How many servings?</h3>
             <Form.Select
               width={2}
