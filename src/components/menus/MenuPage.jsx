@@ -91,6 +91,7 @@ const MenuPage = (props) => {
 
   const onGroceryListEditClick = () => {
     history.push(`/menus${location.pathname.slice(6)}/grocerylist`);
+    props.resetMessage();
   };
 
   const onRedoClick = () => {
@@ -146,6 +147,9 @@ const MenuPage = (props) => {
         let updatedMenu = { ...menu };
         updatedMenu.groceryListText = [];
         setMenu(updatedMenu);
+        const message = `Successfully deleted the grocery list for this menu`;
+        const type = "success";
+        props.setMessage(message, type);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?

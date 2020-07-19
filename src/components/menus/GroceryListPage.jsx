@@ -84,6 +84,9 @@ const GroceryListPage = (props) => {
       .then((response) => {
         console.log("Patch request sent to update grocery list text");
         history.push(`/menus${location.pathname.slice(6, -12)}`);
+        const message = `Successfully updated your grocery list`;
+        const type = "success";
+        props.setMessage(message, type);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?
@@ -134,7 +137,7 @@ const GroceryListPage = (props) => {
                     </Button>
                     <Button.Or />
                     <Button positive type="Submit" id="update-grocery-list-btn">
-                      Update menu
+                      Update list
                     </Button>
                   </Button.Group>
                 </div>
