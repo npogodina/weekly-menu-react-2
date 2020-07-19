@@ -13,6 +13,7 @@ import {
   Message,
 } from "semantic-ui-react";
 import "./DishPage.css";
+import Placeholder from "../../img/dish-placeholder.png";
 import LemonDivider from "../../img/divider-lemon.png";
 
 import PropTypes from "prop-types";
@@ -111,21 +112,23 @@ const DishPage = (props) => {
                   <h1>{dish.name}</h1>
                 </Grid.Column>
               </Grid.Row>
-              <Grid.Row>
-                <Grid.Column>
-                  <Card id="dish-image-card">
-                    <Image
-                      id="dish-image"
-                      src="https://kyxarka.ru/wp-content/uploads/2018/12/1622.jpg"
-                    />
-                  </Card>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
 
-            <Divider horizontal>
-              <img id="dish-divider-image" src={LemonDivider}></img>
-            </Divider>
+              {dish.image && (
+                <Grid.Row>
+                  <Grid.Column>
+                    <Card id="dish-image-card">
+                      <Image id="dish-image" src={dish.image} />
+                    </Card>
+                    <Divider horizontal>
+                      <img id="dish-divider-image" src={LemonDivider}></img>
+                    </Divider>
+                  </Grid.Column>
+                </Grid.Row>
+              )}
+              {/* {!dish.image && (
+                <Image src={Placeholder} id="dish-image-placeholder" />
+              )} */}
+            </Grid>
 
             <Grid id="grid">
               <Grid.Row>

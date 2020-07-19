@@ -18,6 +18,7 @@ const Dishes = (props) => {
           name={dish.name}
           timestamp={dish.timestamp}
           servings={dish.servings}
+          image={dish.image}
           directions={dish.directions}
           ingredients={dish.ingredients}
           breakfast={dish.breakfast}

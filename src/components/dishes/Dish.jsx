@@ -10,7 +10,6 @@ const Dish = (props) => {
   let history = useHistory();
 
   function handleClick(e) {
-    // e.preventDefault();
     history.push(`/dishes/${props.dishId}`);
     props.resetMessage();
   }
