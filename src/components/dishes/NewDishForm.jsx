@@ -30,6 +30,7 @@ const NewDishForm = (props) => {
     servings: 1,
     directions: [],
     ingredients: [],
+    image: "",
   });
 
   const [directions, setDirections] = useState([""]);
@@ -224,6 +225,20 @@ const NewDishForm = (props) => {
                 className="input-border"
               />
             </Form.Field>
+
+            <Form.Field width={8}>
+              <label>
+                <h3>Image URL:</h3>
+              </label>
+              <input
+                // placeholder="Example: Cranberry Orange Pie"
+                name="image"
+                onChange={onInputChange}
+                value={formFields.image}
+                className="input-border"
+              />
+            </Form.Field>
+
             <h3>How many servings?</h3>
             <Form.Select
               width={2}
