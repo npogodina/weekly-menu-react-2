@@ -86,6 +86,9 @@ const DishPage = (props) => {
         console.log("Dish deleted!");
         props.reloadDishes();
         history.push(`/dishes/`);
+        const message = `Successfully deleted dish ${dish.name}`;
+        const type = "success";
+        props.setMessage(message, type);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?

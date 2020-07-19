@@ -136,30 +136,55 @@ const App = () => {
               exact
               path="/dishes/:dishId"
               component={() => (
-                <DishPage dishList={dishList} reloadDishes={reloadDishes} />
+                <DishPage
+                  dishList={dishList}
+                  reloadDishes={reloadDishes}
+                  setMessage={setMessageCallback}
+                />
               )}
             />
             <Route
               exact
               path="/dishes/:dishId/edit"
-              component={() => <EditDishForm reloadDishes={reloadDishes} />}
+              component={() => (
+                <EditDishForm
+                  reloadDishes={reloadDishes}
+                  setMessage={setMessageCallback}
+                />
+              )}
             />
             <Route
               exact
               path="/menus/new"
-              component={() => <NewMenuPage dishList={dishList} />}
+              component={() => (
+                <NewMenuPage
+                  dishList={dishList}
+                  setMessage={setMessageCallback}
+                />
+              )}
             />
             <Route exact path="/menus" component={() => <Menus />} />
-            <Route exact path="/menus/:menuId" component={() => <MenuPage />} />
+            <Route
+              exact
+              path="/menus/:menuId"
+              component={() => <MenuPage setMessage={setMessageCallback} />}
+            />
             <Route
               exact
               path="/menus/:menuId/edit"
-              component={() => <EditMenuPage dishList={dishList} />}
+              component={() => (
+                <EditMenuPage
+                  dishList={dishList}
+                  setMessage={setMessageCallback}
+                />
+              )}
             />
             <Route
               exact
               path="/menus/:menuId/grocerylist"
-              component={() => <GroceryListPage />}
+              component={() => (
+                <GroceryListPage setMessage={setMessageCallback} />
+              )}
             />
           </Switch>
         </Router>
