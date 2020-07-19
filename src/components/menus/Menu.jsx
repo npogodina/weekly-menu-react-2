@@ -12,6 +12,7 @@ const Menu = (props) => {
   function handleClick(e) {
     // e.preventDefault();
     history.push(`/menus/${props.menuId}`);
+    props.resetMessage();
   }
 
   let start = dateformat(props.startDate, "m/d ddd");

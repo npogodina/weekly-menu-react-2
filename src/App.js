@@ -130,7 +130,12 @@ const App = () => {
             <Route
               exact
               path="/dishes"
-              component={() => <Dishes dishList={dishList} />}
+              component={() => (
+                <Dishes
+                  dishList={dishList}
+                  resetMessage={resetMessageCallback}
+                />
+              )}
             />
             <Route
               exact
@@ -163,11 +168,20 @@ const App = () => {
                 />
               )}
             />
-            <Route exact path="/menus" component={() => <Menus />} />
+            <Route
+              exact
+              path="/menus"
+              component={() => <Menus resetMessage={resetMessageCallback} />}
+            />
             <Route
               exact
               path="/menus/:menuId"
-              component={() => <MenuPage setMessage={setMessageCallback} />}
+              component={() => (
+                <MenuPage
+                  setMessage={setMessageCallback}
+                  resetMessage={resetMessageCallback}
+                />
+              )}
             />
             <Route
               exact

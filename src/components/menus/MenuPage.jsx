@@ -86,6 +86,7 @@ const MenuPage = (props) => {
   let history = useHistory();
   const onEditClick = () => {
     history.push(`/menus${location.pathname.slice(6)}/edit`);
+    props.resetMessage();
   };
 
   const onGroceryListEditClick = () => {
@@ -102,6 +103,9 @@ const MenuPage = (props) => {
         console.log("Post request sent!");
         console.log(response);
         history.push(`/menus/${response.data.menuId}`);
+        const message = `Successfully regenerated your menu`;
+        const type = "success";
+        props.setMessage(message, type);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?
@@ -116,6 +120,9 @@ const MenuPage = (props) => {
       )
       .then((response) => {
         history.push(`/menus/`);
+        const message = `Successfully deleted your menu`;
+        const type = "success";
+        props.setMessage(message, type);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?

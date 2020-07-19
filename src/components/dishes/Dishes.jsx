@@ -24,6 +24,7 @@ const Dishes = (props) => {
           lunch={dish.lunch}
           dinner={dish.dinner}
           other={dish.other}
+          resetMessage={props.resetMessage}
         />
       );
     });

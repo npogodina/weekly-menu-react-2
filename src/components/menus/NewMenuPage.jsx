@@ -28,6 +28,9 @@ const NewMenuPage = (props) => {
       .then((response) => {
         console.log("Post request sent!");
         console.log(response);
+        // const message = `Successfully generated new menu`;
+        // const type = "success";
+        // props.setMessage(message, type);
         setMenu(response.data.menu);
       })
       .catch((error) => {

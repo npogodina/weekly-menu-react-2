@@ -12,6 +12,7 @@ const Dish = (props) => {
   function handleClick(e) {
     // e.preventDefault();
     history.push(`/dishes/${props.dishId}`);
+    props.resetMessage();
   }
 
   let meals = [];

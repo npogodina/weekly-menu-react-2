@@ -154,6 +154,9 @@ const EditMenuPage = (props) => {
       )
       .then((response) => {
         history.push(`/menus/${response.data}`);
+        const message = `Successfully updated your menu`;
+        const type = "success";
+        props.setMessage(message, type);
       })
       .catch((error) => {
         // What should we do when we know the post request failed?

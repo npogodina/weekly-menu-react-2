@@ -37,6 +37,7 @@ const Menus = (props) => {
           startDate={menu.startDate}
           timestamp={menu.timestamp}
           num={i + 1}
+          resetMessage={props.resetMessage}
         />
       );
     });

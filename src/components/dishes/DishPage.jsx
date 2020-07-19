@@ -86,7 +86,7 @@ const DishPage = (props) => {
         console.log("Dish deleted!");
         props.reloadDishes();
         history.push(`/dishes/`);
-        const message = `Successfully deleted dish ${dish.name}`;
+        const message = `Successfully deleted ${dish.name}`;
         const type = "success";
         props.setMessage(message, type);
       })
