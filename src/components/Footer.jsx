@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import {
   Container,
@@ -15,11 +14,7 @@ import "./Footer.css";
 import PropTypes from "prop-types";
 
 const Footer = (props) => {
-  const { user, isAuthenticated } = useAuth0();
-
-  const [activeItem, setActiveItem] = useState("home");
-  const handleItemClick = (e, { name }) => {
-    setActiveItem(name);
+  const handleItemClick = () => {
     props.resetMessage();
   };
 
@@ -36,10 +31,18 @@ const Footer = (props) => {
                 classname="footer-header"
               />
               <List link inverted className="footer-links">
-                <List.Item as="a">Dishes</List.Item>
-                <List.Item as="a">Add Dish</List.Item>
-                <List.Item as="a">Menus</List.Item>
-                <List.Item as="a">New Menu</List.Item>
+                <List.Item as="a" onClick={handleItemClick}>
+                  <Link to={`/dishes`}>Dishes</Link>
+                </List.Item>
+                <List.Item as="a" onClick={handleItemClick}>
+                  <Link to={`/dishes/new`}>Add Dish</Link>
+                </List.Item>
+                <List.Item as="a" onClick={handleItemClick}>
+                  <Link to={`/menus`}>Menus</Link>
+                </List.Item>
+                <List.Item as="a" onClick={handleItemClick}>
+                  <Link to={`/menus/new`}>New Menu</Link>
+                </List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
@@ -80,8 +83,8 @@ const Footer = (props) => {
               </Header>
               <p>
                 Thank you for visiting Weekly Menu! Quarantine is a great time
-                to practise meal planning. Hope this app will help make this
-                task easier.
+                to practise meal planning. Hope my app will help make this task
+                easier.
               </p>
             </Grid.Column>
           </Grid.Row>

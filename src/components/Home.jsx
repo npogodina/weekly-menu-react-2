@@ -18,7 +18,7 @@ const Home = (props) => {
           <p className="home-banner-header">How it works:</p>
           <ol>
             <li className="home-banner-text-li">Add dishes</li>
-            <li className="home-banner-text-li">Let us make a menu</li>
+            <li className="home-banner-text-li">Let us make the menu</li>
             <li className="home-banner-text-li">Change what you don't like</li>
             <li className="home-banner-text-li">
               Tadam! Here's your menu and grocery list!

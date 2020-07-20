@@ -203,7 +203,7 @@ const App = () => {
             />
           </Switch>
           <footer>
-            <Footer />
+            <Footer resetMessage={resetMessageCallback} />
           </footer>
         </Router>
       </div>
