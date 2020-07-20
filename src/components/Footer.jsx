@@ -22,8 +22,13 @@ const Footer = (props) => {
         <Grid divided inverted stackable>
           <Grid.Row>
             <Grid.Column width={3}>
-              <Header inverted as="h4" content="About" />
-              <List link inverted>
+              <Header
+                inverted
+                as="h4"
+                content="About"
+                classname="footer-header"
+              />
+              <List link inverted className="footer-links">
                 <List.Item as="a">Sitemap</List.Item>
                 <List.Item as="a">Contact Us</List.Item>
                 <List.Item as="a">Religious Ceremonies</List.Item>

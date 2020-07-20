@@ -1,0 +1,15 @@
+.ui.inverted.link.list a.item {
+  color: #eeeded !important;
+}
+
+.ui.inverted.link.list a.item:hover {
+  color: darkgreen !important;
+}
+
+/* .footer-links {
+  color: #a7a4a4 !important;
+} */
+
+.ui.inverted.header {
+  font-weight: 900 !important;
+}
