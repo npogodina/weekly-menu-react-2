@@ -36,7 +36,7 @@ const Profile = (props) => {
           <Card.Content>
             <Grid>
               <Grid.Row>
-                <Grid.Column width={3}>
+                <Grid.Column width={5}>
                   <div className="profile-avatar-container">
                     <div className="profile-avatar-plate" />
                     <Image
@@ -47,7 +47,7 @@ const Profile = (props) => {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column width={12} className="profile-info">
+                <Grid.Column width={11} className="profile-info">
                   <h1>
                     {user.name}
                     <small>'s Meal Planner</small>

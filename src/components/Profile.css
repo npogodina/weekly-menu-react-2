@@ -3,7 +3,8 @@
 }
 
 .profile-info {
-  padding-left: 215px !important;
+  padding-left: 50px !important;
+  padding-top: 50px !important;
 }
 
 .profile-data {
@@ -16,8 +17,8 @@
 
 .profile-avatar-container {
   position: relative;
-  width: 350px;
-  height: 350px;
+  width: 320px;
+  height: 320px;
 }
 
 .profile-avatar-plate {
