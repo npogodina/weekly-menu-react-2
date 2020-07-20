@@ -1,6 +1,8 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Card, Container, Grid, Image } from "semantic-ui-react";
+
+import { Card, Container, Grid, Image, List } from "semantic-ui-react";
+import "./Profile.css";
 
 const Profile = (props) => {
   const { user, isAuthenticated } = useAuth0();
@@ -9,19 +11,35 @@ const Profile = (props) => {
   return (
     isAuthenticated && (
       <Container className="cont">
-        <Card fluid color="olive">
+        <Card fluid className="profile-card">
           <Card.Content>
             <Grid>
               <Grid.Row>
-                <Grid.Column width={2}>
-                  <Image rounded src={user.picture} alt={user.name} />
+                <Grid.Column width={3}>
+                  <Image
+                    circular
+                    src={user.picture}
+                    alt={user.name}
+                    className="profile-avatar"
+                  />
                 </Grid.Column>
-                <Grid.Column width={14}>
+                <Grid.Column width={12} className="profile-info">
                   <h2>
                     {user.name}
                     <small>'s Meal Planner</small>
                   </h2>
-                  <p>Dishes: {props.dishCount} | Menus: 0</p>
+                  <h3>Dishes total: {props.dishCount}</h3>
+                  <List bulleted>
+                    <List.Item>
+                      <p>Breakfast dishes: </p>
+                    </List.Item>
+                    <List.Item>
+                      <p>Lunch dishes: </p>
+                    </List.Item>
+                    <List.Item>
+                      <p>Dinner dishes: </p>
+                    </List.Item>
+                  </List>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
