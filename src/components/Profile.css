@@ -1,13 +1,9 @@
 .profile-card {
-  padding: 50px !important;
+  padding: 30px !important;
 }
 
-/* .profile-avatar {
-  padding-right: 25px !important;
-} */
-
 .profile-info {
-  padding-left: 50px !important;
+  padding-left: 215px !important;
 }
 
 .profile-data {
@@ -16,4 +12,29 @@
 
 .profile-data-list-item {
   margin-left: 20px !important;
+}
+
+.profile-avatar-container {
+  position: relative;
+  width: 350px;
+  height: 350px;
+}
+
+.profile-avatar-plate {
+  background-image: url(../img/plate.png);
+  background-size: cover;
+  width: 320px;
+  height: 320px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+}
+
+.profile-avatar {
+  width: 175px !important;
+  position: absolute;
+  top: 72px;
+  left: 71px;
+  z-index: 1;
 }

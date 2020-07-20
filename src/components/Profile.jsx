@@ -37,12 +37,15 @@ const Profile = (props) => {
             <Grid>
               <Grid.Row>
                 <Grid.Column width={3}>
-                  <Image
-                    circular
-                    src={user.picture}
-                    alt={user.name}
-                    className="profile-avatar"
-                  />
+                  <div className="profile-avatar-container">
+                    <div className="profile-avatar-plate" />
+                    <Image
+                      circular
+                      src={user.picture}
+                      alt={user.name}
+                      className="profile-avatar"
+                    />
+                  </div>
                 </Grid.Column>
                 <Grid.Column width={12} className="profile-info">
                   <h1>
