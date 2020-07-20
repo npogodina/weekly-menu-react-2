@@ -99,12 +99,13 @@ const MenuPage = (props) => {
       .post(process.env.REACT_APP_API_MENUS_INDEX, {
         userId: user.sub,
         startDate: menu.startDate,
+        familySize: menu.familySize,
       })
       .then((response) => {
         console.log("Post request sent!");
         console.log(response);
         history.push(`/menus/${response.data.menuId}`);
-        const message = `Successfully regenerated your menu`;
+        const message = `Successfully redid your menu`;
         const type = "success";
         props.setMessage(message, type);
       })
