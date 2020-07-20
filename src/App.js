@@ -5,6 +5,7 @@ import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import { createBrowserHistory } from "history";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import MessageCard from "./components/MessageCard";
 import Home from "./components/Home";
 import Dishes from "./components/dishes/Dishes";
@@ -201,6 +202,9 @@ const App = () => {
               )}
             />
           </Switch>
+          <footer>
+            <Footer />
+          </footer>
         </Router>
       </div>
     </DndProvider>
