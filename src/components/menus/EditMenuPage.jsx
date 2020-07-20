@@ -14,6 +14,7 @@ const EditMenuPage = (props) => {
   const { user, isAuthenticated } = useAuth0();
   const [menu, setMenu] = useState(null);
   const [startDate, setStartDate] = useState(null);
+  const [familySize, setFamilySize] = useState(null);
 
   const location = useLocation();
   useEffect(() => {
@@ -27,8 +28,10 @@ const EditMenuPage = (props) => {
       .then((response) => {
         const apiMenuList = response.data.menu;
         const apiStartDate = response.data.startDate;
+        const apiFamilySize = response.data.familySize;
         setMenu(apiMenuList);
         setStartDate(apiStartDate);
+        setFamilySize(apiFamilySize);
       })
       .catch((error) => {
         // Still need to handle errors
@@ -84,14 +87,6 @@ const EditMenuPage = (props) => {
     };
     menuLinesToRender = <Table.Body>{menuLines(dates, menu)}</Table.Body>;
   }
-
-  // Display dishList as Cards
-  // let newDishCards = null;
-  // if (props.dishList) {
-  //   newDishCards = props.dishList.map((dish) => {
-  //     return <CranberryCard name={dish.name} key={dish.id} />;
-  //   });
-  // }
 
   const [filter, setFilter] = useState("Breakfast");
 
@@ -149,6 +144,7 @@ const EditMenuPage = (props) => {
         {
           userId: user.sub,
           startDate: startDate,
+          familySize: familySize,
           updatedMenu: menu,
         }
       )
