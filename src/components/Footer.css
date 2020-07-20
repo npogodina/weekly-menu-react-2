@@ -13,3 +13,7 @@
 .ui.inverted.header {
   font-weight: 900 !important;
 }
+
+.ui.inverted.list > a.item > .icon {
+  margin-right: 5px !important;
+}

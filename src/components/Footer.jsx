@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { Container, Segment, Grid, List, Header } from "semantic-ui-react";
+import {
+  Container,
+  Segment,
+  Grid,
+  List,
+  Header,
+  Icon,
+} from "semantic-ui-react";
 import "./Footer.css";
 
 import PropTypes from "prop-types";
@@ -25,32 +32,42 @@ const Footer = (props) => {
               <Header
                 inverted
                 as="h4"
-                content="About"
+                content="Weekly Menu"
                 classname="footer-header"
               />
               <List link inverted className="footer-links">
-                <List.Item as="a">Sitemap</List.Item>
-                <List.Item as="a">Contact Us</List.Item>
-                <List.Item as="a">Religious Ceremonies</List.Item>
-                <List.Item as="a">Gazebo Plans</List.Item>
+                <List.Item as="a">Dishes</List.Item>
+                <List.Item as="a">Add Dish</List.Item>
+                <List.Item as="a">Menus</List.Item>
+                <List.Item as="a">New Menu</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
-              <Header inverted as="h4" content="Services" />
+              <Header inverted as="h4" content="Connect" />
               <List link inverted>
-                <List.Item as="a">Banana Pre-Order</List.Item>
-                <List.Item as="a">DNA FAQ</List.Item>
-                <List.Item as="a">How To Access</List.Item>
-                <List.Item as="a">Favorite X-Men</List.Item>
+                <List.Item as="a">
+                  <Icon name="home" classname="footer-icon" />
+                  Portfolio
+                </List.Item>
+                <List.Item as="a">
+                  <Icon name="github" classname="footer-icon" />
+                  Github
+                </List.Item>
+                <List.Item as="a">
+                  <Icon name="linkedin" classname="footer-icon" />
+                  LinkedIn
+                </List.Item>
+                <List.Item as="a">Ada Developers Academy</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
               <Header as="h4" inverted>
-                Footer Header
+                What's on our mind
               </Header>
               <p>
-                Extra space for a call to action inside the footer that could
-                help re-engage users.
+                Thank you for visiting Weekly Menu! Quarantine is a great time
+                to practise meal planning. Hope this app will help make this
+                task easier.
               </p>
             </Grid.Column>
           </Grid.Row>
