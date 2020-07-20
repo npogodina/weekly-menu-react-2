@@ -45,19 +45,33 @@ const Footer = (props) => {
             <Grid.Column width={3}>
               <Header inverted as="h4" content="Connect" />
               <List link inverted>
-                <List.Item as="a">
+                <List.Item as="a" href="https://nataliyap.com/" target="_blank">
                   <Icon name="home" classname="footer-icon" />
                   Portfolio
                 </List.Item>
-                <List.Item as="a">
+                <List.Item
+                  as="a"
+                  href="https://github.com/npogodina/"
+                  target="_blank"
+                >
                   <Icon name="github" classname="footer-icon" />
                   Github
                 </List.Item>
-                <List.Item as="a">
+                <List.Item
+                  as="a"
+                  href="https://www.linkedin.com/in/npogodina/"
+                  target="_blank"
+                >
                   <Icon name="linkedin" classname="footer-icon" />
                   LinkedIn
                 </List.Item>
-                <List.Item as="a">Ada Developers Academy</List.Item>
+                <List.Item
+                  as="a"
+                  href="https://adadevelopersacademy.org/"
+                  target="_blank"
+                >
+                  Ada Developers Academy
+                </List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
