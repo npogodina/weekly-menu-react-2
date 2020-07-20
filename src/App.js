@@ -42,10 +42,10 @@ const App = () => {
 
   const [dishList, setDishList] = useState([]);
 
-  let dishCount = 0;
-  if (dishList) {
-    dishCount = dishList.length;
-  }
+  // let dishCount = 0;
+  // if (dishList) {
+  //   dishCount = dishList.length;
+  // }
 
   useEffect(() => {
     if (user) {
@@ -114,7 +114,11 @@ const App = () => {
           {message && <MessageCard message={message} />}
 
           <Switch>
-            <Route exact path="/" component={() => <Home />}></Route>
+            <Route
+              exact
+              path="/"
+              component={() => <Home dishList={dishList} />}
+            ></Route>
             <Route
               exact
               path="/dishes/new"

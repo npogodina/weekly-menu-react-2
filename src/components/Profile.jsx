@@ -8,8 +8,29 @@ const Profile = (props) => {
   const { user, isAuthenticated } = useAuth0();
   console.log(user.picture);
 
+  let dishTotal = 0;
+  let breakfasts = 0;
+  let lunches = 0;
+  let dinners = 0;
+
+  if (props.dishList) {
+    props.dishList.forEach((dish) => {
+      dishTotal += 1;
+      if (dish.lunch[0] === "y") {
+        lunches += 1;
+      }
+      if (dish.breakfast[0] === "y") {
+        breakfasts += 1;
+      }
+      if (dish.dinner[0] === "y") {
+        dinners += 1;
+      }
+    });
+  }
+
   return (
-    isAuthenticated && (
+    isAuthenticated &&
+    props.dishList && (
       <Container className="cont">
         <Card fluid className="profile-card">
           <Card.Content>
@@ -24,20 +45,23 @@ const Profile = (props) => {
                   />
                 </Grid.Column>
                 <Grid.Column width={12} className="profile-info">
-                  <h2>
+                  <h1>
                     {user.name}
                     <small>'s Meal Planner</small>
-                  </h2>
-                  <h3>Dishes total: {props.dishCount}</h3>
-                  <List bulleted>
-                    <List.Item>
-                      <p>Breakfast dishes: </p>
+                  </h1>
+                  <h3>
+                    Dishes total:{" "}
+                    <span className="profile-data">{dishTotal}</span>
+                  </h3>
+                  <List bulleted className="profile-data-list-item">
+                    <List.Item className="profile-data-list-item">
+                      <p>Breakfast dishes: {breakfasts}</p>
                     </List.Item>
-                    <List.Item>
-                      <p>Lunch dishes: </p>
+                    <List.Item className="profile-data-list-item">
+                      <p>Lunch dishes: {lunches}</p>
                     </List.Item>
-                    <List.Item>
-                      <p>Dinner dishes: </p>
+                    <List.Item className="profile-data-list-item">
+                      <p>Dinner dishes: {dinners}</p>
                     </List.Item>
                   </List>
                 </Grid.Column>

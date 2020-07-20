@@ -9,3 +9,11 @@
 .profile-info {
   padding-left: 50px !important;
 }
+
+.profile-data {
+  color: #21ba45;
+}
+
+.profile-data-list-item {
+  margin-left: 20px !important;
+}

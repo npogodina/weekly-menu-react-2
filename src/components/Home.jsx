@@ -101,7 +101,7 @@ const Home = (props) => {
           </Container>
         </div>
       )}
-      {isAuthenticated && <Profile />}
+      {isAuthenticated && <Profile dishList={props.dishList} />}
     </div>
   );
 };
