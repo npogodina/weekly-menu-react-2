@@ -35,17 +35,15 @@
   margin-bottom: 15px;
 }
 
-.home-cont {
-}
-
 .avatar {
   border-radius: 500rem !important;
+  margin-right: 20px !important;
 }
 
 .blog-post {
   max-width: 60vw;
   margin: auto !important;
-  padding-top: 50px;
+  padding: 50px 0;
 }
 
 #home-card {
