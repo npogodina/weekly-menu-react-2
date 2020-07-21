@@ -3,6 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import dateformat from "dateformat";
 
+import { Loading } from "../Loading";
 import CranberryCard from "./CranberryCard";
 import BoxTarget from "./BoxTarget";
 
@@ -11,6 +12,7 @@ import { Container, Table, Grid, Button } from "semantic-ui-react";
 import "./EditMenuPage.css";
 
 const EditMenuPage = (props) => {
+  const [sending, setSending] = useState(false);
   const { user, isAuthenticated } = useAuth0();
   const [menu, setMenu] = useState(null);
   const [startDate, setStartDate] = useState(null);
@@ -18,6 +20,7 @@ const EditMenuPage = (props) => {
 
   const location = useLocation();
   useEffect(() => {
+    setSending(true);
     axios
       .get(
         `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(
@@ -26,6 +29,7 @@ const EditMenuPage = (props) => {
         )}`
       )
       .then((response) => {
+        setSending(false);
         const apiMenuList = response.data.menu;
         const apiStartDate = response.data.startDate;
         const apiFamilySize = response.data.familySize;
@@ -34,6 +38,7 @@ const EditMenuPage = (props) => {
         setFamilySize(apiFamilySize);
       })
       .catch((error) => {
+        setSending(false);
         // Still need to handle errors
         // setErrorMessage(error.message);
       });
@@ -135,6 +140,7 @@ const EditMenuPage = (props) => {
 
   let history = useHistory();
   const onMenuSubmit = () => {
+    setSending(true);
     axios
       .post(
         `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(
@@ -149,12 +155,14 @@ const EditMenuPage = (props) => {
         }
       )
       .then((response) => {
+        setSending(false);
         history.push(`/menus/${response.data}`);
         const message = `Successfully updated your menu`;
         const type = "success";
         props.setMessage(message, type);
       })
       .catch((error) => {
+        setSending(false);
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
@@ -166,6 +174,7 @@ const EditMenuPage = (props) => {
 
   return (
     <Container className="cont">
+      {sending && <Loading />}
       <Grid columns={2} divided>
         <Grid.Row>
           <Grid.Column width={3}>
