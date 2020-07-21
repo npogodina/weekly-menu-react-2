@@ -5,6 +5,7 @@ import Profile from "../Profile";
 import { Container, Table, Button, Card } from "semantic-ui-react";
 
 import PropTypes from "prop-types";
+import { Loading } from "../Loading";
 
 const Dishes = (props) => {
   const [filter, setFilter] = useState("All");
@@ -112,6 +113,7 @@ const Dishes = (props) => {
                 <Table.HeaderCell>Directions?</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
+            {props.dishList.length === 0 && <Loading />}
             {componentsToRender}
           </Table>
         </Card.Content>
