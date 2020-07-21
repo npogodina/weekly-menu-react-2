@@ -32,6 +32,7 @@ const MenuPage = (props) => {
         setMenu(apiMenuList);
       })
       .catch((error) => {
+        setSending(false);
         // Still need to handle errors
         // setErrorMessage(error.message);
       });
@@ -98,6 +99,7 @@ const MenuPage = (props) => {
   };
 
   const onRedoClick = () => {
+    setSending(true);
     axios
       .post(process.env.REACT_APP_API_MENUS_INDEX, {
         userId: user.sub,
@@ -105,6 +107,7 @@ const MenuPage = (props) => {
         familySize: menu.familySize,
       })
       .then((response) => {
+        setSending(false);
         console.log("Post request sent!");
         console.log(response);
         history.push(`/menus/${response.data.menuId}`);
@@ -113,23 +116,31 @@ const MenuPage = (props) => {
         props.setMessage(message, type);
       })
       .catch((error) => {
+        setSending(false);
+
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
   };
 
   const onDeleteClick = () => {
+    setSending(true);
+
     axios
       .delete(
         `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(6)}`
       )
       .then((response) => {
+        setSending(false);
+
         history.push(`/menus/`);
         const message = `Successfully deleted your menu`;
         const type = "success";
         props.setMessage(message, type);
       })
       .catch((error) => {
+        setSending(false);
+
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
@@ -137,6 +148,7 @@ const MenuPage = (props) => {
 
   const onGroceryListDeleteClick = () => {
     let emptyList = [];
+    setSending(true);
     axios
       .patch(
         `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(6)}`,
@@ -147,6 +159,8 @@ const MenuPage = (props) => {
         }
       )
       .then((response) => {
+        setSending(false);
+
         console.log("Patch request sent to update grocery list text");
         let updatedMenu = { ...menu };
         updatedMenu.groceryListText = [];
@@ -156,6 +170,8 @@ const MenuPage = (props) => {
         props.setMessage(message, type);
       })
       .catch((error) => {
+        setSending(false);
+
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
