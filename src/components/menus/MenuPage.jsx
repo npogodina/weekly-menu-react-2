@@ -16,7 +16,7 @@ import {
 } from "semantic-ui-react";
 
 const MenuPage = (props) => {
-  const [sending, setSending] = useState(true);
+  const [sending, setSending] = useState(false);
   const { user, isAuthenticated } = useAuth0();
   const location = useLocation();
 
