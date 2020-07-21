@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory, Link } from "react-router-dom";
 import dateformat from "dateformat";
 import { Loading } from "../Loading";
 import "./MenuPage.css";
@@ -204,7 +204,12 @@ const MenuPage = (props) => {
               <h2>Happy?</h2>
               <Button.Group>
                 <Button color="green" onClick={onPDFClick}>
-                  PDF
+                  <Link
+                    to={{
+                      pathname: `/menus${location.pathname.slice(6)}/pdf`,
+                      state: "Nataliya",
+                    }}
+                  ></Link>
                 </Button>
                 <Button.Or />
                 <Button color="yellow" onClick={onEditClick}>

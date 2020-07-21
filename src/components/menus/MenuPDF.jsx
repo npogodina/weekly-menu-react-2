@@ -24,57 +24,56 @@ const MenuPDF = (props) => {
 
   const [menu, setMenu] = useState(null);
   const location = useLocation();
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(
-  //         6,
-  //         -4
-  //       )}`
-  //     )
-  //     .then((response) => {
-  //       // setSending(false);
-  //       const apiMenuList = response.data;
-  //       setMenu(apiMenuList);
-  //       // setReady(true);
-  //     })
-  //     .catch((error) => {
-  //       // setSending(false);
-  //       // Still need to handle errors
-  //       // setErrorMessage(error.message);
-  //     });
-  // }, []);
-
-  // this is hacky but helps set the render to the back of event queue https://github.com/diegomura/react-pdf/issues/420
   useEffect(() => {
-    setTimeout(() => {
-      setReady(true);
-    }, 0);
+    axios
+      .get(
+        `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(
+          6,
+          -4
+        )}`
+      )
+      .then((response) => {
+        // setSending(false);
+        const apiMenuList = response.data;
+        setMenu(apiMenuList);
+        setReady(true);
+      })
+      .catch((error) => {
+        console.log(error);
+        // setSending(false);
+        // Still need to handle errors
+        // setErrorMessage(error.message);
+      });
   }, []);
 
-  // const pdf = null;
-  // if (ready) {
-  const pdf = (
-    <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
-          <Text>{props.dishList[0].name}</Text>
-        </View>
-        <View style={styles.section}>
-          <Text>Section #2</Text>
-        </View>
-      </Page>
-    </Document>
-  );
-  // }
-
-  const openPDF = (url) => {
-    window.open(url, "_blank");
-  };
+  // this is hacky but helps set the render to the back of event queue https://github.com/diegomura/react-pdf/issues/420
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setReady(true);
+  //   }, 0);
+  // }, []);
 
   if (!ready) {
+    console.log("null");
     return null;
   } else {
+    console.log("ready");
+    const pdf = (
+      <Document>
+        <Page size="A4" style={styles.page}>
+          <View style={styles.section}>
+            <Text>{menu.startDate}</Text>
+          </View>
+          <View style={styles.section}>
+            <Text>Section #2</Text>
+          </View>
+        </Page>
+      </Document>
+    );
+
+    const openPDF = (url) => {
+      window.open(url, "_blank");
+    };
     return (
       <div>
         <PDFDownloadLink document={pdf} fileName="somename.pdf">
