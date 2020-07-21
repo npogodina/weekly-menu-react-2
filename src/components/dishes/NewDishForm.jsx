@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Loading } from "../Loading";
 
 import {
   Container,
@@ -19,6 +20,8 @@ import "./NewDishForm.css";
 import PropTypes from "prop-types";
 
 const NewDishForm = (props) => {
+  const [sending, setSending] = useState(false);
+
   const { user, isAuthenticated } = useAuth0();
   const [formFields, setFormFields] = useState({
     userId: user.sub,
@@ -183,13 +186,14 @@ const NewDishForm = (props) => {
       return;
     }
 
-    console.log(newFormFields);
     setFormFields(newFormFields);
+    setSending(true);
 
     axios
       .post(process.env.REACT_APP_API_DISHES_INDEX, newFormFields)
       .then((response) => {
         console.log("Post request sent!");
+        setSending(false);
         props.reloadDishes();
         history.push(`/dishes/`);
         const message = `Successfully add new dish: ${formFields.name}`;
@@ -197,12 +201,14 @@ const NewDishForm = (props) => {
         props.setMessage(message, type);
       })
       .catch((error) => {
+        setSending(false);
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
   };
 
   const onCancel = () => {
+    setSending(true);
     history.push(`/dishes/`);
   };
 
@@ -210,6 +216,7 @@ const NewDishForm = (props) => {
     <Container className="cont">
       <Card fluid id="newdishform-card">
         <Card.Content>
+          {sending && <Loading />}
           {errorMessage.length !== 0 && errorMessageBlob}
           <h1>Adding new dish</h1>
           <Form onSubmit={onFormSubmit}>

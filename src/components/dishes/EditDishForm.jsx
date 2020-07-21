@@ -231,7 +231,6 @@ const EditDishForm = (props) => {
       })
       .catch((error) => {
         setSending(false);
-
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
