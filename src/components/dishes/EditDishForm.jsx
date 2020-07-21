@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Loading } from "../Loading";
 
 import {
   Container,
@@ -19,6 +20,8 @@ import {
 import PropTypes from "prop-types";
 
 const EditDishForm = (props) => {
+  const [sending, setSending] = useState(true);
+
   const { user, isAuthenticated } = useAuth0();
   const location = useLocation();
 
@@ -47,6 +50,7 @@ const EditDishForm = (props) => {
         )}`
       )
       .then((response) => {
+        setSending(false);
         const data = response.data;
         console.log(data);
         let newFormFields = {
@@ -214,6 +218,7 @@ const EditDishForm = (props) => {
     console.log(newFormFields);
     setFormFields(newFormFields);
 
+    setSending(true);
     axios
       .post(process.env.REACT_APP_API_DISHES_INDEX, newFormFields)
       .then((response) => {
@@ -225,6 +230,8 @@ const EditDishForm = (props) => {
         props.setMessage(message, type);
       })
       .catch((error) => {
+        setSending(false);
+
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
@@ -238,6 +245,8 @@ const EditDishForm = (props) => {
     <Container className="cont">
       <Card fluid>
         <Card.Content>
+          {sending && <Loading />}
+
           {errorMessage.length !== 0 && errorMessageBlob}
           <h1>Editing {formFields.name}</h1>
           <Form onSubmit={onFormSubmit}>
