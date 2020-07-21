@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
+import { Loading } from "../Loading";
 
 import {
   Container,
@@ -13,14 +14,15 @@ import {
   Message,
 } from "semantic-ui-react";
 import "./DishPage.css";
-import Placeholder from "../../img/dish-placeholder.png";
+// import Placeholder from "../../img/dish-placeholder.png";
 import LemonDivider from "../../img/divider-lemon.png";
 
 import PropTypes from "prop-types";
 
 const DishPage = (props) => {
-  let { dishId } = useParams();
+  const [sending, setSending] = useState(false);
 
+  let { dishId } = useParams();
   let dish = props.dishList.find((i) => {
     return i.dishId === dishId;
   });
@@ -78,12 +80,13 @@ const DishPage = (props) => {
   let history = useHistory();
   const location = useLocation();
   const onDeleteClick = () => {
-    console.group(location.pathname.slice(7));
+    setSending(true);
     axios
       .delete(
         `${process.env.REACT_APP_API_DISHES_INDEX}${location.pathname.slice(7)}`
       )
       .then((response) => {
+        setSending(false);
         console.log("Dish deleted!");
         props.reloadDishes();
         history.push(`/dishes/`);
@@ -92,18 +95,21 @@ const DishPage = (props) => {
         props.setMessage(message, type);
       })
       .catch((error) => {
+        setSending(false);
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
   };
 
   const onEditClick = () => {
+    setSending(true);
     history.push(`/dishes${location.pathname.slice(7)}/edit`);
   };
 
   if (dish) {
     return (
       <Container className="cont">
+        {sending && <Loading />}
         <Card fluid>
           <Card.Content>
             <Grid>
