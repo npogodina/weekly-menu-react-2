@@ -186,7 +186,7 @@ const NewDishForm = (props) => {
       return;
     }
 
-    setFormFields(newFormFields);
+    // setFormFields(newFormFields);
     setSending(true);
 
     axios
@@ -196,7 +196,7 @@ const NewDishForm = (props) => {
         setSending(false);
         props.reloadDishes();
         history.push(`/dishes/`);
-        const message = `Successfully add new dish: ${formFields.name}`;
+        const message = `Successfully add new dish: ${newFormFields.name}`;
         const type = "success";
         props.setMessage(message, type);
       })

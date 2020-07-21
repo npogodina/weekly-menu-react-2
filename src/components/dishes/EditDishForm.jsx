@@ -216,7 +216,7 @@ const EditDishForm = (props) => {
     }
 
     console.log(newFormFields);
-    setFormFields(newFormFields);
+    // setFormFields(newFormFields);
 
     setSending(true);
     axios
@@ -225,7 +225,7 @@ const EditDishForm = (props) => {
         console.log("Post request sent!");
         props.reloadDishes();
         history.push(`/dishes`);
-        const message = `Successfully updated ${formFields.name}`;
+        const message = `Successfully updated ${newFormFields.name}`;
         const type = "success";
         props.setMessage(message, type);
       })
