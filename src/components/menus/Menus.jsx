@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Menu from "./Menu";
+import { Loading } from "../Loading";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { Container, Card, Table, Button } from "semantic-ui-react";
@@ -61,7 +62,13 @@ const Menus = (props) => {
                 <Table.HeaderCell>Dates</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
-            {componentsToRender}
+
+            {menus.length > 0 && componentsToRender}
+            {menus.length === 0 && (
+              <div>
+                <Loading />
+              </div>
+            )}
           </Table>
         </Card.Content>
       </Card>

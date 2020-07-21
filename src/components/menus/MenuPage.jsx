@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useLocation, useHistory } from "react-router-dom";
 import dateformat from "dateformat";
+import { Loading } from "../Loading";
 import "./MenuPage.css";
 
 import {
@@ -162,6 +163,7 @@ const MenuPage = (props) => {
     <Container className="cont">
       <Card fluid className="main">
         <Card.Content>
+          {!menu && <Loading />}
           {menu && (
             <div>
               <h2>Here's your menu for the week!</h2>
