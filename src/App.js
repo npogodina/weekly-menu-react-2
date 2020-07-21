@@ -104,105 +104,105 @@ const App = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div>
+      <div className="body-content">
         <Router history={history}>
           <header>
             <Navbar resetMessage={resetMessageCallback} />
           </header>
-          {/* <Profile dishCount={dishCount} /> */}
 
-          {message && <MessageCard message={message} />}
+          <main className="main-content">
+            {message && <MessageCard message={message} />}
+            <Switch>
+              <Route exact path="/" component={() => <Home />}></Route>
+              <Route
+                exact
+                path="/dishes/new"
+                component={() => (
+                  <NewDishForm
+                    reloadDishes={reloadDishes}
+                    dishList={dishList}
+                    setMessage={setMessageCallback}
+                  />
+                )}
+              />
+              {/* <Route exact path="/dishes/new" component={NewDishForm} /> */}
 
-          <Switch>
-            <Route exact path="/" component={() => <Home />}></Route>
-            <Route
-              exact
-              path="/dishes/new"
-              component={() => (
-                <NewDishForm
-                  reloadDishes={reloadDishes}
-                  dishList={dishList}
-                  setMessage={setMessageCallback}
-                />
-              )}
-            />
-            {/* <Route exact path="/dishes/new" component={NewDishForm} /> */}
-
-            <Route
-              exact
-              path="/dishes"
-              component={() => (
-                <Dishes
-                  dishList={dishList}
-                  resetMessage={resetMessageCallback}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/dishes/:dishId"
-              component={() => (
-                <DishPage
-                  dishList={dishList}
-                  reloadDishes={reloadDishes}
-                  setMessage={setMessageCallback}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/dishes/:dishId/edit"
-              component={() => (
-                <EditDishForm
-                  reloadDishes={reloadDishes}
-                  setMessage={setMessageCallback}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/menus/new"
-              component={() => (
-                <NewMenuPage
-                  dishList={dishList}
-                  setMessage={setMessageCallback}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/menus"
-              component={() => <Menus resetMessage={resetMessageCallback} />}
-            />
-            <Route
-              exact
-              path="/menus/:menuId"
-              component={() => (
-                <MenuPage
-                  setMessage={setMessageCallback}
-                  resetMessage={resetMessageCallback}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/menus/:menuId/edit"
-              component={() => (
-                <EditMenuPage
-                  dishList={dishList}
-                  setMessage={setMessageCallback}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/menus/:menuId/grocerylist"
-              component={() => (
-                <GroceryListPage setMessage={setMessageCallback} />
-              )}
-            />
-          </Switch>
-          <footer>
+              <Route
+                exact
+                path="/dishes"
+                component={() => (
+                  <Dishes
+                    dishList={dishList}
+                    resetMessage={resetMessageCallback}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/dishes/:dishId"
+                component={() => (
+                  <DishPage
+                    dishList={dishList}
+                    reloadDishes={reloadDishes}
+                    setMessage={setMessageCallback}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/dishes/:dishId/edit"
+                component={() => (
+                  <EditDishForm
+                    reloadDishes={reloadDishes}
+                    setMessage={setMessageCallback}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/menus/new"
+                component={() => (
+                  <NewMenuPage
+                    dishList={dishList}
+                    setMessage={setMessageCallback}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/menus"
+                component={() => <Menus resetMessage={resetMessageCallback} />}
+              />
+              <Route
+                exact
+                path="/menus/:menuId"
+                component={() => (
+                  <MenuPage
+                    setMessage={setMessageCallback}
+                    resetMessage={resetMessageCallback}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/menus/:menuId/edit"
+                component={() => (
+                  <EditMenuPage
+                    dishList={dishList}
+                    setMessage={setMessageCallback}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/menus/:menuId/grocerylist"
+                component={() => (
+                  <GroceryListPage setMessage={setMessageCallback} />
+                )}
+              />
+            </Switch>
+          </main>
+          <footer className="footer">
             <Footer resetMessage={resetMessageCallback} />
           </footer>
         </Router>
