@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import dateformat from "dateformat";
+import { useAuth0 } from "@auth0/auth0-react";
 
+import { Loading } from "../Loading";
 import GroceryItem from "./GroceryItem";
 
-import { useAuth0 } from "@auth0/auth0-react";
 import {
   Container,
   Table,
@@ -19,12 +20,14 @@ import {
 import "./GroceryListPage.css";
 
 const GroceryListPage = (props) => {
+  const [sending, setSending] = useState(false);
   const { user, isAuthenticated } = useAuth0();
   const [menu, setMenu] = useState(null);
   const [formFields, setFormFields] = useState([{}]);
 
   const location = useLocation();
   useEffect(() => {
+    setSending(true);
     axios
       .get(
         `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(
@@ -33,11 +36,13 @@ const GroceryListPage = (props) => {
         )}`
       )
       .then((response) => {
+        setSending(false);
         const apiMenuList = response.data;
         setMenu(apiMenuList);
         setFormFields(response.data.groceryListText);
       })
       .catch((error) => {
+        setSending(false);
         // Still need to handle errors
         // setErrorMessage(error.message);
       });
@@ -69,6 +74,8 @@ const GroceryListPage = (props) => {
         filteredFormFields.push(item);
       }
     });
+
+    setSending(true);
     axios
       .patch(
         `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(
@@ -82,6 +89,7 @@ const GroceryListPage = (props) => {
         }
       )
       .then((response) => {
+        setSending(false);
         console.log("Patch request sent to update grocery list text");
         history.push(`/menus${location.pathname.slice(6, -12)}`);
         const message = `Successfully updated your grocery list`;
@@ -89,6 +97,7 @@ const GroceryListPage = (props) => {
         props.setMessage(message, type);
       })
       .catch((error) => {
+        setSending(false);
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
@@ -100,6 +109,7 @@ const GroceryListPage = (props) => {
 
   return (
     <Container className="cont">
+      {sending && <Loading />}
       <Card fluid className="main">
         <Card.Content>
           <h2>Editing grocery list</h2>
