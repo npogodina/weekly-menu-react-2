@@ -4,6 +4,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import dateformat from "dateformat";
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import { PDFViewer, PDFDownloadLink, BlobProvider } from "@react-pdf/renderer";
+import { Loading } from "../Loading";
 
 import { Container, Button, Card, CardContent } from "semantic-ui-react";
 
@@ -176,7 +177,7 @@ const MenuPDF = () => {
             <h1>Enjoy your PDF!</h1>
             <PDFDownloadLink document={pdf} fileName="somename.pdf">
               {({ blob, url, loading, error }) =>
-                loading ? "Loading document..." : openPDF(url)
+                loading ? <Loading /> : openPDF(url)
               }
             </PDFDownloadLink>
             <Button type="Reset" onClick={onBackClick}>

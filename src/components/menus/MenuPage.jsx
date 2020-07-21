@@ -204,12 +204,7 @@ const MenuPage = (props) => {
               <h2>Happy?</h2>
               <Button.Group>
                 <Button color="green" onClick={onPDFClick}>
-                  <Link
-                    to={{
-                      pathname: `/menus${location.pathname.slice(6)}/pdf`,
-                      state: "Nataliya",
-                    }}
-                  ></Link>
+                  PDF
                 </Button>
                 <Button.Or />
                 <Button color="yellow" onClick={onEditClick}>
