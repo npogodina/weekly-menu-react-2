@@ -5,6 +5,8 @@ import dateformat from "dateformat";
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import { PDFViewer, PDFDownloadLink, BlobProvider } from "@react-pdf/renderer";
 
+import { Container, Button, Card, CardContent } from "semantic-ui-react";
+
 // Create styles
 const styles = StyleSheet.create({
   body: {
@@ -74,9 +76,9 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-const MenuPDF = (props) => {
+const MenuPDF = () => {
+  let history = useHistory();
   const [ready, setReady] = useState(false);
-
   const [menu, setMenu] = useState(null);
   const location = useLocation();
   useEffect(() => {
@@ -154,37 +156,6 @@ const MenuPDF = (props) => {
               </View>
             </View>
             {menuLines}
-            {/* <View style={styles.tableRow}>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>React-PDF</Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>3</Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>2019-02-20 - 2020-02-19</Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>5€</Text>
-              </View>
-            </View>
-            <View style={styles.tableRow}>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>Another row</Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>
-                  Capítulo I: Que trata de la condición y ejercicio del famoso
-                  hidalgo D. Quijote de la Mancha
-                </Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>2019-05-20 - 2020-07-19</Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>25€</Text>
-              </View>
-            </View> */}
           </View>
         </Page>
       </Document>
@@ -193,14 +164,27 @@ const MenuPDF = (props) => {
     const openPDF = (url) => {
       window.open(url, "_blank");
     };
+
+    const onBackClick = () => {
+      history.push(`/menus${location.pathname.slice(6, -4)}`);
+    };
+
     return (
-      <div>
-        <PDFDownloadLink document={pdf} fileName="somename.pdf">
-          {({ blob, url, loading, error }) =>
-            loading ? "Loading document..." : openPDF(url)
-          }
-        </PDFDownloadLink>
-      </div>
+      <Container className="cont">
+        <Card fluid className="main">
+          <Card.Content>
+            <h1>Enjoy your PDF!</h1>
+            <PDFDownloadLink document={pdf} fileName="somename.pdf">
+              {({ blob, url, loading, error }) =>
+                loading ? "Loading document..." : openPDF(url)
+              }
+            </PDFDownloadLink>
+            <Button type="Reset" onClick={onBackClick}>
+              Back
+            </Button>
+          </Card.Content>
+        </Card>
+      </Container>
     );
   }
 };
