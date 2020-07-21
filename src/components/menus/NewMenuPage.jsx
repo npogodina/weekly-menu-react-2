@@ -3,11 +3,13 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Loading } from "../Loading";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { Container, Form, Select, Button, Card } from "semantic-ui-react";
 
 const NewMenuPage = (props) => {
+  const [sending, setSending] = useState(false);
   const { user, isAuthenticated } = useAuth0();
   const [startDate, setStartDate] = useState(new Date());
   const [familySize, setFamilySize] = useState("1");
@@ -38,6 +40,7 @@ const NewMenuPage = (props) => {
     event.preventDefault();
     console.log("Executing onFormSubmit");
     console.log(process.env.REACT_APP_API_MENUS_INDEX);
+    setSending(true);
     axios
       .post(process.env.REACT_APP_API_MENUS_INDEX, {
         userId: user.sub,
@@ -45,6 +48,7 @@ const NewMenuPage = (props) => {
         familySize: familySize,
       })
       .then((response) => {
+        setSending(false);
         console.log("Post request sent!");
         console.log(response);
         history.push(`/menus/${response.data.menuId}`);
@@ -53,6 +57,7 @@ const NewMenuPage = (props) => {
         props.setMessage(message, type);
       })
       .catch((error) => {
+        setSending(false);
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
@@ -60,6 +65,7 @@ const NewMenuPage = (props) => {
 
   return (
     <Container className="cont">
+      {sending && <Loading />}
       <Card fluid>
         <Card.Content>
           <h1>Making a new menu</h1>
