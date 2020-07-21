@@ -16,6 +16,7 @@ import {
 } from "semantic-ui-react";
 
 const MenuPage = (props) => {
+  const [sending, setSending] = useState(true);
   const { user, isAuthenticated } = useAuth0();
   const location = useLocation();
 
@@ -26,6 +27,7 @@ const MenuPage = (props) => {
         `${process.env.REACT_APP_API_MENUS_INDEX}${location.pathname.slice(6)}`
       )
       .then((response) => {
+        setSending(false);
         const apiMenuList = response.data;
         setMenu(apiMenuList);
       })
@@ -163,7 +165,7 @@ const MenuPage = (props) => {
     <Container className="cont">
       <Card fluid className="main">
         <Card.Content>
-          {!menu && <Loading />}
+          {sending && <Loading />}
           {menu && (
             <div>
               <h2>Here's your menu for the week!</h2>
