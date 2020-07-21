@@ -17,6 +17,7 @@ import NewMenuPage from "./components/menus/NewMenuPage";
 import EditMenuPage from "./components/menus/EditMenuPage";
 import MenuPage from "./components/menus/MenuPage";
 import GroceryListPage from "./components/menus/GroceryListPage";
+import MenuPDF from "./components/menus/MenuPDF";
 import { Loading } from "./components/Loading";
 
 import { DndProvider, useDrag, useDrop } from "react-dnd";
@@ -182,6 +183,11 @@ const App = () => {
                     resetMessage={resetMessageCallback}
                   />
                 )}
+              />
+              <Route
+                exact
+                path="/menus/:menuId/pdf"
+                component={() => <MenuPDF />}
               />
               <Route
                 exact

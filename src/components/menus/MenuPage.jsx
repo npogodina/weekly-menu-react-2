@@ -88,6 +88,11 @@ const MenuPage = (props) => {
   }
 
   let history = useHistory();
+  const onPDFClick = () => {
+    history.push(`/menus${location.pathname.slice(6)}/pdf`);
+    props.resetMessage();
+  };
+
   const onEditClick = () => {
     history.push(`/menus${location.pathname.slice(6)}/edit`);
     props.resetMessage();
@@ -198,6 +203,10 @@ const MenuPage = (props) => {
               </Table>
               <h2>Happy?</h2>
               <Button.Group>
+                <Button color="green" onClick={onPDFClick}>
+                  PDF
+                </Button>
+                <Button.Or />
                 <Button color="yellow" onClick={onEditClick}>
                   Edit
                 </Button>
