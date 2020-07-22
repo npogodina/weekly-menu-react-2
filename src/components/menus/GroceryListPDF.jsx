@@ -85,7 +85,13 @@ const styles = StyleSheet.create({
 const GroceryListPDF = () => {
   let history = useHistory();
   const [groceryList, setGroceryList] = useState(null);
+  const [pdfURL, setPdfURL] = useState(null);
   const location = useLocation();
+
+  useEffect(() => {
+    openPDF(pdfURL);
+  }, [pdfURL]);
+
   useEffect(() => {
     axios
       .get(
@@ -106,12 +112,7 @@ const GroceryListPDF = () => {
       });
   }, []);
 
-  if (!groceryList) {
-    console.log("null");
-    return null;
-  } else {
-    console.log("ready");
-
+  const generatingPDF = () => {
     let groceryListLines = groceryList.map((item) => {
       return (
         <View style={styles.bigItem}>
@@ -142,32 +143,39 @@ const GroceryListPDF = () => {
       </Document>
     );
 
-    const openPDF = (url) => {
-      window.open(url, "grocerylist");
-    };
+    return pdf;
+  };
 
-    const onBackClick = () => {
-      history.push(`/menus${location.pathname.slice(6, -4)}`);
-    };
+  const openPDF = (url) => {
+    if (!url) {
+      return;
+    }
+    window.open(url, "_blank");
+  };
 
-    return (
-      <Container className="cont">
-        <Card fluid className="main">
-          <Card.Content>
-            <h1>Enjoy your PDF!</h1>
-            <PDFDownloadLink document={pdf} fileName="somename.pdf">
+  const onBackClick = () => {
+    history.push(`/menus${location.pathname.slice(6, -16)}`);
+  };
+
+  return (
+    <Container className="cont">
+      <Card fluid className="main">
+        <Card.Content>
+          <h1>Enjoy your PDF!</h1>
+          {groceryList && (
+            <PDFDownloadLink document={generatingPDF()} fileName="somename.pdf">
               {({ blob, url, loading, error }) =>
-                loading ? <Loading /> : openPDF(url)
+                loading ? <Loading /> : setPdfURL(url)
               }
             </PDFDownloadLink>
-            <Button type="Reset" onClick={onBackClick}>
-              Back
-            </Button>
-          </Card.Content>
-        </Card>
-      </Container>
-    );
-  }
+          )}
+          <Button type="Reset" onClick={onBackClick}>
+            Back
+          </Button>
+        </Card.Content>
+      </Card>
+    </Container>
+  );
 };
 
 export default GroceryListPDF;
