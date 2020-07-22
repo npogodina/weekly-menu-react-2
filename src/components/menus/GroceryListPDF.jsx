@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useHistory } from "react-router-dom";
-import dateformat from "dateformat";
 import {
   Page,
   Text,
@@ -10,36 +9,23 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import {
-  PDFViewer,
-  PDFDownloadLink,
-  BlobProvider,
-  Font,
-} from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Loading } from "../Loading";
 import Checkbox from "../../img/emptycheckbox.png";
 import GroceryBorder from "../../img/groceryborder.png";
 import Empty from "../../img/empty.png";
 
-import { Container, Button, Card, CardContent } from "semantic-ui-react";
+import { Container, Button, Card } from "semantic-ui-react";
 
-// Create styles
-// Font.register({
-//   family: "Lato",
-//   src: "https://fonts.gstatic.com/s/lato/v16/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2",
-// });
 const styles = StyleSheet.create({
   body: {
-    // padding: 50,
     letterSpacing: "0.5",
-    // fontFamily: "Arial",
   },
   h1: {
     fontSize: 20,
     fontWeight: 800,
     marginBottom: "20px",
     color: "#21ba45",
-    // marginLeft: "30px",
   },
   cornerImage: {
     width: "500px",
@@ -48,11 +34,9 @@ const styles = StyleSheet.create({
     marginBottom: "15px",
     marginRight: "15px",
     flexDirection: "row",
-    // width: "50%",
   },
   item: {
     flexDirection: "row",
-    // marginBottom: 5,
   },
   bulletPoint: {
     width: 10,
