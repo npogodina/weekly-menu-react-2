@@ -123,7 +123,7 @@ const NewDishForm = (props) => {
     let dup = false;
     props.dishList.forEach((dish) => {
       if (dish.name === formFields.name) {
-        let message = `You already have a dish ${dish.name}.`;
+        let message = `You already have a dish ${dish.name}`;
         updatedErrorMessage.push(message);
         setErrorMessage(updatedErrorMessage);
         error = true;
@@ -173,7 +173,7 @@ const NewDishForm = (props) => {
       }
       if (ingredient["amount"] && ingredient["name"]) {
         if (!regex.test(ingredient["amount"])) {
-          let message = `${ingredient.name}: amount should be a number.`;
+          let message = `${ingredient.name}: amount should be a number`;
           updatedErrorMessage.push(message);
           setErrorMessage(updatedErrorMessage);
           error = true;
@@ -183,6 +183,7 @@ const NewDishForm = (props) => {
     });
 
     if (error === true) {
+      window.scrollTo(0, 0);
       return;
     }
 
