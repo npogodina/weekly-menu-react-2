@@ -1,13 +1,15 @@
 .home-h1 {
   font-family: "Source Serif Pro", serif;
+  /* font-family: "Caveat", cursive; */
+
   text-align: center;
 }
 
 .home-banner {
   height: 50vh;
   max-height: 350px;
-  background-image: url(../img/home-banner-2.png);
-  background-color: lightyellow;
+  background-image: url(../img/home-banner.png);
+  background-color: rgb(220, 244, 250);
   background-size: cover;
   position: relative;
   border-top: 1px solid lightgray;
