@@ -82,7 +82,13 @@ const styles = StyleSheet.create({
 const MenuPDF = () => {
   let history = useHistory();
   const [menu, setMenu] = useState(null);
+  const [pdfURL, setPdfURL] = useState(null);
   const location = useLocation();
+
+  useEffect(() => {
+    openPDF(pdfURL);
+  }, [pdfURL]);
+
   useEffect(() => {
     axios
       .get(
@@ -102,12 +108,7 @@ const MenuPDF = () => {
       });
   }, []);
 
-  if (!menu) {
-    console.log("null");
-    return null;
-  } else {
-    console.log("ready");
-
+  const generatingPDF = () => {
     const dates = [menu["startDate"]];
     for (let i = 1; i < 7; i++) {
       let day = new Date(menu["startDate"]);
@@ -161,32 +162,40 @@ const MenuPDF = () => {
       </Document>
     );
 
-    const openPDF = (url) => {
-      window.open(url, "menu");
-    };
+    return pdf;
+  };
 
-    const onBackClick = () => {
-      history.push(`/menus${location.pathname.slice(6, -4)}`);
-    };
+  const openPDF = (url) => {
+    if (!url) {
+      return;
+    }
+    window.open(url, "_blank");
+  };
 
-    return (
-      <Container className="cont">
-        <Card fluid className="main">
-          <Card.Content>
-            <h1>Enjoy your PDF!</h1>
-            <PDFDownloadLink document={pdf} fileName="menu.pdf">
+  const onBackClick = () => {
+    history.push(`/menus${location.pathname.slice(6, -4)}`);
+  };
+
+  return (
+    <Container className="cont">
+      <Card fluid className="main">
+        <Card.Content>
+          <h1>Enjoy your PDF!</h1>
+          {menu && (
+            <PDFDownloadLink document={generatingPDF()} fileName="menu.pdf">
               {({ blob, url, loading, error }) =>
-                loading ? <Loading /> : openPDF(url)
+                loading ? <Loading /> : setPdfURL(url)
               }
             </PDFDownloadLink>
-            <Button type="Reset" onClick={onBackClick}>
-              Back
-            </Button>
-          </Card.Content>
-        </Card>
-      </Container>
-    );
-  }
+          )}
+
+          <Button type="Reset" onClick={onBackClick}>
+            Back
+          </Button>
+        </Card.Content>
+      </Card>
+    </Container>
+  );
 };
 
 export default MenuPDF;
