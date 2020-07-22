@@ -202,7 +202,7 @@ const EditDishForm = (props) => {
       }
       if (ingredient["amount"] && ingredient["name"]) {
         if (!regex.test(ingredient["amount"])) {
-          let message = `${ingredient.name}: amount should be a number.`;
+          let message = `${ingredient.name}: amount should be a number`;
           updatedErrorMessage.push(message);
           setErrorMessage(updatedErrorMessage);
           error = true;
