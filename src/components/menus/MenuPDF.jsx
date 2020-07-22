@@ -10,17 +10,14 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import { PDFViewer, PDFDownloadLink, BlobProvider } from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Loading } from "../Loading";
 import MenuBorder from "../../img/menuborder.png";
 
-import { Container, Button, Card, CardContent } from "semantic-ui-react";
+import { Container, Button, Card } from "semantic-ui-react";
 
 // Create styles
 const styles = StyleSheet.create({
-  body: {
-    // padding: 10,
-  },
   table: {
     display: "table",
     width: "auto",
@@ -39,16 +36,12 @@ const styles = StyleSheet.create({
   },
   tableColHeader: {
     width: "30%",
-    // borderStyle: "solid",
-    // borderColor: "#bfbfbf",
     borderColor: "#21ba45",
     borderBottomWidth: 1,
     borderLeftWidth: 1,
   },
   tableDateColHeader: {
     width: "10%",
-    // borderStyle: "solid",
-    // borderColor: "#bfbfbf",
     borderColor: "#21ba45",
     borderBottomWidth: 1,
     borderLeftWidth: 0,
@@ -56,21 +49,12 @@ const styles = StyleSheet.create({
   },
   tableCol: {
     width: "30%",
-    // borderStyle: "solid",
-    // borderColor: "#bfbfbf",
-    // borderWidth: 1,
     borderLeftWidth: 1,
     borderColor: "#21ba45",
-    // borderTopWidth: 0,
     padding: "5px 0",
   },
   tableDateCol: {
     width: "10%",
-    // borderStyle: "solid",
-    // borderColor: "#bfbfbf",
-    // borderWidth: 1,
-    // borderLeftWidth: 0,
-    // borderTopWidth: 0,
     padding: "5px 0",
   },
   tableCellHeader: {
@@ -154,9 +138,8 @@ const MenuPDF = () => {
 
     const pdf = (
       <Document>
-        <Page style={styles.body} orientation="landscape">
+        <Page orientation="landscape">
           <Image src={MenuBorder} style={styles.pageBackground} />
-
           <View style={styles.table}>
             <View style={styles.tableRow}>
               <View style={styles.tableDateColHeader}>
@@ -191,7 +174,7 @@ const MenuPDF = () => {
         <Card fluid className="main">
           <Card.Content>
             <h1>Enjoy your PDF!</h1>
-            <PDFDownloadLink document={pdf} fileName="somename.pdf">
+            <PDFDownloadLink document={pdf} fileName="menu.pdf">
               {({ blob, url, loading, error }) =>
                 loading ? <Loading /> : openPDF(url)
               }
@@ -207,38 +190,3 @@ const MenuPDF = () => {
 };
 
 export default MenuPDF;
-
-// return (
-//   <div>
-//     <PDFDownloadLink document={menu} fileName="somename.pdf">
-//       {({ blob, url, loading, error }) =>
-//         loading ? "Loading document..." : "Download now!"
-//       }
-//     </PDFDownloadLink>
-//   </div>
-// );
-
-// import React, { useState } from "react";
-// import { Document, Page } from "react-pdf";
-
-// const MenuPDF = (props) => {
-//   const [numPages, setNumPages] = useState(null);
-//   const [pageNumber, setPageNumber] = useState(1);
-
-//   function onDocumentLoadSuccess(document) {
-//     setNumPages(document.numPages);
-//   }
-
-//   return (
-//     <div>
-//       <Document file="somefile.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-//         <Page pageNumber={pageNumber} />
-//       </Document>
-//       <p>
-//         Page {pageNumber} of {numPages}
-//       </p>
-//     </div>
-//   );
-// };
-
-// export default MenuPDF;
