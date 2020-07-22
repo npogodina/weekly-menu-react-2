@@ -2,26 +2,36 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, useHistory } from "react-router-dom";
 import dateformat from "dateformat";
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Image,
+} from "@react-pdf/renderer";
 import { PDFViewer, PDFDownloadLink, BlobProvider } from "@react-pdf/renderer";
 import { Loading } from "../Loading";
+import MenuBorder from "../../img/menuborder.png";
 
 import { Container, Button, Card, CardContent } from "semantic-ui-react";
 
 // Create styles
 const styles = StyleSheet.create({
   body: {
-    padding: 10,
+    // padding: 10,
   },
   table: {
     display: "table",
     width: "auto",
-    // borderStyle: "solid",
-    // borderColor: "#bfbfbf",
-    // borderWidth: 1,
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
+    borderStyle: "solid",
+    borderColor: "#21ba45",
+    borderWidth: 5,
+    padding: "15px",
     margin: "50px",
+    marginTop: "100px",
+    backgroundColor: "white",
+    borderRadius: 25,
   },
   tableRow: {
     margin: "auto",
@@ -66,13 +76,21 @@ const styles = StyleSheet.create({
   tableCellHeader: {
     margin: "auto",
     margin: 5,
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: 500,
   },
   tableCell: {
     margin: "auto",
     margin: 5,
-    fontSize: 11,
+    fontSize: 12,
+  },
+  pageBackground: {
+    position: "absolute",
+    minWidth: "100%",
+    minHeight: "100%",
+    display: "block",
+    height: "100%",
+    width: "100%",
   },
 });
 
@@ -137,6 +155,8 @@ const MenuPDF = () => {
     const pdf = (
       <Document>
         <Page style={styles.body} orientation="landscape">
+          <Image src={MenuBorder} style={styles.pageBackground} />
+
           <View style={styles.table}>
             <View style={styles.tableRow}>
               <View style={styles.tableDateColHeader}>
