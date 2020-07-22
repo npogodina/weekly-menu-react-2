@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
 // Create Document Component
 const MenuPDF = () => {
   let history = useHistory();
-  const [ready, setReady] = useState(false);
   const [menu, setMenu] = useState(null);
   const location = useLocation();
   useEffect(() => {
@@ -91,20 +90,17 @@ const MenuPDF = () => {
         )}`
       )
       .then((response) => {
-        // setSending(false);
         const apiMenuList = response.data;
         setMenu(apiMenuList);
-        setReady(true);
       })
       .catch((error) => {
         console.log(error);
-        // setSending(false);
         // Still need to handle errors
         // setErrorMessage(error.message);
       });
   }, []);
 
-  if (!ready) {
+  if (!menu) {
     console.log("null");
     return null;
   } else {
@@ -163,7 +159,7 @@ const MenuPDF = () => {
     );
 
     const openPDF = (url) => {
-      window.open(url, "_blank");
+      window.open(url, "menu");
     };
 
     const onBackClick = () => {

@@ -187,9 +187,7 @@ const App = () => {
               <Route
                 exact
                 path="/menus/:menuId/pdf"
-                component={() => (
-                  <MenuPDF name="Nataliya" dishList={dishList} />
-                )}
+                component={() => <MenuPDF />}
               />
               <Route
                 exact
