@@ -57,7 +57,11 @@ const NewMenuPage = (props) => {
         props.setMessage(message, type);
       })
       .catch((error) => {
+        console.log(error.response.data);
         setSending(false);
+        const message = error.response.data;
+        const type = "error";
+        props.setMessage(message, type);
         // What should we do when we know the post request failed?
         // setErrorMessage(error.message);
       });
