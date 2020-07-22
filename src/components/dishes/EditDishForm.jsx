@@ -212,6 +212,7 @@ const EditDishForm = (props) => {
     });
 
     if (error === true) {
+      window.scrollTo(0, 0);
       return;
     }
 
