@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
     display: "block",
     height: "100%",
     width: "100%",
-    // margin: "50px",
   },
   container: {
     margin: "0 50px",

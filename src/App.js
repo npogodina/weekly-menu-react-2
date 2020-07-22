@@ -20,6 +20,7 @@ import GroceryListPage from "./components/menus/GroceryListPage";
 import MenuPDF from "./components/menus/MenuPDF";
 import GroceryListPDF from "./components/menus/GroceryListPDF";
 import { Loading } from "./components/Loading";
+import ScrollToTop from "./utils/ScrollToTop";
 
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -112,6 +113,7 @@ const App = () => {
             <Navbar resetMessage={resetMessageCallback} />
           </header>
 
+          <ScrollToTop />
           <main className="main-content">
             {message && <MessageCard message={message} />}
             <Switch>
