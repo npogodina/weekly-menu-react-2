@@ -1,6 +1,7 @@
 .home-h1 {
-  font-family: "Source Serif Pro", serif;
-  /* font-family: "Caveat", cursive; */
+  /* font-family: "Source Serif Pro", serif; */
+  font-size: 40px;
+  font-family: "Caveat", cursive;
 
   text-align: center;
 }

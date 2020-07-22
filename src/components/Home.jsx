@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-import { Item, Card, Container } from "semantic-ui-react";
+import { Item, Container } from "semantic-ui-react";
 import "./Home.css";
 import Nataliya from "../img/nataliya.jpg";
 
@@ -21,7 +21,7 @@ const Home = (props) => {
             <li className="home-banner-text-li">Let us make the menu</li>
             <li className="home-banner-text-li">Change what you don't like</li>
             <li className="home-banner-text-li">
-              Tadam! Here's your menu and grocery list!
+              Tada! Here's your menu and grocery list!
             </li>
           </ol>
           <p>Enjoy!</p>
@@ -29,8 +29,6 @@ const Home = (props) => {
       </div>
 
       <Container className="cont mt-35">
-        {/* <Card fluid>
-          <Card.Content> */}
         <Item.Group className="blog-post">
           <Item>
             <Item.Image
@@ -81,8 +79,6 @@ const Home = (props) => {
             </Item.Content>
           </Item>
         </Item.Group>
-        {/* </Card.Content>
-        </Card> */}
       </Container>
     </div>
   );

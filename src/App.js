@@ -118,7 +118,7 @@ const App = () => {
             {message && <MessageCard message={message} />}
             <Switch>
               <Route exact path="/" component={() => <Home />}></Route>
-              <Route
+              <ProtectedRoute
                 exact
                 path="/dishes/new"
                 component={() => (
@@ -129,9 +129,8 @@ const App = () => {
                   />
                 )}
               />
-              {/* <Route exact path="/dishes/new" component={NewDishForm} /> */}
 
-              <Route
+              <ProtectedRoute
                 exact
                 path="/dishes"
                 component={() => (
@@ -141,7 +140,7 @@ const App = () => {
                   />
                 )}
               />
-              <Route
+              <ProtectedRoute
                 exact
                 path="/dishes/:dishId"
                 component={() => (
@@ -152,7 +151,7 @@ const App = () => {
                   />
                 )}
               />
-              <Route
+              <ProtectedRoute
                 exact
                 path="/dishes/:dishId/edit"
                 component={() => (
@@ -162,7 +161,7 @@ const App = () => {
                   />
                 )}
               />
-              <Route
+              <ProtectedRoute
                 exact
                 path="/menus/new"
                 component={() => (
@@ -172,12 +171,12 @@ const App = () => {
                   />
                 )}
               />
-              <Route
+              <ProtectedRoute
                 exact
                 path="/menus"
                 component={() => <Menus resetMessage={resetMessageCallback} />}
               />
-              <Route
+              <ProtectedRoute
                 exact
                 path="/menus/:menuId"
                 component={() => (
@@ -187,12 +186,12 @@ const App = () => {
                   />
                 )}
               />
-              <Route
+              <ProtectedRoute
                 exact
                 path="/menus/:menuId/pdf"
                 component={() => <MenuPDF />}
               />
-              <Route
+              <ProtectedRoute
                 exact
                 path="/menus/:menuId/edit"
                 component={() => (
@@ -202,14 +201,14 @@ const App = () => {
                   />
                 )}
               />
-              <Route
+              <ProtectedRoute
                 exact
                 path="/menus/:menuId/grocerylist"
                 component={() => (
                   <GroceryListPage setMessage={setMessageCallback} />
                 )}
               />
-              <Route
+              <ProtectedRoute
                 exact
                 path="/menus/:menuId/grocerylist/pdf"
                 component={() => <GroceryListPDF />}
