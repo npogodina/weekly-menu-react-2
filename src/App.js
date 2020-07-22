@@ -18,6 +18,7 @@ import EditMenuPage from "./components/menus/EditMenuPage";
 import MenuPage from "./components/menus/MenuPage";
 import GroceryListPage from "./components/menus/GroceryListPage";
 import MenuPDF from "./components/menus/MenuPDF";
+import GroceryListPDF from "./components/menus/GroceryListPDF";
 import { Loading } from "./components/Loading";
 
 import { DndProvider, useDrag, useDrop } from "react-dnd";
@@ -205,6 +206,11 @@ const App = () => {
                 component={() => (
                   <GroceryListPage setMessage={setMessageCallback} />
                 )}
+              />
+              <Route
+                exact
+                path="/menus/:menuId/grocerylist/pdf"
+                component={() => <GroceryListPDF />}
               />
             </Switch>
           </main>

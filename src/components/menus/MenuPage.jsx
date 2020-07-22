@@ -93,6 +93,11 @@ const MenuPage = (props) => {
     props.resetMessage();
   };
 
+  const onGroceryPDFClick = () => {
+    history.push(`/menus${location.pathname.slice(6)}/grocerylist/pdf`);
+    props.resetMessage();
+  };
+
   const onEditClick = () => {
     history.push(`/menus${location.pathname.slice(6)}/edit`);
     props.resetMessage();
@@ -238,6 +243,10 @@ const MenuPage = (props) => {
                   </div>
                   <h2>Happy?</h2>
                   <Button.Group>
+                    <Button color="green" onClick={onGroceryPDFClick}>
+                      PDF
+                    </Button>
+                    <Button.Or />
                     <Button color="yellow" onClick={onGroceryListEditClick}>
                       Edit
                     </Button>
