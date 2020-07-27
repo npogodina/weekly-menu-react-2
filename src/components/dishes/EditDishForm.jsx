@@ -252,10 +252,22 @@ const EditDishForm = (props) => {
       <Card fluid>
         <Card.Content>
           {sending && <Loading />}
-
           {errorMessage.length !== 0 && errorMessageBlob}
           <h1>Editing {formFields.name}</h1>
           <Form onSubmit={onFormSubmit}>
+            <Form.Field width={8}>
+              <label>
+                <h3>Recipe Name:</h3>
+              </label>
+              <input
+                placeholder="Example: Cranberry Orange Pie"
+                name="name"
+                onChange={onInputChange}
+                value={formFields.name}
+                className="input-border"
+              />
+            </Form.Field>
+
             <Form.Field width={8}>
               <label>
                 <h3>Image URL:</h3>
