@@ -221,9 +221,15 @@ const EditDishForm = (props) => {
 
     setSending(true);
     axios
-      .post(process.env.REACT_APP_API_DISHES_INDEX, newFormFields)
+      .patch(
+        `${process.env.REACT_APP_API_DISHES_INDEX}${location.pathname.slice(
+          7,
+          -5
+        )}`,
+        newFormFields
+      )
       .then((response) => {
-        console.log("Post request sent!");
+        console.log("Patch request sent!");
         props.reloadDishes();
         history.push(`/dishes`);
         const message = `Successfully updated ${newFormFields.name}`;
