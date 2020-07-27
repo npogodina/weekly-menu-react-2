@@ -148,6 +148,7 @@ const App = () => {
                     dishList={dishList}
                     reloadDishes={reloadDishes}
                     setMessage={setMessageCallback}
+                    resetMessage={resetMessageCallback}
                   />
                 )}
               />

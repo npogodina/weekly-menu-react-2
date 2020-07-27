@@ -104,6 +104,7 @@ const DishPage = (props) => {
   const onEditClick = () => {
     setSending(true);
     history.push(`/dishes${location.pathname.slice(7)}/edit`);
+    props.resetMessage();
   };
 
   if (dish) {
