@@ -25,6 +25,7 @@ const EditDishForm = (props) => {
   const { user, isAuthenticated } = useAuth0();
   const location = useLocation();
 
+  const [currentName, setCurrentName] = useState("");
   const [directions, setDirections] = useState([""]);
   const [ingredients, setIngredients] = useState([{}]);
   const [formFields, setFormFields] = useState({
@@ -53,6 +54,7 @@ const EditDishForm = (props) => {
         setSending(false);
         const data = response.data;
         console.log(data);
+        setCurrentName(data.name);
         let newFormFields = {
           userId: user.sub,
           name: data.name,
@@ -159,6 +161,17 @@ const EditDishForm = (props) => {
       setErrorMessage(updatedErrorMessage);
       error = true;
     }
+
+    let dup = false;
+    props.dishList.forEach((dish) => {
+      if (dish.name === formFields.name && dish.name !== currentName) {
+        let message = `You already have a dish ${dish.name}`;
+        updatedErrorMessage.push(message);
+        setErrorMessage(updatedErrorMessage);
+        error = true;
+        return;
+      }
+    });
 
     const newFormFields = {
       ...formFields,

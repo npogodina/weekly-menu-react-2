@@ -157,6 +157,7 @@ const App = () => {
                 component={() => (
                   <EditDishForm
                     reloadDishes={reloadDishes}
+                    dishList={dishList}
                     setMessage={setMessageCallback}
                   />
                 )}
