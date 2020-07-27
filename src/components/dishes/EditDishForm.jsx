@@ -231,7 +231,7 @@ const EditDishForm = (props) => {
       .then((response) => {
         console.log("Patch request sent!");
         props.reloadDishes();
-        history.push(`/dishes`);
+        history.push(`/dishes${location.pathname.slice(7, -5)}`);
         const message = `Successfully updated ${newFormFields.name}`;
         const type = "success";
         props.setMessage(message, type);
