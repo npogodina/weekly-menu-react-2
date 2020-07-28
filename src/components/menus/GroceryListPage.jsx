@@ -83,8 +83,6 @@ const GroceryListPage = (props) => {
           -11
         )}`,
         {
-          userId: user.sub,
-          startDate: menu.startDate,
           updatedGroceryListText: filteredFormFields,
         }
       )
