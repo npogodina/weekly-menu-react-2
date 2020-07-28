@@ -49,6 +49,14 @@ const Navbar = (props) => {
               >
                 <Link to={`/dishes/new`}>Add Dish</Link>
               </Dropdown.Item>
+
+              <Dropdown.Item
+                name="dishes"
+                active={activeItem === "dishes"}
+                onClick={handleItemClick}
+              >
+                <Link to={`/dishes/scrape`}>Load Recipe</Link>
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
 

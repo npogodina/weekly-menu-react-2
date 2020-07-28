@@ -12,6 +12,7 @@ import Dishes from "./components/dishes/Dishes";
 import DishPage from "./components/dishes/DishPage";
 import NewDishForm from "./components/dishes/NewDishForm";
 import EditDishForm from "./components/dishes/EditDishForm";
+import ScrapeDishForm from "./components/dishes/ScrapeDishForm";
 import Menus from "./components/menus/Menus";
 import NewMenuPage from "./components/menus/NewMenuPage";
 import EditMenuPage from "./components/menus/EditMenuPage";
@@ -118,6 +119,19 @@ const App = () => {
             {message && <MessageCard message={message} />}
             <Switch>
               <Route exact path="/" component={() => <Home />}></Route>
+
+              <Route
+                exact
+                path="/dishes/scrape"
+                component={() => (
+                  <ScrapeDishForm
+                    reloadDishes={reloadDishes}
+                    dishList={dishList}
+                    setMessage={setMessageCallback}
+                  />
+                )}
+              />
+
               <ProtectedRoute
                 exact
                 path="/dishes/new"
