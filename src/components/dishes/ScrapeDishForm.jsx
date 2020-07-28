@@ -27,13 +27,15 @@ const ScrapeDishPage = (props) => {
         "https://am54xet7t0.execute-api.us-west-2.amazonaws.com/dev/scraper",
         {
           dishUrl: url,
+          userId: user.sub,
         }
       )
       .then((response) => {
         setSending(false);
         console.log("Post request sent!");
         console.log(response);
-        // history.push(`/menus/${response.data.menuId}`);
+        props.reloadDishes();
+        history.push(`/dishes/${response.data.dishId}`);
         const message = `Successfully scraped a dish`;
         const type = "success";
         props.setMessage(message, type);
