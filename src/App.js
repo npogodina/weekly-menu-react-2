@@ -43,6 +43,7 @@ const App = () => {
   const { user, isAuthenticated } = useAuth0();
   const [message, setMessage] = useState(null);
 
+  const [sending, setSending] = useState(true);
   const [dishList, setDishList] = useState([]);
 
   let dishCount = 0;
@@ -64,7 +65,8 @@ const App = () => {
           setDishList(apiDishList);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
+          setSending(false);
           // Still need to handle errors
           // setErrorMessage(error.message);
         });
@@ -78,6 +80,7 @@ const App = () => {
   }
 
   const reloadDishes = () => {
+    setSending(true);
     axios
       .get(process.env.REACT_APP_API_DISHES_INDEX, {
         params: {
@@ -85,10 +88,14 @@ const App = () => {
         },
       })
       .then((response) => {
+        console.log(response.data);
         const apiDishList = response.data;
         setDishList(apiDishList);
       })
       .catch((error) => {
+        setDishList([]);
+        console.log(error.response.data);
+        setSending(false);
         // Still need to handle errors
         // setErrorMessage(error.message);
       });
@@ -137,6 +144,7 @@ const App = () => {
                   <Dishes
                     dishList={dishList}
                     resetMessage={resetMessageCallback}
+                    sending={sending}
                   />
                 )}
               />

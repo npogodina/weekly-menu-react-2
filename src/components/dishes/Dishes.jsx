@@ -113,7 +113,14 @@ const Dishes = (props) => {
                 <Table.HeaderCell>Directions?</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
-            {props.dishList.length === 0 && <Loading />}
+
+            {!props.sending && (
+              <Table.Row>
+                <Table.Cell><p>You don't have any dishes!</p></Table.Cell>
+              </Table.Row>
+            )}
+
+            {props.sending && props.dishList.length === 0 && <Loading />}
             {componentsToRender}
           </Table>
         </Card.Content>
