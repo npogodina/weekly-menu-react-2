@@ -11,8 +11,10 @@ import PropTypes from "prop-types";
 
 const Menus = (props) => {
   const { user, isAuthenticated } = useAuth0();
+  const [sending, setSending] = useState(true);
   const [menus, setMenus] = useState([]);
   useEffect(() => {
+    console.log("Calling useEffect");
     axios
       .get(process.env.REACT_APP_API_MENUS_INDEX, {
         params: {
@@ -24,6 +26,8 @@ const Menus = (props) => {
         setMenus(apiMenuList);
       })
       .catch((error) => {
+        console.log(error.response.data);
+        setSending(false);
         // Still need to handle errors
         // setErrorMessage(error.message);
       });
@@ -51,6 +55,7 @@ const Menus = (props) => {
 
   return (
     <Container className="cont">
+      
       <Card fluid id="menus-card">
         <Card.Content>
           <h1>Your menus:</h1>
@@ -63,8 +68,14 @@ const Menus = (props) => {
               </Table.Row>
             </Table.Header>
 
+            {!sending && (
+              <Table.Row>
+                <Table.Cell><p>You don't have any menus!</p></Table.Cell>
+              </Table.Row>
+            )}
+
             {menus.length > 0 && componentsToRender}
-            {menus.length === 0 && (
+            {sending && menus.length === 0 && (
               <div>
                 <Loading />
               </div>
@@ -72,6 +83,7 @@ const Menus = (props) => {
           </Table>
         </Card.Content>
       </Card>
+      
     </Container>
   );
 };
